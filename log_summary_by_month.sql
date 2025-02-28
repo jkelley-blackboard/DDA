@@ -1,6 +1,7 @@
 -- Provided without warranty or support
 -- jeff.kelley@anthology.com
 -- sumarizes a count of log files and their total size by month
+-- run against the content collection database (_cms_doc)
 
 SELECT
     CONCAT(
