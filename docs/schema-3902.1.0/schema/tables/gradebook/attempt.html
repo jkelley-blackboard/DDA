@@ -1,0 +1,738 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-gradebook.html">gradebook</a>
+</div>
+
+<h1>attempt
+  <p>This table contains attempt information for attempts such as a assignment or blog or wiki.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">attempt_pk</p>
+  <p>This is the primary key on column pk1 of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    attempt_fk2
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the qti_result_data table. </p>
+  <ul>
+<li> <a href="#column-qti_result_data_pk1">qti_result_data_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    attempt_fk1
+  <p>This is a foreign key referencing the primary key of the gradebook_grade table. </p>
+  <ul>
+<li> <a href="#column-gradebook_grade_pk1">gradebook_grade_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    attempt_fk3
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the group_attempt table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-group_attempt_pk1">group_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    attempt_fk4
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table.</p>
+  <ul>
+<li> <a href="#column-ai_user_instr_comments">ai_user_instr_comments</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> attempt_ic1
+  <ul>
+<li> <a href="#column-expected_end_date">expected_end_date</a>
+</li>
+<li> <a href="#column-gradebook_grade_pk1">gradebook_grade_pk1</a>
+</li>
+  </ul>
+</li>
+<li> attempt_ie1
+  <ul>
+<li> <a href="#column-date_modified">date_modified</a>
+</li>
+  </ul>
+</li>
+<li> attempt_if2
+  <ul>
+<li> <a href="#column-qti_result_data_pk1">qti_result_data_pk1</a>
+</li>
+  </ul>
+</li>
+<li> attempt_if3
+  <ul>
+<li> <a href="#column-group_attempt_pk1">group_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> attempt_if4
+  <ul>
+<li> <a href="#column-attempt_date">attempt_date</a>
+</li>
+  </ul>
+</li>
+<li> attempt_if5
+  <ul>
+<li> <a href="#column-ai_user_instr_comments">ai_user_instr_comments</a>
+</li>
+  </ul>
+</li>
+<li> attempt_ie2
+  <ul>
+<li> <a href="#column-gradebook_grade_pk1">gradebook_grade_pk1</a>
+</li>
+<li> <a href="#column-group_attempt_pk1">group_attempt_pk1</a>
+</li>
+<li> <a href="#column-status">status</a>
+</li>
+<li> <a href="#column-attempt_date">attempt_date</a>
+</li>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</li>
+<li> attempt_ie3
+  <ul>
+<li> <a href="#column-status">status</a>
+</li>
+<li> <a href="#column-group_attempt_pk1">group_attempt_pk1</a>
+</li>
+<li> <a href="#column-gradebook_grade_pk1">gradebook_grade_pk1</a>
+</li>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+<li> <a href="#column-attempt_date">attempt_date</a>
+</li>
+  </ul>
+</li>
+<li> attempt_ie4
+  <ul>
+<li> <a href="#column-status">status</a>
+</li>
+<li> <a href="#column-expected_end_date">expected_end_date</a>
+</li>
+  </ul>
+</li>
+<li> attempt_ie5
+  <ul>
+<li> <a href="#column-gradebook_grade_pk1">gradebook_grade_pk1</a>
+</li>
+<li> <a href="#column-last_graded_date">last_graded_date</a>
+</li>
+<li> <a href="#column-first_graded_date">first_graded_date</a>
+</li>
+<li> <a href="#column-date_modified">date_modified</a>
+</li>
+<li> <a href="#column-attempt_date">attempt_date</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-gradebook_grade_pk1">gradebook_grade_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key to the gradebook_grade.pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qti_result_data_pk1">qti_result_data_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key to the qti_result_data.pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-linkrefid">linkrefid</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Holds a unique uuid for this assignment/blog/wiki</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-score">score</a></td>
+  <td>numeric(15,5)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Score achivied for an attempt.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-grade">grade</a></td>
+  <td>nvarchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Grade for an attempt.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-student_comments">student_comments</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text for student comments.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-instructor_comments">instructor_comments</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text for instructor feedback.  Formatted text type is specified by feedback_format_type field.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-feedback_format_type">feedback_format_type</a></td>
+  <td>char(1)</td>
+    <td>'H'</td>
+    <td class="valueConstraint">attempt_enum4
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text type for instructor feedback: H=HTML, P=PLAIN TEXT, S=SMART TEXT.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comment_public_ind">comment_public_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">attempt_enum1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This column value is ignored and treated as 'Y' all the time</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-exempt_ind">exempt_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">attempt_enum2
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This column indicates whether an attempt is exempted.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-override_ind">override_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">attempt_enum3
+      <ul>
+          <li> <span>N</span>
+  <p>No override</p>
+          </li>
+          <li> <span>Y</span>
+  <p>Grade and feedback are both overridden</p>
+          </li>
+          <li> <span>F</span>
+  <p>Only feedback is overridden</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This indicates whether the group attempt grade and feedback were overidden.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-instructor_notes">instructor_notes</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text for instructor notes.  Formatted text type specified by notes_format_type field.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-notes_format_type">notes_format_type</a></td>
+  <td>char(1)</td>
+    <td>'H'</td>
+    <td class="valueConstraint">attempt_enum5
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text for instructor notes.  Formatted text type: H=HTML, P=PLAIN TEXT, S=SMART TEXT.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nested_file_ind">nested_file_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">attempt_nested_file_type
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Attempt has files with a nested folder structure. This column exists both in the attempt and attempt_files tables because Ultra does not write to the attempt_files table for attempt submissions with files.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-status">status</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>NOT_ATTEMPTED:1, ABANDONED (deprecated):2, IN_PROGRESS:3, SUSPENDED:4, CANCELLED (deprecated):5, NEEDS_GRADING:6, COMPLETED:7, IN_MORE_PROGRESS:8, NEEDS_MORE_GRADING:9</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-attempt_date">attempt_date</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Date and time when the attempt happened.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-first_graded_date">first_graded_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date and time when the attempt was graded first time</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_graded_date">last_graded_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date and time when the attempt was graded last time</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_graded_date_via_lti_ags">last_graded_date_via_lti_ags</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date and time, an external LTI tool tell us, when the grading request was sent to Learn. Please note the actual grading timestamp recorded in Learn is saved in the column 'last_graded_date'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-date_added">date_added</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date and time at which this attempt was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-date_modified">date_modified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date and/or time at which this attempt was modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-latest_ind">latest_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates latest attempt if multiple attempts are allowed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-group_attempt_pk1">group_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key to the group_attempt.pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-student_submission">student_submission</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text for student submission. Formatted text type is specified by text_format_type field.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_format_type">text_format_type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td class="valueConstraint">attmpt_sub_fmt
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the format of the student_submission. H=HTML, P=PLAIN TEXT, S=SMART TEXT.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-graded_anonymously_ind">graded_anonymously_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">attempt_grade_anon_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This indicates if this attempt was last graded during anonymous grading. Y=Yes, it was anonymous; N/null=No, not anonymous (Note: No default value is given to avoid upgrade performance hit)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reconciliation_mode">reconciliation_mode</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">attempt_recon_mode_ck
+      <ul>
+          <li> <span>A</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>L</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>If this attempt was graded via delegated grading then this field will record the reconciliation mode used to set the grade. A=Average,H=Highest,L=Lowest,C=Custom (Note: No default value is given to avoid upgrade performance hit)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-show_staged_feedback">show_staged_feedback</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">attempt_shw_stgd_fdbck_ck
+      <ul>
+          <li> <span>A</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Show the staged feedback to students. A=show all staged feedback, N=Do not show any staged feedback to the student,S=Show specifically selected staged feedback based on the staged rows (Note: S Not supported yet ). null=='A' (show all)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-expected_end_date">expected_end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Expected end date for the given item (currently only used by assessments). For Example the value is not null (= attempt.attempt_date + course_assessment.time_limit or gradebook.due_date) if the assessment is time_limit is not null and timer_completion=H or if Due Date is enforced and has Due Date. (Note: No user exceptions are taken into account as this field is only used to trigger the auto submit task.)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ready_to_post_ind">ready_to_post_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">attempt_ready_to_post_ind_ck
+      <ul>
+          <li> <span>Y</span>
+  <p>Ready To Post.</p>
+          </li>
+          <li> <span>N</span>
+  <p>Not Ready To Post.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This indicates if the grade for this attempt is ready to be posted, that is, the grade saved on this attempt row, if status=needsGrading, is not a draft grade and the row is a candidate to have the status changed to completed.  null=Not Ready To Post. (Note: No default value is given to avoid upgrade performance hit)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ai_state_instr_comments">ai_state_instr_comments</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">ai_state_instr_comments
+      <ul>
+          <li> <span>N</span>
+  <p>Not generated by AI</p>
+          </li>
+          <li> <span>Y</span>
+  <p>Generated by AI, not yet accepted by a human</p>
+          </li>
+          <li> <span>O</span>
+  <p>Originally generated by AI but accepted by a human</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates whether the feedback is AI-generated</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ai_user_instr_comments">ai_user_instr_comments</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The user who accepted the AI-generated feedback</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

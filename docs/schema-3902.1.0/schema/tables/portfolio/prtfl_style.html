@@ -1,0 +1,783 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portfolio.html">portfolio</a>
+</div>
+
+<h1>prtfl_style
+  <p>Records in this table indicate the style elements applied to the portfolio.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">prtfl_style_pk1</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    prtfl_style_fk1
+  <ul>
+<li> <a href="#column-prtfl_layout_pk1">prtfl_layout_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_style_fk2
+  <ul>
+<li> <a href="#column-background_image_pk1">background_image_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_style_fk3
+  <ul>
+<li> <a href="#column-buttonstyles_pk1">buttonstyles_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> prtfl_style_if1
+  <ul>
+<li> <a href="#column-prtfl_layout_pk1">prtfl_layout_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_style_if2
+  <ul>
+<li> <a href="#column-background_image_pk1">background_image_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_style_if3
+  <ul>
+<li> <a href="#column-buttonstyles_pk1">buttonstyles_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time when the portfolio style was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the portfolio style was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-prtfl_layout_pk1">prtfl_layout_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the Foreign Key referencing prtfl_layout. It is the screen layout that is chosen for the portfolio style that is used for the portfolio template.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-buttonstyles_pk1">buttonstyles_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing buttonstyles. It is the button style that associated with this style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-layout_editable_ind">layout_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the layout is modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-header_available_ind">header_available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether a header is available for use.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-header_editable_ind">header_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the header is modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-header_height">header_height</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column is no longer used.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-header">header</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text of the header.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-header_type">header_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">prtfl_style_enum_4
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text format of the header text. H = HTML, P = Plain Text, S = Smart Text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-footer_available_ind">footer_available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_5
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether a footer is available for use.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-footer_editable_ind">footer_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the footer is modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-footer_height">footer_height</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column is no longer used.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-footer">footer</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text of the footer.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-footer_type">footer_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">prtfl_style_enum_7
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text format of the header text. H = HTML, P = Plain Text, S = Smart Text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-background_color">background_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the background color for the style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-background_image_pk1">background_image_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing backgroup_image table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bg_editable_ind">bg_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_8
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the background color is modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-font">font</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the default font name set for the style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-font_size">font_size</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the default font size set for the style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-font_color">font_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the default font color set for the style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-font_editable_ind">font_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_9
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the default font settings are modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_font">page_font</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the page title font name set for the style when the it does not use the default font.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_font_size">page_font_size</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the page title font size set for the style when the it does not use the default font size.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_font_color">page_font_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the page title font color set for the style when the it does not use the default font color.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_font_editable_ind">page_font_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_10
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the page title font settings are modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_font_default_ind">page_font_default_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_11
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the page title takes the default font settings.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_title_hidden_ind">page_title_hidden_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_12
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the page title appears at the top of every page in the portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sec_font">sec_font</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the page heading font name set for the style when the it does not use the default font.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sec_font_size">sec_font_size</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the page heading font size set for the style when the it does not use the default font size.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sec_font_color">sec_font_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the page heading font color set for the style when the it does not use the default font color.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sec_font_editable_ind">sec_font_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_13
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the page heading font settings are modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sec_font_default_ind">sec_font_default_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_14
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the page heading font settings take the default font settings for this style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sec_title_hidden_ind">sec_title_hidden_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_15
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the page headings appear on the portfolio pages.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nav_font">nav_font</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the navigation menu font name set for the style when the it does not use the default font.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nav_font_size">nav_font_size</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the navigation menu font size set for the style when the it does not use the default font size.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nav_font_color">nav_font_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the navigation menu font color set for the style when the it does not use the default font color.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nav_background_color">nav_background_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the navigation menu background color set for the style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-navigation_style">navigation_style</a></td>
+  <td>varchar(20)</td>
+    <td>'TEXT'</td>
+    <td class="valueConstraint">prtfl_style_enum_16
+      <ul>
+          <li> <span>TEXT</span>
+          </li>
+          <li> <span>BUTTON</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the navigation menu style set for the style. It can be text or button.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nav_font_editable_ind">nav_font_editable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_17
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the navigation menu font settings are modifiable by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-nav_font_default_ind">nav_font_default_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_style_enum_18
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the nagigation menu uses the default font settings.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

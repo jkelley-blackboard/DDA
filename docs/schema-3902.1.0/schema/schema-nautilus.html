@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>nautilus</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_distributor_setting.html">eud_distributor_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_general_setting.html">eud_general_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item.html">eud_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item_group.html">eud_item_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item_recipient.html">eud_item_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item_role.html">eud_item_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_method_setting.html">eud_method_setting</a>
+</ul>
+
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-gradebook.html">gradebook</a>
+</div>
+
+<h1>gradebook_settings
+  <p>This table contains gradebook setting information.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">gradebook_settings_pk</p>
+  <p>This is the primary key on column pk1 of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    gradebook_settings_fk1
+  <p>This is a foreign key referencing the primary key of the course_main table. </p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_settings_fk2
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-public_item_pk1">public_item_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> gradebook_settings_if1
+  <p>This is a foreign key referencing the primary key of the  table. </p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_settings_if2
+  <ul>
+<li> <a href="#column-public_item_pk1">public_item_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This refers the primary key of the course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-fl_ind">fl_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicator for First Last, N means it is not shown</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lf_ind">lf_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicator for Last First, N means it is not shown</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sid_ind">sid_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicator for the Student ID, N means it is not displayed</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-uid_ind">uid_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicator for the User ID, N means it is not displayed</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-display_avg_ind">display_avg_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicator for the Average, N means that the average is not displayed</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-weighted_by_ind">weighted_by_ind</a></td>
+  <td>char(1)</td>
+    <td>'I'</td>
+    <td class="valueConstraint">gb_settings_weight
+      <ul>
+          <li> <span>I</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is weight type indicator: I = Item, C = Category</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-display_comments_ind">display_comments_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates whether or not comments are displayed</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-upgrade_version">upgrade_version</a></td>
+  <td>int</td>
+    <td>3</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Used internally to do data upgrade on a course per course basis</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-public_item_pk1">public_item_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Holds the pk1 to the main gradebook pk1</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-public_forced_ind">public_forced_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">gb_settings_public_forced
+      <ul>
+          <li> <span>Y</span>
+  <p>The public item is created by Blackboard Learn.</p>
+          </li>
+          <li> <span>N</span>
+  <p>The public item is not created by Blackboard Learn</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates if the public item is overall grade created by Blackboard Learn (Y=Yes, N/null=No)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enable_automatic_zero">enable_automatic_zero</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">gb_settings_automatic_zero
+      <ul>
+          <li> <span>Y</span>
+  <p>The automatic-zero setting is turned on</p>
+          </li>
+          <li> <span>N</span>
+  <p>The automatic-zero setting is turned off</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Denotes whether the automatic-zero setting is turned on for this gradebook (Y=Yes, N/null=No). The existing null values will remain the same though they are treated as 'N'. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-hide_unavailable_students">hide_unavailable_students</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">gb_settings_hide_unavailable_students
+      <ul>
+          <li> <span>Y</span>
+  <p>The hide_unavailable_students setting is turned on</p>
+          </li>
+          <li> <span>N</span>
+  <p>The hide_unavailable_students setting is turned off</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates whether the 'hide_unavailable_students' setting is enabled for hiding unavailable students within the course in gradebook (Y=Yes, N=No). </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mastery_gradebook_visibility">mastery_gradebook_visibility</a></td>
+  <td>char(1)</td>
+    <td>'D'</td>
+    <td class="valueConstraint">gb_settings_mastery_gradebook_visibility
+      <ul>
+          <li> <span>E</span>
+  <p>The mastery gradebook is visible to students and instructors</p>
+          </li>
+          <li> <span>D</span>
+  <p>The mastery gradebooks is hidden from students and instructors</p>
+          </li>
+          <li> <span>I</span>
+  <p>The mastery gradebook is visible to instructors and hidden from students</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-num_frozen_columns">num_frozen_columns</a></td>
+  <td>numeric</td>
+    <td>2</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The number of columns which do not scroll, instead stay stationary</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_custom_view_pk1">default_custom_view_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Holds the pk1 to the default custom view</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_grading_period_pk1">default_grading_period_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Holds the pk1 to the default grading</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

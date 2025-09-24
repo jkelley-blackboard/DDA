@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-textbook_b2.html">textbook_b2</a>
+</div>
+
+<h1>textbook
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">textbook_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-isbn">isbn</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>ISBN identifies a book. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The full title of the book.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-subtitle">subtitle</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The subtitle of the book</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-authors">authors</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Delimited list of authors.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-publisher">publisher</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Publisher name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pubdate">pubdate</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date of publish</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-medium_type">medium_type</a></td>
+  <td>char(4)</td>
+    <td>'OTHR'</td>
+    <td class="valueConstraint">txtbook_enum1
+      <ul>
+          <li> <span>PRNT</span>
+          </li>
+          <li> <span>DGTL</span>
+          </li>
+          <li> <span>OTHR</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether this is a print, digital, or other type of book. PRNT:Print,DGTL=Digital, OTHR= Other. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-binding">binding</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-manual_ind">manual_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">txtbook_enum2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicator for whether the textbook entry was manually entered  (vs downloaded). </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-price">price</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Price in relation to currency and market</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-currency">currency</a></td>
+  <td>char(3)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>ISO 4217 3-letter code of the currency</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-market">market</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Sales market of the textbook</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-cover_img">cover_img</a></td>
+  <td>nvarchar(500)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-copyright">copyright</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Copyright date</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_count">page_count</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Number of pages</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-edition">edition</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Edition information</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-isbn10">isbn10</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The older ISBN identifier</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-doi">doi</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Digital object identifier</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

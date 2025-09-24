@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-course_messages.html">course_messages</a>
+</div>
+
+<h1>course_msg_migration
+  <p>This table is used during flat file to relational Course Message migration as a lookup a flat file id (e.g UUID ) to a relational pk of a migrated Course Message, Personal Folder or Conversation.  The lookup data is used to determine whether a Message/Personal Folder/Conversation has already been migrated</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">course_msg_migration_pk</p>
+  <p>This is the primary key of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> course_msg_migration_ak1
+  <p>Ensure a flat file UUID for a Course Message or Conversation is migrated once.  Note, when a Course is copied or restored, the the file UUIDs don't change so we limit the unique check here per course.</p>
+  <ul>
+<li> <a href="#column-flatfile_id">flatfile_id</a>
+</li>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the primary key of this table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-flatfile_id">flatfile_id</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Unique flat file UUID of the pre-migration flat file course message, personal folder or conversation.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-relational_msg_pk1">relational_msg_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the PK of the migrated Course Message, i.e. course_msg.pk1.    This column is not maintained as a FK since this is only by migration.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-relational_conv_pk1">relational_conv_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the PK of the migrated Conversation, i.e. conversation.pk1.    This column is not maintained as a FK since this is only by migration.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-relational_folder_pk1">relational_folder_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the PK of the migrated personal Course Message Folder i.e. course_msg_folder.pk1.    This column is not maintained as a FK since this is only by migration.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the pk of the course, i.e. course_main.pk1.  This column is not maintained as a FK since this is only by migration.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

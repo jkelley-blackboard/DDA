@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>as_core</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activemq_acks.html">activemq_acks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activemq_lock.html">activemq_lock</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activemq_msgs.html">activemq_msgs</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activity_accumulator.html">activity_accumulator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activity_accumulator_queue.html">activity_accumulator_queue</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/addressbook.html">addressbook</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/admin_panel_communication.html">admin_panel_communication</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/announcement_status.html">announcement_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/announcements.html">announcements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application.html">application</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application_label.html">application_label</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application_registry.html">application_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application_setting.html">application_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/association_entity.html">association_entity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_definition.html">attribute_definition</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_list_column.html">attribute_list_column</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_list_column_set.html">attribute_list_column_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_list_perm_column.html">attribute_list_perm_column</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_one_time_login.html">auth_one_time_login</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_provider.html">auth_provider</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_provider_log.html">auth_provider_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_provider_log_counts.html">auth_provider_log_counts</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/bean_property.html">bean_property</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/bean_registry.html">bean_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/buttonstyles.html">buttonstyles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/c_creation_setting.html">c_creation_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/cache_tokens.html">cache_tokens</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/calendar.html">calendar</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/calendar_event_group.html">calendar_event_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/calendar_event_rule.html">calendar_event_rule</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/cartridge.html">cartridge</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/cartridge_download.html">cartridge_download</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/category.html">category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/classifications.html">classifications</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/content_handler_setting.html">content_handler_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/content_handler_type.html">content_handler_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/content_handlers.html">content_handlers</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_application.html">course_application</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_brands.html">course_brands</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_completed.html">course_completed</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_content_avail.html">course_content_avail</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_course.html">course_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_hierarchy.html">course_hierarchy</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_main.html">course_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_navigation_item.html">course_navigation_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_registry.html">course_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_requirements.html">course_requirements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_roles.html">course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_roles_entitlement.html">course_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_size.html">course_size</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_tags.html">course_tags</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_term.html">course_term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_theme.html">course_theme</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_users.html">course_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_users_he.html">course_users_he</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_users_uid.html">course_users_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/custom_localization.html">custom_localization</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/custom_localization_anchor.html">custom_localization_anchor</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_intgr.html">data_intgr</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_intgr_hndlr.html">data_intgr_hndlr</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_intgr_hndlr_links.html">data_intgr_hndlr_links</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_source.html">data_source</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/dead_node.html">dead_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_course_roles.html">def_course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_crs_roles_entitlement.html">def_crs_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_design_template_item.html">def_design_template_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_entitlement.html">def_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_sys_roles_entitlement.html">def_sys_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_system_roles.html">def_system_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_tab.html">def_tab</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_tab_group.html">def_tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_tab_tab_group.html">def_tab_tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/design_template.html">design_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/design_template_item.html">design_template_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/email_verification.html">email_verification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/engagement.html">engagement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/enroll_requests.html">enroll_requests</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/entitlement.html">entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/entity_contents_files.html">entity_contents_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/entity_form.html">entity_form</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/enum_attribute_type.html">enum_attribute_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/enum_attribute_value.html">enum_attribute_value</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/evaluation_entity.html">evaluation_entity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/event.html">event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/event_prop.html">event_prop</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/extension_download.html">extension_download</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/external_courses.html">external_courses</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/field.html">field</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/files.html">files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/files_registries.html">files_registries</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/form.html">form</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/institution_roles.html">institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/instructions.html">instructions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ipfilter.html">ipfilter</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ipfilterBlocks.html">ipfilterBlocks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ipfilter_profile.html">ipfilter_profile</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/limited_grader.html">limited_grader</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/link.html">link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/locales.html">locales</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/locks.html">locks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/long_term_sessions.html">long_term_sessions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/lor_data_summary.html">lor_data_summary</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/lti_institution_roles.html">lti_institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/lti_roles.html">lti_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/manageable_course_roles.html">manageable_course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/navigation_item.html">navigation_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/nonces.html">nonces</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/observer_user.html">observer_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/observer_user_uid.html">observer_user_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/palette_item.html">palette_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/password_history.html">password_history</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/peer_service.html">peer_service</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/predefined_gb_symbol.html">predefined_gb_symbol</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/predefined_gb_translator.html">predefined_gb_translator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/predefined_gb_type.html">predefined_gb_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/pronouns.html">pronouns</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/proxy_links.html">proxy_links</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/proxy_tools.html">proxy_tools</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/queued_task_limit.html">queued_task_limit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/queued_tasks.html">queued_tasks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric.html">rubric</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_association.html">rubric_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_cell.html">rubric_cell</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_cell_eval.html">rubric_cell_eval</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_column.html">rubric_column</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_eval.html">rubric_eval</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_link.html">rubric_link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_row.html">rubric_row</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/session_inds.html">session_inds</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/sessions.html">sessions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/sessions_impersonated.html">sessions_impersonated</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/sharable_lock.html">sharable_lock</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/staffinformation.html">staffinformation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/step.html">step</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_registry.html">system_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_roles.html">system_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_roles_entitlement.html">system_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_tracking.html">system_tracking</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_tracking_pv.html">system_tracking_pv</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab.html">tab</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_group.html">tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_group_inst_roles.html">tab_group_inst_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_institution_roles.html">tab_institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_tab_group.html">tab_tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tag.html">tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/target_audience.html">target_audience</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tasks.html">tasks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tasks_users.html">tasks_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/template_course.html">template_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/term.html">term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tmp_template_keys.html">tmp_template_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_column_access.html">user_column_access</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_comment.html">user_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_map.html">user_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_mapping.html">user_mapping</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_registry.html">user_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_roles.html">user_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_roles_uid.html">user_roles_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_rubric_prefs.html">user_rubric_prefs</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/users.html">users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/users_blocks.html">users_blocks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/users_constraints.html">users_constraints</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/virtual_hosts.html">virtual_hosts</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/work_ctx.html">work_ctx</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_client.html">ws_client</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_onetime_passwords.html">ws_onetime_passwords</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_operations.html">ws_operations</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_service.html">ws_service</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_sessions.html">ws_sessions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_tool_entitlements.html">ws_tool_entitlements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_classifications.html">x_classifications</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_community_categories.html">x_community_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_gateway_categories.html">x_gateway_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_staffinformation.html">x_staffinformation</a>
+</ul>
+
+
+</body>
+</html>

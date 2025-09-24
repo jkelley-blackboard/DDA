@@ -1,0 +1,573 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-nautilus.html">nautilus</a>
+</div>
+
+<h1>eud_item
+  <p>This table contains individual notification item information.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">eud_item_pk</p>
+  <p>This is the primary key on column pk1 of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    eud_item_fk_crsmain
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the course_main table, referential action cascade on delete (cascade).</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    eud_item_fk_owner
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-owner_pk1">owner_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    eud_item_fk_crs_contents
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the course_contents table, referential action cascade on delete (cascade).</p>
+  <ul>
+<li> <a href="#column-crs_contents_pk1">crs_contents_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    eud_item_fk_parent_contents
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the course_contents table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-parent_content_pk1">parent_content_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> eud_item_owner
+  <ul>
+<li> <a href="#column-owner_pk1">owner_pk1</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_enddate
+  <ul>
+<li> <a href="#column-end_date">end_date</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_startdate
+  <ul>
+<li> <a href="#column-start_date">start_date</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_duedate
+  <ul>
+<li> <a href="#column-due_date">due_date</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_if1
+  <ul>
+<li> <a href="#column-parent_id">parent_id</a>
+</li>
+<li> <a href="#column-source_id">source_id</a>
+</li>
+<li> <a href="#column-source_type">source_type</a>
+</li>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_ic1
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_ie1
+  <ul>
+<li> <a href="#column-source_id">source_id</a>
+</li>
+<li> <a href="#column-source_type">source_type</a>
+</li>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_ie2
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+<li> <a href="#column-data_pending_ind">data_pending_ind</a>
+</li>
+<li> <a href="#column-important_ind">important_ind</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_important
+  <ul>
+<li> <a href="#column-important_ind">important_ind</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_if2
+  <ul>
+<li> <a href="#column-parent_content_pk1">parent_content_pk1</a>
+</li>
+  </ul>
+</li>
+<li> eud_item_if3
+  <ul>
+<li> <a href="#column-crs_contents_pk1">crs_contents_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-parent_id">parent_id</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the identifier of the parent item. If this notification is conceptually subordinate to another notifications - as Assignment Submitted is subordinate to Assignment Due, for example - then this column contains the id of the parent notification. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date and/or time at which this event occurred. The date on which the item was first added. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(333)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the title of the notification item. This will be visible to the user in the UI.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-owner_pk1">owner_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the users table. A foreign key reference to the user who created this item, or is responsible for it. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_id">source_id</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the source or content item that originated this notification item. An identifier that uniquely specifies the item on which we're notifying. It's the responsibility of the individual subsystems to ensure that this uniqueness. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_contents_pk1">crs_contents_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_contents table. This represents the content item from the course or organization that originated this notification. This will be populated when the notification is generated by content, otherwise null.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-parent_content_pk1">parent_content_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_contents table. This represents the parent of the content item that originated this notification.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_type">source_type</a></td>
+  <td>char(2)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the source type of the notification item. The class of event this represents: an assignment event, or an assessment event, or a content event, etc </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-event_type">event_type</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the type of event for this notification item, ie. AVAILABLE or OVERDUE. The specifi A=c type of event, within the course_type, that this represent: Assignment Available, or example, or Assignment Submitted S=Scheduled; A= Available.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-type">type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td class="valueConstraint">eud_item_type
+      <ul>
+          <li> <span>S</span>
+  <p>This represents Scheduled.</p>
+          </li>
+          <li> <span>A</span>
+  <p>This represents Available.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the type of notification item. Whether this is a Scheduled or an Available notification. S=Scheduled; A=Available.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_date">start_date</a></td>
+  <td>datetime</td>
+    <td>nowTx</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The time when the action happened. The date on which the notification period should begin - which usually maps to the date on which the item will become available. If this is specified, we won't display notification until this date is reached. Note that this is not related to adaptive release rules - those will be evaluated separately and independently. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-due_date">due_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the due date associated with the source that originated this notification. The date on which this notification is due. Internally, the due date is used to figure out when to send reminders, and also to determine whether transform DUE events into OVERDUE events. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_date">end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The time when the action ended. The date on which the notification period should end - which usually maps to the date on which the item will become unavailable. If this is specified, we won't display notification after this date is reached. Note that this is not related to adaptive release rules - those will be evaluated separately and independently. </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-data_pending_ind">data_pending_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">eud_data_pending_at_create_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether this notification is in the midst of being created - ie, whether it is waiting for its associated recipients to be created. This is a boolean flag (Y/N) indicating whether this notification is in the midst of being created - ie, whether it is waiting for its associated recipients to be created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-can_replace_ind">can_replace_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">eud_can_replace_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether this notification can be replaced by incoming notifications that would normally obviate them. See Notification Replacement for more details. This is a boolean flag (Y/N) indicating whether this notification can be replaced by incoming notifications that would normally obviate them.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-important_ind">important_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">eud_important
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is, unfortunately, a very nebulous name for a very specific concept. An important marker indicates that, during a blitz (which is to say, a mass notification) this notification should always be sent out to its recipients, no matter what. See Notification Blitz for more details. This is a boolean flag (Y/N) indicating whether this notification item is important.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-semi_important_ind">semi_important_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">eud_semi_important
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>An semi-important marker indicates that notifications will be treated as important for new enrolled users prior to the start date, so that notification can be sent out to those new enrolled users. This is a boolean flag (Y/N) indicating whether this notification item is semi-important.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-override_setting_ind">override_setting_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">eud_override_stng_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether this notification should ignore any system/user customizations that would normally suppress its dissemination. This is useful for notifications that absolutely, positively must get out there. This is a boolean flag (Y/N) indicating whether this notification item should be delivered to recipients regardless of their individual notification settings.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_receiver_status">default_receiver_status</a></td>
+  <td>char(1)</td>
+    <td>'U'</td>
+    <td class="valueConstraint">eud_receiver_status
+      <ul>
+          <li> <span>U</span>
+  <p>Unprocessed. Waiting for distribution.</p>
+          </li>
+          <li> <span>N</span>
+  <p>Notified. Has been disseminated to all distributors.</p>
+          </li>
+          <li> <span>F</span>
+  <p>Failed. Distribution failed for all distributors.</p>
+          </li>
+          <li> <span>D</span>
+  <p>Deleted. Removed, but retained in the DB for bookkeeping.</p>
+          </li>
+          <li> <span>Z</span>
+  <p>Neuter. Never intended to be distributed.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This represents the status of the default receiver.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_sender_status">default_sender_status</a></td>
+  <td>char(1)</td>
+    <td>'U'</td>
+    <td class="valueConstraint">eud_sender_status
+      <ul>
+          <li> <span>U</span>
+  <p>Unprocessed. Waiting for distribution.</p>
+          </li>
+          <li> <span>N</span>
+  <p>Notified. Has been disseminated to all distributors.</p>
+          </li>
+          <li> <span>F</span>
+  <p>Failed. Distribution failed for all distributors.</p>
+          </li>
+          <li> <span>D</span>
+  <p>Deleted. Removed, but retained in the DB for bookkeeping.</p>
+          </li>
+          <li> <span>Z</span>
+  <p>Neuter. Never intended to be distributed.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This represents the status of the default sender.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

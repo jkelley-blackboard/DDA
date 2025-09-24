@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portfolio.html">portfolio</a>
+</div>
+
+<h1>pflio
+  <p>Records in this table indicate the general configuration info of a portfolio.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">pflio_pk1</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> pflio_if1
+  <ul>
+<li> <a href="#column-owner_users_pk1">owner_users_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time the portfolio was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-owner_users_pk1">owner_users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Foreign key to the users table.  It points to the user that owns this portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The title given to the portfolio by the owning user.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(2000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The description of the portfolio given by the owning user.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_ind">available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">pflio_ind1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Available Portfolios may be shared with other users.  When 'Y', the owning user can specify users that this portfolio is shared with.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-acc_accounts_ind">acc_accounts_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">pflio_ind2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Account access indicator. Shows whether accounts can access the portfolio. Y=accessible, N=not accessible</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comments_shared_ind">comments_shared_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">pflio_ind3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shared comments indicator. Y=accounts other than the owner can comment on the portfolio, N=only the owner can comment</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_nav_ind">text_nav_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">pflio_ind4
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicatior for text navigation. Y=Text based sytle navigation, N=Button style navigation</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_color">text_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The Color of the text if the portfolio is using text based navigation.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bg_color">bg_color</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The background color of the portfolio</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-buttonstyles_pk1">buttonstyles_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The primary key of the buttonstyle. It is the button style that associated with this style</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lrning_obj">lrning_obj</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The String that represents the learning objectives for the portfolio</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

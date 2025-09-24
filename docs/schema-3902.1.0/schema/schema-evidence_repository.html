@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>evidence_repository</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_eval_session.html">er_eval_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_eval_session_rater.html">er_eval_session_rater</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_evl_sessn_rater_assoc.html">er_evl_sessn_rater_assoc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item.html">er_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_file.html">er_item_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_owner.html">er_item_owner</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set.html">er_item_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_clp_sog.html">er_item_set_clp_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_course.html">er_item_set_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_educ_level.html">er_item_set_educ_level</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_inst_role.html">er_item_set_inst_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_item.html">er_item_set_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_item_sample.html">er_item_set_item_sample</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_node.html">er_item_set_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_tag.html">er_item_set_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_term.html">er_item_set_term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_sog.html">er_item_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample.html">er_sample</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_crs_node.html">er_sample_crs_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_file.html">er_sample_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_review.html">er_sample_review</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_set.html">er_sample_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_set_item_sample.html">er_sample_set_item_sample</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_usr_node.html">er_sample_usr_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task.html">er_task</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_item_set_item.html">er_task_item_set_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_place.html">er_task_place</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_sog.html">er_task_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_term.html">er_task_term</a>
+</ul>
+
+
+</body>
+</html>

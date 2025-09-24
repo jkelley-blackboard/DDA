@@ -1,0 +1,653 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-assessment.html">assessment</a>
+</div>
+
+<h1>qti_asi_data
+  <p>This table contains information on assessment and questions inside assessments with self referenced item hierarchy inside an assessment.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">qti_asi_data_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    qti_asi_data_fk1
+  <ul>
+<li> <a href="#column-parent_pk1">parent_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    qti_asi_data_fk2
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    qti_asi_data_fk3
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-ai_accepting_user_pk1">ai_accepting_user_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> qti_asi_data_ie1
+  <ul>
+<li> <a href="#column-bbmd_asi_type">bbmd_asi_type</a>
+</li>
+<li> <a href="#column-bbmd_assessmenttype">bbmd_assessmenttype</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_ie3
+  <ul>
+<li> <a href="#column-bbmd_keywords">bbmd_keywords</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_ie4
+  <ul>
+<li> <a href="#column-bbmd_date_modified">bbmd_date_modified</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_ie5
+  <ul>
+<li> <a href="#column-bbmd_date_added">bbmd_date_added</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_ie6
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+<li> <a href="#column-bbmd_asi_type">bbmd_asi_type</a>
+</li>
+<li> <a href="#column-bbmd_assessmenttype">bbmd_assessmenttype</a>
+</li>
+<li> <a href="#column-bbmd_date_modified">bbmd_date_modified</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_if1
+  <ul>
+<li> <a href="#column-parent_pk1">parent_pk1</a>
+</li>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_if2
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_if3
+  <ul>
+<li> <a href="#column-objectbank_pk1">objectbank_pk1</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_if4
+  <ul>
+<li> <a href="#column-ai_accepting_user_pk1">ai_accepting_user_pk1</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_if5
+  <ul>
+<li> <a href="#column-bbmd_assessment_subtype">bbmd_assessment_subtype</a>
+</li>
+  </ul>
+</li>
+<li> qti_asi_data_if6
+  <ul>
+<li> <a href="#column-lor_qti_asi_data_pk1">lor_qti_asi_data_pk1</a>
+</li>
+<li> <a href="#column-lor_sync_date">lor_sync_date</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-parent_pk1">parent_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a Foreign Key self reference pk1 in this table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the title of a question in the assessment.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The description is used only for alignment reports and it will be populated only if the row has alignments.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a Foreign Key referencing the pirmary key of course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-plirid">plirid</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column is not used.  It was originally intended to be a globally unique identifier following the IMS Persistent Location-Independent Resource Identifier recommendation but is NOT USED</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-position">position</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the position of where the item will be displayed on the UI.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-data">data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the QTI data for this question, section, or canvas.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_asi_type">bbmd_asi_type</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the qti asi type for this record. 1=Assessment, 2=Section, 3=Item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_assessmenttype">bbmd_assessmenttype</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the assessment type for this record when bbmd_asi_type=1. 1=Test, 2=Quiz (Not used), 3=Survey, 4=Pool, 5=Ultra Assignment (Not used)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_assessment_subtype">bbmd_assessment_subtype</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The assessment subtype is assigned to this record when bbmd_asi_type=1. Subtypes are utilized to further differentiate assessments optionally and provide the ability to define various types of Tests, Surveys, and Pools. For instance, a test may have a subtype of 'Assignment' in Ultra.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_questiontype">bbmd_questiontype</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the type of this record when bbmd_asi_type=3. 1=Multiple Choice, 2=True/False, 3=Multiple Anser, 4=Ordering, 5=Matching, 6=Fill In the Blank, 7=Essay Question, 8=Numeric, 9=Calculated, 10=FileUpload, 11=HotSpot, 12=FillintheBlankPlus, 13=Jumbled sentence, 14=Quiz Bowl, 15=LikeRT Scale, 16=Short Answer, 17=EitherOr</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qmd_absolutescore_max">qmd_absolutescore_max</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the score that can be earned on this question item.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qmd_weighting">qmd_weighting</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the number of points given per question within this set/block when this record represents a random block or question set (bbmd_sectiontype=3 or 4)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_date_added">bbmd_date_added</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the question item was added to the assessment.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_date_modified">bbmd_date_modified</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the question item was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_sectiontype">bbmd_sectiontype</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the type of this section then bbmd_asi_type=2. 1=Main Section, 2=Sub Section, 3=Random Block, 4=Question Block</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_is_from_cartridge">bbmd_is_from_cartridge</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the boolean flag (Y/N) that indicates if this question item comes from a cartridge.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_is_disabled">bbmd_is_disabled</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Flag for a disabled question - N means question is not disabled, Y means it is disabled</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_keywords">bbmd_keywords</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This field is deprecated and should not be used.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_numbertype">bbmd_numbertype</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the type of numbering to display (only applicable when the question has numbered items).  1=None, 2=Arabic, 3=Roman, 4=Upper Case Letters, 5=Lower case letters</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_partialcredit">bbmd_partialcredit</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the boolean flag (Y/N) that indicates if this question may result in partial credit.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_orientationtype">bbmd_orientationtype</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This indicates the orientation of multiple options if applicable to the current question type.  1=Vertical, 2=Horizontal</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_is_extracredit">bbmd_is_extracredit</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the boolean flag (Y/N) that indicates if this question is for extra credit (Score is not included in the gradebook column's total score for the test)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_extra_credit_pts">bbmd_extra_credit_pts</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the number of extra credit points can be earned if bbmd_is_extracredit is true.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_negative_points_ind">bbmd_negative_points_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">qad_negative_points_ck
+      <ul>
+          <li> <span>Q</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a flag to decide how negative points are handled: Y = yes and overall mark can go below 0.  N = No.  Q = only within the question so the net grade for the question cannot go below 0</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_canvas_fullcrdt_ind">bbmd_canvas_fullcrdt_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">qad_canvas_fullcrdt_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This flag indicates if this question (on this canvas only - overrides any manual or automatic grade if this is Y) should be graded at full marks all the time. Y==give full credit,N=grade normally</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_all_fullcredit_ind">bbmd_all_fullcredit_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">qad_all_fullcredit_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This flag indicates if this question (everywhere it is used - overrides bbmd_canvas_fullcrdt_ind if this is Y) should be graded at full marks all the time. Y==give full credit,N=grade normally.  Note that this feature is currently not implemented at the product level: This is a placeholder in the db for future use.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-objectbank_pk1">objectbank_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>For random blocks (bbmd_sectiontype=3) this is the pk1 of the canvas (bbmd_asi_type=1) record for the first source pool for the block.  If there are multiple pools then they will all be recorded in the qti_block_mapping table</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ai_state">ai_state</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">ai_state_ck
+      <ul>
+          <li> <span>N</span>
+  <p>Not generated by AI</p>
+          </li>
+          <li> <span>Y</span>
+  <p>Generated by AI, not yet accepted by a human</p>
+          </li>
+          <li> <span>O</span>
+  <p>Originally generated by AI but accepted by a human</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates whether question is AI-generated</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ai_accepting_user_pk1">ai_accepting_user_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The user who accepted the AI-generated content</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-extended_data">extended_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Used to store arbitrary properties for this item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_qti_asi_data_pk1">lor_qti_asi_data_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The ASI item hosting the root Learning Object Repository item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Time associated Learning Object Repository synchronization was last completed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

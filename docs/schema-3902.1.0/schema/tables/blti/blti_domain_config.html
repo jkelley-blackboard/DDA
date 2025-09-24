@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-blti.html">blti</a>
+</div>
+
+<h1>blti_domain_config
+  <p>This table contains Basic LTI configuration for specific sets of Tool Provider domains.  E.g. consumer key, secret, which user data is passed in the launch.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">blti_domain_config_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> blti_domain_config_ak1
+  <ul>
+<li> <a href="#column-client_id">client_id</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-config_status">config_status</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_domain_cfg_enum1
+      <ul>
+          <li> <span>A</span>
+          </li>
+          <li> <span>E</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This determines whether the domain set is (A)pproved, (E)xcluded, or (N)eeding approval.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-auth_key">auth_key</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the default Tool Provider key for the domain set.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-auth_secret">auth_secret</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the default Tool Provider secret for the domain set.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-client_id">client_id</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the unique identifier for the tool. Must conform to the spec.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(128)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the name of the tool as given by the developer.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(128)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the tool as given by the developer.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-deployment_id">deployment_id</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the unique identifier for a particular deployment of the tool. Must conform to the spec.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-public_key">public_key</a></td>
+  <td>varchar(1536)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the public key for the tool. Used if no jwks_url is specified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-jwks_url">jwks_url</a></td>
+  <td>varchar(1024)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the public JWKS URL for the tool. If specified, overrides the public key.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-algorithm">algorithm</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The algorithm for signing the token, e.g. RS256.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-custom_parameters">custom_parameters</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the set of default Tool Provider custom launch parameters for the domain set.  These are stored in a URL query string format.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-send_user_data">send_user_data</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_domain_cfg_enum2
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This determines when user data can be sent to the Tool Provider. (N)ever, Only over (S)SL, Alwa(Y)s.)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_role_ind">user_role_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_domain_cfg_ind1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the user's role information can be sent to the Tool Provider.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_name_ind">user_name_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_domain_cfg_ind2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the user's name can be sent to the Tool Provider.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_email_ind">user_email_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_domain_cfg_ind3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the user's email address can be sent to the Tool Provider.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-splash_ind">splash_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_domain_cfg_ind4
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether a Splash Screen will be shown before launching a Basic LTI link.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid_ind">batch_uid_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_dmn_cfg_batchuidind_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the course/user batch uid will be sent to the Tool Provider.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-splash_msg">splash_msg</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the contents of the Splash Screen.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-splash_msg_type">splash_msg_type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td class="valueConstraint">blti_domain_cfg_enum3
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the format of the splash_msg.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-uuid_ind">uuid_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">blti_dmn_cfg_uuidind_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the course/user uuid will be sent to the Tool Provider.  Note: a Y here overrides a Y in batch_uid_ind</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lti_type">lti_type</a></td>
+  <td>char(1)</td>
+    <td>'1'</td>
+    <td class="valueConstraint">blti_domain_cfg_enum4
+      <ul>
+          <li> <span>1</span>
+  <p>Supports LTI 1.1 tool specification</p>
+          </li>
+          <li> <span>2</span>
+  <p>Supports LTI 2.0 tool specification</p>
+          </li>
+          <li> <span>A</span>
+  <p>Supports both LTI 1.1 and 2.0 tool specifications</p>
+          </li>
+          <li> <span>3</span>
+  <p>Supports LTI 1.3 tool specification</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates which type(s) of LTI are associated with this config record.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-membership_service_ind">membership_service_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">blti_domain_cfg_ind5
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates if domain supports LTI membership service.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-grade_service_ind">grade_service_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">blti_domain_cfg_ind6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates if the domain supports access to the LTI assignment and grades service (or can post grades in LTI 1.1).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-init_login_url">init_login_url</a></td>
+  <td>varchar(1024)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The OIDC third party login initiation endpoint</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-redirect_url">redirect_url</a></td>
+  <td>varchar(4000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The valid URLs that can be redirected to an LTI tool after OIDC login initiation flow</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_edit_ind">allow_edit_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">blti_domain_cfg_ind7
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates if the tool is allowed to be edited in Learn. A null value is treated the same as 'Y'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-trusted_service_id">trusted_service_id</a></td>
+  <td>varchar(128)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates the id of a trusted service in devportal if a domain config is associated with one</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-js_injection_requested_ind">js_injection_requested_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">blti_domain_cfg_ind8
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates whether the tool has requested permission to inject JavaScript into Learn. Null values default to false.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-js_injection_approved_ind">js_injection_approved_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">blti_domain_cfg_ind9
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates whether the Learn administrator has approved JavaScript injection by this tool. Null values default to false.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

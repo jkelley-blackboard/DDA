@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>retention_b2</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_activity.html">ews_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_course_users.html">ews_course_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_gradebook_main.html">ews_gradebook_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_note.html">ews_note</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_notif_attachment.html">ews_notif_attachment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_notif_recipient.html">ews_notif_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_notification.html">ews_notification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_rule.html">ews_rule</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_status.html">ews_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage.html">retention_center_stage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage_attempt.html">retention_center_stage_attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage_grade.html">retention_center_stage_grade</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage_ods.html">retention_center_stage_ods</a>
+</ul>
+
+
+</body>
+</html>

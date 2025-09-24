@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>clp_sog</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_alignable_content.html">clp_alignable_content</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_ap_sog_ext.html">clp_ap_sog_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_content_alignment.html">clp_content_alignment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_ou_sog_association.html">clp_ou_sog_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog.html">clp_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog_activity.html">clp_sog_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog_activity_ext.html">clp_sog_activity_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog_alignment.html">clp_sog_alignment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_std_cat_association.html">clp_std_cat_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_std_category.html">clp_std_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_x_std_category.html">clp_x_std_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/evdnc_tmplt_sog.html">evdnc_tmplt_sog</a>
+</ul>
+
+
+</body>
+</html>

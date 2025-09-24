@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>gradebook</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt.html">attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_files.html">attempt_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_receipt.html">attempt_receipt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_receipt_file.html">attempt_receipt_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_receipt_user.html">attempt_receipt_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_staged_grading.html">attempt_staged_grading</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/delegated_grader.html">delegated_grader</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/delegated_grader_group.html">delegated_grader_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/delegated_grader_user.html">delegated_grader_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gb_custom_view_alias.html">gb_custom_view_alias</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gb_student_info_layout.html">gb_student_info_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/grade_performance_scale.html">grade_performance_scale</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_color_scheme.html">gradebook_color_scheme</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_courseusers_ext.html">gradebook_courseusers_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_custom_view.html">gradebook_custom_view</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_formula.html">gradebook_formula</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_formula_alias.html">gradebook_formula_alias</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade.html">gradebook_grade</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade_calc.html">gradebook_grade_calc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade_calc_up.html">gradebook_grade_calc_up</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade_color.html">gradebook_grade_color</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grading_period.html">gradebook_grading_period</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_log.html">gradebook_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_main.html">gradebook_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_main_user_option.html">gradebook_main_user_option</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_performance_code.html">gradebook_performance_code</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_settings.html">gradebook_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_sstu_stat_cache.html">gradebook_sstu_stat_cache</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_symbol.html">gradebook_symbol</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_translator.html">gradebook_translator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_type.html">gradebook_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/grades_to_auto_zero.html">grades_to_auto_zero</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt.html">group_attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_activity.html">group_attempt_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_files.html">group_attempt_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_log.html">group_attempt_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_staged_grading.html">group_attempt_staged_grading</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/interactive_count.html">interactive_count</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/interactive_count_col_def.html">interactive_count_col_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_column_scale_item.html">learning_outcome_column_scale_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_entity_scale.html">learning_outcome_entity_scale</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_entity_scale_item.html">learning_outcome_entity_scale_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_node_entity_scale_item.html">learning_outcome_node_entity_scale_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/score_provider.html">score_provider</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/score_provider_action.html">score_provider_action</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/unique_attempt.html">unique_attempt</a>
+</ul>
+
+
+</body>
+</html>

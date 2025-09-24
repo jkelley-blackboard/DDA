@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>portfolio_b2</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/cntnt.html">cntnt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/cntnt_comment.html">cntnt_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/cntnt_file.html">cntnt_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/pflio.html">pflio</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl.html">prtfl</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_cntnt.html">prtfl_cntnt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_comment.html">prtfl_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_course.html">prtfl_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_evdnc.html">prtfl_evdnc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_folder_association.html">prtfl_folder_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_page.html">prtfl_page</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_page_coll.html">prtfl_page_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_page_tmplt.html">prtfl_page_tmplt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_pass.html">prtfl_pass</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_portal_role.html">prtfl_portal_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_snapshot.html">prtfl_snapshot</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_style.html">prtfl_style</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_tmplt_content.html">prtfl_tmplt_content</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_tmplt_usage.html">prtfl_tmplt_usage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_user.html">prtfl_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_x_folder.html">prtfl_x_folder</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/user_comment.html">user_comment</a>
+</ul>
+
+
+</body>
+</html>

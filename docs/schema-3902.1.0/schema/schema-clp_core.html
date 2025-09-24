@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>clp_core</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_course.html">clp_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_course_course.html">clp_course_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_course_ext.html">clp_course_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee.html">clp_ee</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_ext.html">clp_ee_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section.html">clp_ee_section</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section_affiliation.html">clp_ee_section_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section_affiliation_ext.html">clp_ee_section_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section_ext.html">clp_ee_section_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_homepage_settings.html">clp_homepage_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_institution_roles.html">clp_institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_operating_unit.html">clp_operating_unit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_operating_unit_ext.html">clp_operating_unit_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_affiliation.html">clp_ou_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_affiliation_ext.html">clp_ou_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_attribute_list.html">clp_ou_attribute_list</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_form.html">clp_ou_form</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_person.html">clp_person</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_person_ext.html">clp_person_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_person_inst_roles.html">clp_person_inst_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program.html">clp_program</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_affiliation.html">clp_program_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_affiliation_ext.html">clp_program_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_course.html">clp_program_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_ee.html">clp_program_ee</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_ext.html">clp_program_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_role.html">clp_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_role_entitlement.html">clp_role_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section.html">clp_section</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section_affiliation.html">clp_section_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section_affiliation_ext.html">clp_section_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section_ext.html">clp_section_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_user_home_setting.html">clp_user_home_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_work_ctx_user.html">clp_work_ctx_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_work_space.html">clp_work_space</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_x_operating_unit.html">clp_x_operating_unit</a>
+</ul>
+
+
+</body>
+</html>

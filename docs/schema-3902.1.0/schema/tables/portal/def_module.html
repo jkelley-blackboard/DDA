@@ -1,0 +1,479 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portal.html">portal</a>
+</div>
+
+<h1>def_module
+  <p>This table contains the default values for the "module" table.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">def_module_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-deletable_ind">deletable_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_valid_rule_7
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Boolean flag indicating whether there is the option to delete the module via the module management UI.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-module_type_ext_ref">module_type_ext_ref</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The external reference to the module type of the module.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The module title.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-short_name">short_name</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the short name of the module where users can specify a reference name or nick name of the module.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enabled_ind">enabled_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">def_module_valid_rule_5
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module is enabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-prev_enabled_ind">prev_enabled_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">def_module_pv_en_ind1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+      The previous configured value of enabled_ind.  This is used when enabling/disabling Building Blocks
+      so that when a Building Block is disabled, then enabled, the previous customizations are
+      retained.On module creation it is set the enabled_ind value.
+     </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ext_ref">ext_ref</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The external reference of the module, a value that can be used to uniquely identify it.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_addable_ind">user_addable_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_valid_rule_6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module is available to users to add to a tab.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-admin_ind">admin_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_valid_rule_8
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module is available to users for customization.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The description of the module.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_format_type">text_format_type</a></td>
+  <td>char(1)</td>
+    <td>'H'</td>
+    <td class="valueConstraint">def_module_txt_fmt_enum7
+      <ul>
+          <li> <span>P</span>
+  <p>Plain text</p>
+          </li>
+          <li> <span>H</span>
+  <p>HTML formatted text</p>
+          </li>
+          <li> <span>S</span>
+  <p>Smart text</p>
+          </li>
+          <li> <span>X</span>
+  <p>Value used when not specifically identified. The type used is this situation is SMART.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The text format type of the description of the module. This is used by the VTBE for display purposes.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-plugins_pk1">plugins_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This refers the primary key of the plugins table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sort_priority">sort_priority</a></td>
+  <td>numeric</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the priority of the sort for this module.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-hide_title_ind">hide_title_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_hide_t_ind1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module's title should be hidden.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-detachable_ind">detachable_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_ind71
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module is detachable in the UI.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_personalize">allow_personalize</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">def_module_ind72
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module is personalizable by users.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-install_available">install_available</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">def_module_ind73
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module is available for the current installation.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-manageable_ind">manageable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">def_module_ind_mngble
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the module should show up in the list of modules to be managed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-async_ind">async_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_ind_async
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates whether the module will load asynchronously or not.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_async_ind">allow_async_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">def_module_ind_allowasync
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This indicates whether the asynchronous loading indicator should be exposed as an user-editable module setting on the module properties page.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-availability_mask">availability_mask</a></td>
+  <td>int</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Mask indicating whether the module is available for use in course module pages, organization module pages, both, or neither.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-def_table_orig_version">def_table_orig_version</a></td>
+  <td>varchar(10)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

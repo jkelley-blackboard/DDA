@@ -1,0 +1,497 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portal.html">portal</a>
+</div>
+
+<h1>plugins
+  <p>Installed Building Blocks</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">plugins_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> plugins_ak1
+  <ul>
+<li> <a href="#column-handle">handle</a>
+</li>
+<li> <a href="#column-vendor_id">vendor_id</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-handle">handle</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Plugin identifier</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vendor_id">vendor_id</a></td>
+  <td>varchar(4)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Plugin vendor identifier</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_flag">available_flag</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">plugins_available_flag_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Plugin availability setting</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-listener_flag">listener_flag</a></td>
+  <td>char(1)</td>
+    <td>'U'</td>
+    <td class="valueConstraint">plugins_listener_flag_ck
+      <ul>
+          <li> <span>Y</span>
+  <p>Yes: plugin has a lifecycle listener</p>
+          </li>
+          <li> <span>N</span>
+  <p>No: plugin does not have a lifecycle listener</p>
+          </li>
+          <li> <span>U</span>
+  <p>Unknown: it is unknown whether the plugin has a lifecycle listener</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Plugin lifecycle listener flag</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version_major">version_major</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Major version number</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version_minor">version_minor</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Minor version number</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version_patch">version_patch</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Patch version number</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version_prerelease">version_prerelease</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Pre-release version component</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version_build_metadata">version_build_metadata</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Build metadata version component</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vendor_name">vendor_name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Name of plugin vendor</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vendor_url">vendor_url</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Plugin vendor website</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vendor_description">vendor_description</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Description of plugin vendor</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_config">action_http_config</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Internal URL to configure plugin</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_remove">action_http_remove</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Internal URL called during plugin removal</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Name of plugin</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Description of plugin</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_locale">default_locale</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Default locale to use for plugin</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-permissions">permissions</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Permissions requested by plugin</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-deploy_type">deploy_type</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">plugins_deploy_type_ck
+      <ul>
+          <li> <span>J</span>
+          </li>
+          <li> <span>X</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Plugin type</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-legacy_ui_ind">legacy_ui_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">vc_legacy_ui_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates plugin requires legacy UI handling</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-hidden_ind">hidden_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">vc_hidden_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates plugin is hidden from the listing page</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-signed_ind">signed_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">plugins_signed_ind_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates plugin is signed</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-manual_override">manual_override</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">vc_manual_override
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates plugins availability has been manually overridden by B2Manager. Nulls should be treated as 'N'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-installed_code_schema">installed_code_schema</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the code_schema in use when this b2 was last installed/upgraded (Only applies to postgres)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bundled_install_version">bundled_install_version</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This flag is set whenever a B2 is installed a part of the installer. This value is explicitly not set for B2s installed via the Web UI. Used to identify 3rd-party B2s. </p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

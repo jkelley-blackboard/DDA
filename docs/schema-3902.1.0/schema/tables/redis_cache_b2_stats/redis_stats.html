@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-redis_cache_b2_stats.html">redis_cache_b2_stats</a>
+</div>
+
+<h1>redis_stats
+  <p>Save the General-purpose statistics of redis instance</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">redis_stats_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> redis_stats_ie1
+  <ul>
+<li> <a href="#column-timestamp">timestamp</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-instance_pk1">instance_pk1</a></td>
+  <td>id</td>
+    <td>1</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the primary key of redis instance table. Now it is always 1</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-timestamp">timestamp</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Date the publication record was created</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-used_cpu_user">used_cpu_user</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Accumulated user time(seconds) for this process</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-used_cpu_sys">used_cpu_sys</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Accumulated system time(seconds) for this process</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-curr_items">curr_items</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Current number of items stored</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-connected_clients">connected_clients</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Number of open connections</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-blocked_clients">blocked_clients</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Number of blocked connections</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-keyspace_hits">keyspace_hits</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Number of keys that have been requested and found present</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-keyspace_misses">keyspace_misses</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Number of items that have been requested and not found</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-expired_keys">expired_keys</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Items pulled from LRU that were never touched by get/incr/append/etc before expiring </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-evicted_keys">evicted_keys</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Items evicted from LRU that were never touched by get/incr/append/etc.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-used_memory">used_memory</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The memory that have been allocated</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-used_memory_peak">used_memory_peak</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The peak memory that have been allocated</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-connections_active">connections_active</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Activity pool connections</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-connections_idle">connections_idle</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Idle pool connections</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-connections_wait">connections_wait</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>'Waiting' pool connections</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

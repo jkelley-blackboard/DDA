@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>domain</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain.html">domain</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_admin.html">domain_admin</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_blti_deployment.html">domain_blti_deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course.html">domain_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course_categories.html">domain_course_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course_coll.html">domain_course_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course_coll_uid.html">domain_course_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_data_source.html">domain_data_source</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_institution_role.html">domain_institution_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_module.html">domain_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_module_coll.html">domain_module_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_org_categories.html">domain_org_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_org_coll_uid.html">domain_org_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_organization.html">domain_organization</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_organization_coll.html">domain_organization_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_program_coll.html">domain_program_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_program_coll_uid.html">domain_program_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_subject_coll.html">domain_subject_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_subject_coll_uid.html">domain_subject_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_system_role.html">domain_system_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_tab.html">domain_tab</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_tab_coll.html">domain_tab_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_tabgroup_coll.html">domain_tabgroup_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_user.html">domain_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_user_coll.html">domain_user_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_user_coll_uid.html">domain_user_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/mi_affiliate_context.html">mi_affiliate_context</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/mi_node.html">mi_node</a>
+</ul>
+
+
+</body>
+</html>

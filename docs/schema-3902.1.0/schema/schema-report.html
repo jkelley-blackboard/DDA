@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>report</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report.html">report</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bdl_asc_param_reg.html">report_bdl_asc_param_reg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bdl_def_param_reg.html">report_bdl_def_param_reg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_brand.html">report_brand</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_brand_default.html">report_brand_default</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle.html">report_bundle</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle_assoc.html">report_bundle_assoc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle_assoc_tag.html">report_bundle_assoc_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle_report_def.html">report_bundle_report_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def.html">report_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def_avail.html">report_def_avail</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def_tag.html">report_def_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def_type.html">report_def_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_param_reg.html">report_param_reg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_pub_ctx.html">report_pub_ctx</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_set.html">report_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_set_report.html">report_set_report</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_tag.html">report_tag</a>
+</ul>
+
+
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-clp_core.html">clp_core</a>
+</div>
+
+<h1>clp_section
+  <p>This table contains general information on a section within an outcomes course.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">clp_section_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    clp_section_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the clp_course table, referential action cascade on delete (cascade).</p>
+  <ul>
+<li> <a href="#column-clp_course_pk1">clp_course_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk2
+  <p>This is a foreign key referencing the primary key of the term table. </p>
+  <ul>
+<li> <a href="#column-term_pk1">term_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk3
+  <p>This is a foreign key referencing the primary key of the form table. </p>
+  <ul>
+<li> <a href="#column-form_pk1">form_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk4
+  <p>This is a foreign key referencing the primary key of the enum_attribute_value table. </p>
+  <ul>
+<li> <a href="#column-delivery_method">delivery_method</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk5
+  <p>This is a foreign key referencing the primary key of the enum_attribute_value table. </p>
+  <ul>
+<li> <a href="#column-instruction_method">instruction_method</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk6
+  <p>This is a foreign key referencing the primary key of the enum_attribute_value table. </p>
+  <ul>
+<li> <a href="#column-campus">campus</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk7
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the course_main table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-course_pk1">course_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk8
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-modifying_user_pk1">modifying_user_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_section_fk9
+  <p>This is a foreign key referencing the primary key of the enum_attribute_value table. </p>
+  <ul>
+<li> <a href="#column-location">location</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> clp_section_if1
+  <ul>
+<li> <a href="#column-clp_course_pk1">clp_course_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if2
+  <ul>
+<li> <a href="#column-term_pk1">term_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if3
+  <ul>
+<li> <a href="#column-form_pk1">form_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_ak1
+  <ul>
+<li> <a href="#column-batch_uid">batch_uid</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if4
+  <ul>
+<li> <a href="#column-course_pk1">course_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if5
+  <ul>
+<li> <a href="#column-modifying_user_pk1">modifying_user_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if6
+  <ul>
+<li> <a href="#column-lead_instructor">lead_instructor</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if7
+  <ul>
+<li> <a href="#column-campus">campus</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if8
+  <ul>
+<li> <a href="#column-delivery_method">delivery_method</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if9
+  <ul>
+<li> <a href="#column-instruction_method">instruction_method</a>
+</li>
+  </ul>
+</li>
+<li> clp_section_if10
+  <ul>
+<li> <a href="#column-location">location</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the unique id of the section.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the title of the section.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the section.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-clp_course_pk1">clp_course_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the clp_course table. This is the course the section belongs to.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_pk1">course_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_main table. It is the course delivery system course that this section maps to.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_objectives_alignable">course_objectives_alignable</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">clp_section_enum_9
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section can be aligned to course objectives.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-term_pk1">term_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the term table. It is the term that the section is in.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-form_pk1">form_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the form table. It is the form that was used to create this section.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the name of the section.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_time">start_time</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the time of the day when the section would start.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_time">end_time</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the time of the day when the section would end.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-delivery_method">delivery_method</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the delivery method of the section. It can be traditional, self-paced, computer lab etc.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-instruction_method">instruction_method</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the instruction method that the section uses. It can be discussion, lecture, lab etc.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-syllabus">syllabus</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This field does not seem to be used.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_sun">offered_sun</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offer on Sundays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_mon">offered_mon</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offered on Mondays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_tue">offered_tue</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offered on Tuesdays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_wed">offered_wed</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_4
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offered on Wednesdays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_thu">offered_thu</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_5
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offered on Thursdays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_fri">offered_fri</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offered on Fridays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-offered_sat">offered_sat</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">clp_section_enum_7
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is offered on Saturdays.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-campus">campus</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the campus this section is offered in.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-public_ind">public_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">clp_section_enum_8
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the section is viewable by public (all users).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time when the section was first created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the section was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modifying_user_pk1">modifying_user_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the users table. It is the user who modified the section record last.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lead_instructor">lead_instructor</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the name of the lead instructor for the section.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-location">location</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the location where the section is offered. </p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

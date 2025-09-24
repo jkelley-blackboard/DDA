@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-item_analysis_b2.html">item_analysis_b2</a>
+</div>
+
+<h1>tmp_ia_summary
+  <p>DEVELOPER INPUT NEEDED.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">ia_summary_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> ia_summary_ak1
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+<li> <a href="#column-qti_asi_data_pk1">qti_asi_data_pk1</a>
+</li>
+  </ul>
+</li>
+<li> ia_summary_if1
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> ia_summary_if2
+  <ul>
+<li> <a href="#column-qti_asi_data_pk1">qti_asi_data_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-users_pk1">users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This refers to the primary key of [AS_CORE].users table. We do not have foreign key relationship though.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qti_asi_data_pk1">qti_asi_data_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This refers to the primary key of [ASSESSMENT].qti_asi_data table. We do not have foreign key relationship though.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-state">state</a></td>
+  <td>char(1)</td>
+    <td>'I'</td>
+    <td class="valueConstraint">ia_summary_enum1
+      <ul>
+          <li> <span>D</span>
+          </li>
+          <li> <span>E</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Shows the state of item analysis. D: Deleted. E: Error. I: In Progress. C: Complete.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-attempt">attempt</a></td>
+  <td>char(1)</td>
+    <td>'L'</td>
+    <td class="valueConstraint">ia_summary_enum2
+      <ul>
+          <li> <span>F</span>
+          </li>
+          <li> <span>L</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Shows the type of attempt for which item analysis has been run. F: First attempt. L: Last attempt.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Shows the title of assessment with the type of attempt this analysis was run on. The length is derived from Assessment.ASSESSMENT_NAME_LENGTH variable.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates the first time submission was made.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-points_possible">points_possible</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Total Points for number of possible questions within the assessment.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avg_score">avg_score</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Average score of all attempts.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-question_count">question_count</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of all questions that were attempted by in the assessment.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submissions_possible">submissions_possible</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Represents the possible number of submissions for the assessment. Used for internal calculation purpose only.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-in_progress">in_progress</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Count of attempts that have yet to be submitted.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-complete">complete</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Count of attempts that have been submitted. In a test with multiple attempts, only the last submitted attempt is counted.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avg_dur_secs">avg_dur_secs</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows average time spent on a test in seconds.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-discrim_good">discrim_good</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of quesitons that fall into GOOD category of discrimination.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-discrim_fair">discrim_fair</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of quesitons that fall into FAIR category of discrimination.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-discrim_poor">discrim_poor</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of quesitons that fall into POOR category of discrimination.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-diff_easy">diff_easy</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of quesitons that fall into EASY category of difficulty.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-diff_medium">diff_medium</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of quesitons that fall into MEDIUM category of difficulty.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-diff_hard">diff_hard</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the count of quesitons that fall into HARD category of difficulty.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

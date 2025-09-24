@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-evidence.html">evidence</a>
+</div>
+
+<h1>evdnc
+  <p>This table contains general information on Outcomes Artifacts. Outcomes Artifacts originally named Evidence Areas provide a container for text, media and file content. Outcomes Artifacts may exist independently or within an Outcomes Portfolio.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">evdnc_pk1</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    evdnc_fk1
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the evdnc_tmplt table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-evdnc_tmplt_pk1">evdnc_tmplt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    evdnc_fk2
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    evdnc_fk3
+  <ul>
+<li> <a href="#column-parent_pk1">parent_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    evdnc_fk4
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-response_pk1">response_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> evdnc_if1
+  <p>This is a foreign key referencing the primary key of the  table. </p>
+  <ul>
+<li> <a href="#column-evdnc_tmplt_pk1">evdnc_tmplt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> evdnc_if2
+  <p>This is a foreign key referencing the primary key of the  table. </p>
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> evdnc_if3
+  <ul>
+<li> <a href="#column-parent_pk1">parent_pk1</a>
+</li>
+  </ul>
+</li>
+<li> evdnc_if4
+  <ul>
+<li> <a href="#column-response_pk1">response_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time the outcomes artifact was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time the outcomes artifact was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-users_pk1">users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing users table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-response_pk1">response_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing deployment_response table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-parent_pk1">parent_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key self referencing evdnc table. It is the live version of this outcomes artifact record.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-evdnc_tmplt_pk1">evdnc_tmplt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing evdnc_tmplt table. It is the template associated with this outcomes artifact.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the title of the outcomes artifact.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(1000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the outcomes artifact.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_comment">submission_comment</a></td>
+  <td>nvarchar(1000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the comments on the submitted outcomes artifact.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reflection">reflection</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the reflection contained in the outcomes artifact.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reflection_type">reflection_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">evdnc_enum_2
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the format of the reflection. P = plain text, H = HTML, S = smart text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_ind">submission_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">evdnc_enum_3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the Outcomes Artifact is submitted for review.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_date">submission_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the submission was made.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_style">tab_status_style</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">evdnc_enum_4
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_build">tab_status_build</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">evdnc_enum_5
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_reflect">tab_status_reflect</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">evdnc_enum_6
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_settings">tab_status_settings</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">evdnc_enum_7
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-instant_eval_ind">instant_eval_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">evdnc_enum_8
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

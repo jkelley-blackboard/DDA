@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>stats</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/aa_reprocess_session.html">aa_reprocess_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/activity_accumulator.html">activity_accumulator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/application.html">application</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_comments.html">cms_comments</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_file_access.html">cms_file_access</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_file_operations.html">cms_file_operations</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_metadata_changes.html">cms_metadata_changes</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_perms_mods.html">cms_perms_mods</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/course_main.html">course_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/course_roles.html">course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/course_users.html">course_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/data_source.html">data_source</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_index_sproc.html">etl_index_sproc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_log.html">etl_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_materialized_view.html">etl_materialized_view</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_status.html">etl_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/institution_roles.html">institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_cache.html">mon_cache</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_db_pool.html">mon_db_pool</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_db_sql.html">mon_db_sql</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_memory.html">mon_memory</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_session.html">mon_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_task.html">mon_task</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_thread_deadlock.html">mon_thread_deadlock</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/navigation_item.html">navigation_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/ods_aa_content_activity.html">ods_aa_content_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/ods_aa_course_activity.html">ods_aa_course_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/ods_aa_session_activity.html">ods_aa_session_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/purgesync_log.html">purgesync_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/system_roles.html">system_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/system_tracking.html">system_tracking</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/user_roles.html">user_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/users.html">users</a>
+</ul>
+
+
+</body>
+</html>

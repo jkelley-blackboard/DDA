@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portfolio.html">portfolio</a>
+</div>
+
+<h1>prtfl_review
+  <p>Records in this table indicate an evaluator's review of a submitted portfolio.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">prtfl_review_pk1</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    prtfl_review_fk1
+    <span>(On Delete Cascade)</span>
+  <ul>
+<li> <a href="#column-prtfl_pk1">prtfl_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_review_fk2
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-reviewer_pk1">reviewer_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> prtfl_review_ak1
+  <ul>
+<li> <a href="#column-prtfl_pk1">prtfl_pk1</a>
+</li>
+<li> <a href="#column-reviewer_pk1">reviewer_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_review_if2
+  <ul>
+<li> <a href="#column-reviewer_pk1">reviewer_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_review_if3
+  <ul>
+<li> <a href="#column-prtfl_pk1">prtfl_pk1</a>
+</li>
+<li> <a href="#column-reviewer_pk1">reviewer_pk1</a>
+</li>
+<li> <a href="#column-self_review_ind">self_review_ind</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time the review was first created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time the review was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-prtfl_pk1">prtfl_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the Foreign Key referencing prtfl table. It is the Portfolio being reviewed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reviewer_pk1">reviewer_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing users table. It is person that conducted the review.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-self_review_ind">self_review_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_review_enum_1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if this review is completed by the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-published_date">published_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This used to be the date time when the review was published. It is no longer used because we rely on dtmodified instead for that information.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-published_ind">published_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_review_enum_2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that used to indicate whether the review has been published. It is no longer used and should be removed because we now rely on status = 'P' to identify published reviews.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-status">status</a></td>
+  <td>char(1)</td>
+    <td>'C'</td>
+    <td class="valueConstraint">prtfl_review_enum_6
+      <ul>
+          <li> <span>D</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is an enumeration -- (D)raft, (C)omplete, or (P)ublished -- that indicates the state of a review.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comments">comments</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text of the comment from the reviewer.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comments_type">comments_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">prtfl_review_enum_3
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the format of the review text. H = HTML, P = Plain Text, S = Smart Text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comments_visible_ind">comments_visible_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_review_enum_4
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the reviewer comment is visible to others not including the portfolio owner.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-read_ind">read_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_review_enum_5
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if this review has been read.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

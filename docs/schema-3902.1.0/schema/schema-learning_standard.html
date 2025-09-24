@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>learning_standard</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_standard.html">lrn_standard</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_crs_main.html">lrn_stds_crs_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_crs_main_uid.html">lrn_stds_crs_main_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_discipline.html">lrn_stds_discipline</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc.html">lrn_stds_doc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_ctx.html">lrn_stds_doc_ctx</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_map.html">lrn_stds_doc_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_map_log.html">lrn_stds_doc_map_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_set.html">lrn_stds_doc_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_map.html">lrn_stds_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_map_settings.html">lrn_stds_map_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_provider.html">lrn_stds_provider</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_sub_doc.html">lrn_stds_sub_doc</a>
+</ul>
+
+
+</body>
+</html>

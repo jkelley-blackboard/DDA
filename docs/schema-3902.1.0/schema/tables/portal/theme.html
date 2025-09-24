@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portal.html">portal</a>
+</div>
+
+<h1>theme
+  <p>This stores the theme setting information for the HTML output of a flexible user interface which can be easily branded to have the look and feel of your institution. </p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">theme_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    theme_fk1
+  <p>This is a foreign key referencing the primary key of the theme_type table. </p>
+  <ul>
+<li> <a href="#column-theme_type_pk1">theme_type_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> ix_theme_ext_ref
+  <ul>
+<li> <a href="#column-ext_ref">ext_ref</a>
+</li>
+  </ul>
+</li>
+<li> theme_if1
+  <ul>
+<li> <a href="#column-theme_type_pk1">theme_type_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The name of the theme.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ext_ref">ext_ref</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The external reference of the theme. A value that can be used to uniquely identify it. Only used for themes in an Original environment (ignored in an Ultra environment).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(2000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The description of the theme.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_ind">default_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) indicating whether this is a Blackboard-supplied default theme.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tabstyle">tabstyle</a></td>
+  <td>varchar(30)</td>
+    <td></td>
+    <td class="valueConstraint">indicatortabstyle
+      <ul>
+          <li> <span>roundCorners</span>
+          </li>
+          <li> <span>roundEdges</span>
+          </li>
+          <li> <span>square</span>
+          </li>
+          <li> <span>transparent</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the style of the theme tabs.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tabalignment">tabalignment</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td class="valueConstraint">indicatortabalignment
+      <ul>
+          <li> <span>left</span>
+          </li>
+          <li> <span>right</span>
+          </li>
+          <li> <span>center</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the alignment value of the theme tabs.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-config">config</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Theme configuration stored as JSON.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-framesize">framesize</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td class="valueConstraint">indicatorframesize
+      <ul>
+          <li> <span>large</span>
+          </li>
+          <li> <span>small</span>
+          </li>
+          <li> <span>mixed</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the size of the top frame. The large frame size will allow more room for links and a banner image. The small frame size will allow more space for community and course content. Mixed frame size uses large for all tabs except Courses.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-iconset">iconset</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">indicatoriconset
+      <ul>
+          <li> <span>0</span>
+          </li>
+          <li> <span>1</span>
+          </li>
+          <li> <span>2</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The icon set to use for this theme.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-coursenameusage">coursenameusage</a></td>
+  <td>varchar(2)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicatorcrsnameusage
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+          <li> <span>NI</span>
+          </li>
+          <li> <span>IN</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is how the course name will be displayed in the orientation bar and course menu. N=Show Course Name, I=Show Course ID, NI=Show Course Name followed by Course ID, IN=Show Course ID followed by Course Name. Only used for themes in an Original environment (ignored in an Ultra environment).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-theme_type_pk1">theme_type_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Type targeted by the theme. Used to further filter customizations used by theme.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-environment_type">environment_type</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">theme_environment_type_vals
+      <ul>
+          <li> <span>C</span>
+          </li>
+          <li> <span>U</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        The type of Learn environment to which the theme applies. Possible values include:
+         C: Only applies to classic Learn (Original).
+         U: Only applies to Ultra.
+        When the value is null, it will be treated as 'C'
+      </p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 3902.1.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>
