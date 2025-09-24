@@ -8,11 +8,6 @@ This repository provides helpful SQL scripts and resources for working with Blac
 - **Schema References**: Links to official schema documentation and downloads.
 - **Community Resources**: Slack channels, other useful repositories, and external guides.
 
-## Getting Started
-
-   ```
-2. **Browse available SQL scripts**  
-   Scripts will be added over time in this repository. Check back for new content!
 
 ## Usage
 
