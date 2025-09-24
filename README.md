@@ -10,9 +10,6 @@ This repository provides helpful SQL scripts and resources for working with Blac
 
 ## Getting Started
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/jkelley-blackboard/DDA.git
    ```
 2. **Browse available SQL scripts**  
    Scripts will be added over time in this repository. Check back for new content!
