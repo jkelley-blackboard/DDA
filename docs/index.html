@@ -3,39 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <title>Working with DDA</title>
+  <link rel="icon" href="https://docs.anthology.com/img/favicon.ico" type="image/x-icon">
   <style>
+    /* ---- Base Styling ---- */
     body {
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       background-color: #fff;
       color: #2c2c2c;
-      margin: 2em auto;
-      max-width: 960px;
+      margin: 0;
       line-height: 1.6;
-    }
-
-    h1, h2 {
-      color: #1a1a1a;
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 0.3em;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin-top: 0;
-    }
-
-    h2 {
-      font-size: 1.5em;
-      margin-top: 2em;
     }
 
     a {
       color: #0073aa;
       text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: #004f7c;
+      text-decoration: underline;
     }
 
-    a:hover {
-      text-decoration: underline;
+    /* ---- Layout ---- */
+    .container {
+      max-width: 960px;
+      margin: 2em auto;
+      padding: 0 1em;
+    }
+
+    /* ---- Header ---- */
+    header {
+      background-color: #003366;
+      color: #fff;
+      padding: 1em 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header .header-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 500;
+    }
+
+    /* ---- Sections ---- */
+    h2 {
+      font-size: 1.5em;
+      color: #1a1a1a;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 0.3em;
+      margin-top: 2em;
+    }
+
+    p {
+      margin: 1em 0;
     }
 
     ul {
@@ -46,56 +73,84 @@
       margin-bottom: 2em;
     }
 
+    /* ---- Notes / Info Box ---- */
     .note {
       background-color: #f5f5f5;
       border-left: 4px solid #0073aa;
       padding: 1em;
       margin: 2em 0;
+      font-size: 0.95em;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      background-color: #f9f9f9;
+      color: #666;
+      font-size: 0.9em;
+      text-align: center;
+      padding: 1em 0;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 3em;
     }
   </style>
 </head>
 <body>
-  <h1>Working with DDA</h1>
+  <header>
+    <div class="header-container">
+      <h1>Working with DDA</h1>
+    </div>
+  </header>
 
-  <div class="section">
-    <p>
-      This site provides documentation and resources for working with Blackboard's Direct Data Access (DDA) service.
-    </p>
-  </div>
+  <main class="container">
+    <div class="section">
+      <p>
+        This site provides documentation and resources for working with Blackboard's 
+        <strong>Direct Data Access (DDA)</strong> service.
+      </p>
+    </div>
 
-  <div class="section">
-    <h2>Official Documentation</h2>
-    <p>
-      Visit the official Blackboard Help page for DDA:<br>
-      <a href="https://help.blackboard.com/Learn/Administrator/SaaS/Integrations/Direct_Data_Access" target="_blank">
-        Direct Data Access - Blackboard Help
-      </a>
-    </p>
-  </div>
+    <div class="section">
+      <h2>Official Documentation</h2>
+      <p>
+        Visit the official Blackboard Help page for DDA:<br>
+        <a href="https://help.blackboard.com/Learn/Administrator/SaaS/Integrations/Direct_Data_Access" target="_blank">
+          Direct Data Access - Blackboard Help
+        </a>
+      </p>
+    </div>
 
-  <div class="section">
-    <h2>Schema and Changes Packages</h2>
-    <p>You can browse and download the latest database documentation packages here:</p>
-    <ul>
-      <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fschema" target="_blank">Schema Packages (bbprepo)</a></li>
-      <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fjdiff" target="_blank">Changes Packages (bbprepo)</a></li>
-    </ul>
-  </div>
+    <div class="section">
+      <h2>Schema and Changes Packages</h2>
+      <p>You can browse and download the latest database documentation packages here:</p>
+      <ul>
+        <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fschema" target="_blank">Schema Packages (bbprepo)</a></li>
+        <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fjdiff" target="_blank">Changes Packages (bbprepo)</a></li>
+      </ul>
+    </div>
 
-  <div class="section">
-    <h2>Expanded Schema Explorer</h2>
-    <p>
-      You can explore the expanded schema package here:<br>
-      <a href="./schema-3902.1.0/schema/index.html" target="_ (3902.1.0)>schema-3902.1.0</a>
-    </p>
-  </div>
+    <div class="section">
+      <h2>Expanded Schema Explorer</h2>
+      <p>
+        You can explore the expanded schema package here:<br>
+        <a href="./schema-3902.1.0/schema/index.html" target="_blank">schema-3902.1.0</a>
+      </p>
+    </div>
 
-  <div class="section">
-    <h2>Repository</h2>
-    <p>
-      My GitHub repository contains SQL scripts and tools for working with DDA, including role audits, grade exports, and log summaries.<br>
-      <a href="https://github.com/jkelley-blackboard/DDA" target="_blank">View Base Repository on GitHub</a>
-    </p>
-  </div>
+    <div class="section">
+      <h2>Repository</h2>
+      <p>
+        My GitHub repository contains SQL scripts and tools for working with DDA, including role audits, grade exports, and log summaries.<br>
+        <a href="https://github.com/jkelley-blackboard/DDA" target="_blank">View Base Repository on GitHub</a>
+      </p>
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> These resources are provided without warranty and are meant for internal development and testing purposes only.
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Anthology Inc. | Blackboard Direct Data Access Resources
+  </footer>
 </body>
 </html>
