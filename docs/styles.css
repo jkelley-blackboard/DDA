@@ -12,7 +12,7 @@ body {
 .container {
   max-width: 960px;
   margin: 2em auto;
-  padding: 0 1em;
+  padding: 0 1em 0 10px; /* Added 10px of extra left padding */
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   border-radius: 6px;
