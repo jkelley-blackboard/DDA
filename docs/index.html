@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
     /* ---- Color & Typography ---- */
-    :root{
+    :root {
       --primary-color: #003366;
       --secondary-color: #0073aa;
       --hover-color: #004f7c;
@@ -34,17 +34,29 @@
       text-decoration: none;
       transition: color 0.2s ease;
     }
-    a:hover { color: var(--hover-color); text-decoration: underline; }
+    a:hover {
+      color: var(--hover-color);
+      text-decoration: underline;
+    }
 
-    h1, h2, h3 { color: #1a1a1a; font-weight: 500; margin: 0 0 .5em 0; }
-    p { margin: .6em 0; }
+    h1, h2, h3 {
+      color: #fff;
+      font-weight: 500;
+      margin: 0 0 0.5em 0;
+    }
+    h2, h3 {
+      color: #1a1a1a;
+    }
+    p {
+      margin: 0.6em 0;
+    }
 
     /* ---- Header ---- */
     header {
       background-color: var(--primary-color);
       color: #fff;
       padding: 1em 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,.08);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -57,7 +69,10 @@
       align-items: center;
       justify-content: space-between;
     }
-    header h1 { font-size: 1.8em; }
+    header h1 {
+      font-size: 1.8em;
+      color: #fff;
+    }
 
     /* ---- Main layout ---- */
     .main-wrapper {
@@ -80,38 +95,51 @@
       flex-shrink: 0;
       height: fit-content;
     }
-    .sidebar h3 { font-size: 1.05em; margin-bottom: .75em; }
-    .sidebar ul { list-style: none; padding: 0; margin: 0; }
-    .sidebar li { margin-bottom: .45em; }
+    .sidebar h3 {
+      font-size: 1.05em;
+      margin-bottom: 0.75em;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar li {
+      margin-bottom: 0.45em;
+    }
     .sidebar a {
       display: block;
-      padding: .35em .5em;
+      padding: 0.35em 0.5em;
       border-radius: 6px;
       transition: background 0.15s ease;
     }
-    .sidebar a:hover { background-color: #e8f0fe; }
+    .sidebar a:hover {
+      background-color: #e8f0fe;
+    }
 
     /* ---- Content ---- */
     main.content {
       flex: 1;
       padding: 0 1em;
     }
-    .section { margin-bottom: 1.75em; }
-    h2 { font-size: 1.35em; border-bottom: 1px solid var(--border-gray); padding-bottom: .3em; margin-top: .5em; }
-
-    /* ---- Search ---- */
-    .search-bar { margin-bottom: 1.25em; }
-    .search-bar input[type="search"] {
-      width: 100%;
-      padding: .6em .8em;
-      border: 1px solid var(--border-gray);
-      border-radius: 6px;
-      font-size: 1em;
+    .section {
+      margin-bottom: 1.75em;
+    }
+    h2 {
+      font-size: 1.35em;
+      border-bottom: 1px solid var(--border-gray);
+      padding-bottom: 0.3em;
+      margin-top: 0.5em;
     }
 
     /* ---- Lists ---- */
-    ul.nested { padding-left: 1.2em; margin-top: .5em; }
-    ul.nested li { margin-bottom: .35em; }
+    ul.nested {
+      padding-left: 1.2em;
+      margin-top: 0.5em;
+    }
+    ul.nested li {
+      margin-bottom: 0.35em;
+    }
 
     /* ---- Notes/Info ---- */
     .note {
@@ -119,7 +147,7 @@
       border-left: 4px solid var(--secondary-color);
       padding: 1em;
       margin: 1.25em 0;
-      font-size: .95em;
+      font-size: 0.95em;
       border-radius: 4px;
     }
 
@@ -132,7 +160,7 @@
       border: 1px solid #ddd;
       font-size: 0.95em;
       line-height: 1.4;
-      margin: .6em 0;
+      margin: 0.6em 0;
     }
     code {
       font-family: Consolas, "Courier New", monospace;
@@ -152,9 +180,18 @@
 
     /* ---- Responsive ---- */
     @media (max-width: 960px) {
-      .main-wrapper { flex-direction: column; margin: 0.75em auto; }
-      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-gray); }
-      header h1 { font-size: 1.4em; }
+      .main-wrapper {
+        flex-direction: column;
+        margin: 0.75em auto;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-gray);
+      }
+      header h1 {
+        font-size: 1.4em;
+      }
     }
   </style>
 </head>
@@ -179,10 +216,6 @@
     </aside>
 
     <main class="content">
-      <div class="search-bar" role="search" aria-label="Search this documentation">
-        <input type="search" placeholder="Search this site..." aria-label="Search">
-      </div>
-
       <section class="section" id="intro">
         <p>
           This site provides documentation and resources for working with Blackboard's
@@ -238,4 +271,116 @@
         <p>
           Blackboard SaaS deployments use five distinct PostgreSQL databases to support core application functionality,
           reporting, and content management. This summary outlines their purpose and relevance for reporting and
-          integration work. Schema details are primarily
+          integration work. Schema details are primarily documented in the Expanded Schema Explorer section above.
+        </p>
+
+        <ul class="nested" aria-label="DDA databases">
+          <li>
+            <strong>BBxxxxxxxxxxxx</strong>
+            <ul class="nested">
+              <li>Primary production database</li>
+              <li>Contains all core application tables (courses, users, enrollments, grades, hierarchy, tools, etc.)</li>
+              <li>Most reporting and integration work will use this database</li>
+              <li>Schema is mostly documented in the Expanded Schema Explorer above</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_admin</strong>
+            <ul class="nested">
+              <li>System coordination database</li>
+              <li>Stores internal configuration and metadata</li>
+              <li>Rarely accessed for reporting or integrations</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_stats</strong>
+            <ul class="nested">
+              <li>Reporting and analytics database</li>
+              <li>Includes a permanent copy of <code>activity_accumulator</code>, which is truncated to 180 days in the production database</li>
+              <li><code>ODS</code> tables contain transformed data specifically for activity reporting</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_cms_doc</strong>
+            <ul class="nested">
+              <li>Content Collection document store</li>
+              <li>Powers file storage and retrieval for the Content Collection</li>
+              <li>Not documented and generally not used for reporting</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_cms</strong>
+            <ul class="nested">
+              <li>Content Collection admin database</li>
+              <li>Manages metadata and configuration for the Content Collection</li>
+              <li>Rarely accessed and not typically relevant for reporting</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="note">
+          <strong>Note:</strong><br>
+          Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
+          Some older systems may have been configured with individual <code>_cms</code> databases for each of the various root
+          folders in the Content Collection (for example, <code>BBxxxxxxxxxxxx_cms_users</code> or <code>BBxxxxxxxxxxxx_cms_orgs</code>).
+          The schema for these databases is the same as <code>_cms_doc</code>.
+        </div>
+      </section>
+
+      <section class="section" id="dblink-joins">
+        <h2>Cross-Database Joins with <code>dblink</code></h2>
+        <p>
+          Blackboard's DDA databases are physically separated, so direct joins between them require the use of
+          PostgreSQL's <code>dblink</code> extension. This allows you to query across databases within the same
+          PostgreSQL instance.
+        </p>
+
+        <ul class="nested">
+          <li>
+            <strong>Enable the extension:</strong>
+            <pre><code>CREATE EXTENSION IF NOT EXISTS dblink;</code></pre>
+          </li>
+
+          <li>
+            <strong>Basic usage:</strong>
+            <p>Query another database like this:</p>
+            <pre><code>SELECT * FROM dblink(
+  'dbname=BBxxxxxxxxxxxx_stats user=bbuser password=bbpassword',
+  'SELECT pk1, activity_date FROM activity_accumulator'
+) AS aa(pk1 INT, activity_date TIMESTAMP);</code></pre>
+          </li>
+
+          <li>
+            <strong>Join example:</strong>
+            <p>Join data from <code>BBxxxxxxxxxxxx</code> and <code>BBxxxxxxxxxxxx_stats</code>:</p>
+            <pre><code>SELECT u.pk1, u.user_id, aa.activity_date
+FROM users u
+JOIN dblink(
+  'dbname=BBxxxxxxxxxxxx_stats user=bbuser password=bbpassword',
+  'SELECT user_pk1, activity_date FROM activity_accumulator'
+) AS aa(user_pk1 INT, activity_date TIMESTAMP)
+ON u.pk1 = aa.user_pk1;</code></pre>
+          </li>
+        </ul>
+
+        <div class="note">
+          <strong>Note:</strong><br>
+          <code>dblink</code> requires a valid username and password for the target database.
+          In most Blackboard environments, connections are only permitted <strong>from the main database to others</strong>, not the reverse.
+          This is a standard production security configuration and cannot be altered in those environments.
+          Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    © 2025 Anthology Inc. | Blackboard Direct Data Access Resources<br>
+    This documentation is provided "as is" without warranty of any kind.
+  </footer>
+</body>
+</html>
