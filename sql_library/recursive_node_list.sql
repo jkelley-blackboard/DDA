@@ -1,3 +1,10 @@
+-- Purpose: Builds a full hierarchical path for each node in `mi_node`,
+-- combining node name, pk1, and batch_uid from root to leaf.
+-- Includes hierarchy depth as `level`.
+
+-- © 2025 Anthology Inc. All rights reserved.
+-- This software is provided "as is" without warranty or support
+
 
 WITH RECURSIVE node_path AS (
     -- Anchor: start from root nodes
