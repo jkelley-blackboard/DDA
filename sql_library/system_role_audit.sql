@@ -1,7 +1,9 @@
 -- List of users with ANY system role other than 'None'
 -- includes primary, secondary and node admin roles
--- jeff.kelley@anthology.com  2025-08-09
--- no support or warranty 
+
+-- © 2025 Anthology Inc. All rights reserved.
+-- This software is provided "as is" without warranty or support
+-- jeff.kelley@anthology.com 
 
 
 WITH second_sys_roles AS (

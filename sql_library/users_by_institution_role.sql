@@ -1,6 +1,8 @@
 -- look up users by institution role (primary and secondary)
--- jeff.kelley@anthology.com 2025-05-24
--- No warranty or support
+
+-- © 2025 Anthology Inc. All rights reserved.
+-- This software is provided "as is" without warranty or support
+-- jeff.kelley@anthology.com 
 
 WITH my_constants AS (
   SELECT 'STAFF'::text AS role_id  --enter the role ID here
