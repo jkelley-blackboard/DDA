@@ -1,0 +1,206 @@
+/* ---- Color & Typography ---- */
+:root {
+  --primary-color: #003366;
+  --primary-gradient: linear-gradient(135deg, #003366, #0055a5);
+  --secondary-color: #0073aa;
+  --hover-color: #0099ff;
+  --light-gray: #f9f9f9;
+  --border-gray: #d0d0d0;
+  --text-dark: #222;
+  --content-max: 1200px;
+  --sidebar-width: 250px;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: #fff;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- Links ---- */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: var(--transition);
+  font-weight: 500;
+}
+a:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+
+/* ---- Headers ---- */
+h1, h2, h3 {
+  font-weight: 600;
+  margin: 0 0 0.6em 0;
+}
+h1 { 
+  background: var(--primary-gradient);
+  color: #fff; 
+  padding: 0.25em 0.5em;
+  border-radius: var(--radius);
+  display: inline-block;
+}
+h2, h3 {
+  color: var(--primary-color);
+}
+
+/* ---- Paragraphs ---- */
+p {
+  margin: 0.7em 0;
+}
+
+/* ---- Header ---- */
+header {
+  background: var(--primary-gradient);
+  color: #fff;
+  padding: 1em 0;
+  box-shadow: var(--shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+.header-container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  font-size: 2em;
+}
+
+/* ---- Main layout ---- */
+.main-wrapper {
+  display: flex;
+  flex: 1;
+  max-width: var(--content-max);
+  margin: 1.5em auto;
+  padding: 0 1em;
+  gap: 1.5em;
+  width: 100%;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: var(--sidebar-width);
+  padding: 1em;
+  background: var(--light-gray);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-gray);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-light);
+}
+.sidebar h3 {
+  font-size: 1.1em;
+  margin-bottom: 0.75em;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  margin-bottom: 0.5em;
+}
+.sidebar a {
+  display: block;
+  padding: 0.45em 0.7em;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+.sidebar a:hover {
+  background: rgba(0, 115, 170, 0.15);
+}
+
+/* ---- Content ---- */
+main.content {
+  flex: 1;
+  padding: 0 1em;
+}
+.section {
+  margin-bottom: 2em;
+}
+h2 {
+  font-size: 1.4em;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.4em;
+  margin-top: 0.7em;
+}
+
+/* ---- Lists ---- */
+ul.nested {
+  padding-left: 1.4em;
+  margin-top: 0.6em;
+}
+ul.nested li {
+  margin-bottom: 0.4em;
+}
+
+/* ---- Notes/Info ---- */
+.note {
+  background: #e0f0ff;
+  border-left: 5px solid var(--secondary-color);
+  padding: 1.1em;
+  margin: 1.3em 0;
+  font-size: 0.96em;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ---- Code blocks ---- */
+pre {
+  background: #f0f4f8;
+  padding: 0.85em;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  border: 1px solid #cdd6e0;
+  font-size: 0.95em;
+  line-height: 1.45;
+  margin: 0.7em 0;
+}
+code {
+  font-family: "Fira Code", Consolas, "Courier New", monospace;
+  color: #222;
+}
+
+/* ---- Footer ---- */
+footer {
+  background: #fdfdfd;
+  color: #555;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 1.2em 0;
+  border-top: 1px solid var(--border-gray);
+  margin-top: auto;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+  border-radius: var(--radius)  var(--radius) 0 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 960px) {
+  .main-wrapper {
+    flex-direction: column;
+    margin: 1em auto;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-gray);
+  }
+  header h1 {
+    font-size: 1.6em;
+  }
+}
