@@ -1,161 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Working with Blackboard Direct Data Access (DDA)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Documentation and resources for working with Blackboard Direct Data Access (DDA)." />
-  <style>
-    :root { --text:#111; --muted:#555; --bg:#fff; --link:#004aad; --link-visited:#6b2fb8; --focus:#ffbf47; --border:#ddd; }
-    html { font-size: 16px; }
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.6; }
-    a { color:var(--link); }
-    a:visited { color:var(--link-visited); }
-    a:focus, button:focus, [tabindex]:focus { outline: 3px solid var(--focus); outline-offset: 2px; }
-    header, nav, main, footer { max-width: 72rem; margin: 0 auto; padding: 1rem; }
-    header { padding-top: 1.25rem; }
-    .skip-link {
-      position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
-    }
-    .skip-link:focus { position: static; width: auto; height: auto; padding: .5rem .75rem; background:#000; color:#fff; }
-    nav[aria-label="Primary"] {
-      border-block: 1px solid var(--border);
-      margin-block: .75rem 1rem; padding-block: .5rem;
-    }
-    nav ul { display:flex; flex-wrap:wrap; gap:.5rem 1rem; list-style:none; padding:0; margin:0; }
-    nav a { text-decoration: none; border-bottom: 1px solid transparent; }
-    nav a:hover { border-bottom-color: currentColor; }
-    h1, h2, h3 { line-height: 1.25; }
-    h1 { margin-top:.25rem; }
-    h2 { margin-top:2rem; }
-    p, li { max-width: 70ch; }
-    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
-    pre { background:#0b0c0c; color:#f8f8f2; padding:1rem; overflow:auto; border-radius:.25rem; }
-    pre code { color:inherit; }
-    .label { font-weight:600; }
-    .note { background:#f7f7f7; border-left:4px solid #999; padding:.75rem 1rem; margin:1rem 0; }
-    .muted { color: var(--muted); }
-    footer { border-top:1px solid var(--border); margin-top:2rem; font-size:.95rem; color:var(--muted); }
-  </style>
+  <meta charset="UTF-8">
+  <title>Working with DDA</title>
+  <link rel="icon" href="https://docs.anthology.com/img/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="groovy_index.css">
 </head>
-<body>
-  <a class="skip-link" href="#>
 
+<body>
   <header>
-    <h1>Working with DDA</h1>
-    <p>This site provides documentation and resources for working with Blackboard’s Direct Data Access (DDA) service.</p>
-    <p><a href="https://github.com/jkelley-blackboard/DDA"itHub repository</a></p>
+    <div class="header-container">
+      <h1>Working with DDA</h1>
+	  <a href="https://github.com/jkelley-blackboard/DDA" target="_blank">View Repository</a>
+    </div>
   </header>
 
-  <nav aria-label="Primary">
-    <ul>
-      <li>#official-docsOfficial docs</a></li>
-      <li><a href="#ckagesSchema &amp; changes packages</a></li>
-      <li><a href="#plorerExpanded schema explorer</a></li>
-      <li>#securitySecurity considerations</a></li>
-      <li>#schema-refreshSchema refresh &amp; permissions</a></li>
-      <li>#dda-overviewDDA database overview</a></li>
-      <li>#cross-db-joinsCross‑database joins (dblink)</a></li>
-    </ul>
-  </nav>
-
-  <main id="main">
-    <section id="official-docs">
-      <h2>Official documentation</h2>
-      <p>
-        Visit the official Blackboard Help page for DDA:
-        <a href="https://help.blackboard.com/Learn/Administrator/SaaS/Integrations/Direct_Data_Access  Direct Data Access — Blackboard Help
-        </a>.
-      </p>
-      <div class="note" role="note" aria-label="Important note">
-        <p class="label">Important:</p>
-        <p>Nothing here supersedes your institution’s contract or Anthology’s official documentation. Anthology may make changes not yet reflected here. Always consult the official documentation and your agreements before making decisions based on this content.</p>
-      </div>
-    </section>
-
-    <section id="schema-packages">
-      <h2>Schema and changes packages</h2>
+  <div class="main-wrapper" role="main">
+    <aside class="sidebar" aria-label="Site navigation">
+      <h3>Navigation</h3>
       <ul>
-        <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2hema packages (bbprepo)</a></li>
-        <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fjdiff" reles (bbprepo)</a></li>
+        <li><a href="#official-docs">Official Docs</a></li>
+        <li><a href="#schema-changes">Schema Packages</a></li>
+        <li><a href="#schema-explorer">Schema Explorer</a></li>
+        <li><a href="#repository">Repository</a></li>
+        <li><a href="#dda-overview">DDA Database Overview</a></li>
+        <li><a href="#dblink-joins">Cross-Database Joins</a></li>
       </ul>
-    </section>
+    </aside>
 
-    <section id="schema-explorer">
-      <h2>Expanded schema explorer</h2>
-      <p><a href="./schema-3902ma/index.htmlBrowse Expanded Schema v3902.1.0</a></p>
-    </section>
+    <main class="content">
+      <section class="section" id="intro">
+        <p>
+          This site provides documentation and resources for working with Blackboard's
+          <strong>Direct Data Access (DDA)</strong> service.
+        </p>
+      </section>
 
-    <section id="security">
-      <h2>Security considerations</h2>
-      <p>Store access credentials securely, avoid exposing sensitive learner or institutional data, use encrypted connections, and follow your organization’s data governance policies.</p>
-    </section>
+      <section class="section" id="official-docs">
+        <h2>Official Documentation</h2>
+        <p>
+          Visit the official Blackboard Help page for DDA:<br>
+          <a href="https://help.blackboard.com/Learn/Administrator/SaaS/Integrations/Direct_Data_Access" target="_blank" rel="noopener noreferrer">
+            Direct Data Access - Blackboard Help
+          </a>
+        </p>
 
-    <section id="schema-refresh">
-      <h2>Schema refresh and permissions</h2>
-      <p>If newly added tables produce a permission error for your DDA account, request a “refresh” (copy the username/password, delete the account, and recreate it with the same name and password).</p>
-    </section>
+        <div class="note" aria-hidden="false">
+          <strong>Important Note:</strong><br>
+          Nothing in this repository supersedes your institution’s contract or Anthology’s official documentation.
+          Anthology may make changes to the platform or DDA functionality that are not yet reflected here.
+          Always consult the official documentation and your agreements before making decisions based on this content.
+        </div>
+      </section>
 
-    <section id="dda-overview">
-      <h2>DDA database overview</h2>
-      <p>Blackboard SaaS deployments use five distinct PostgreSQL databases to support core application functionality, reporting, and content management.</p>
+      <section class="section" id="schema-changes">
+        <h2>Schema and Changes Packages</h2>
+        <p>You can browse and download the latest database documentation packages here:</p>
+        <ul class="nested" aria-label="Schema packages">
+          <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fschema" target="_blank" rel="noopener noreferrer">Schema Packages (bbprepo)</a></li>
+          <li><a href="https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fjdiff" target="_blank" rel="noopener noreferrer">Changes Packages (bbprepo)</a></li>
+        </ul>
+      </section>
 
-      <ul>
-        <li>
-          <p><span class="label">BBxxxxxxxxxxxx</span> — Primary production database. Contains core application tables (courses, users, enrollments, grades, hierarchy, tools, etc.). Most reporting/integration work uses this database.</p>
-        </li>
-        <li>
-          <p><span class="label">BBxxxxxxxxxxxx_admin</span> — System coordination database. Stores internal configuration and metadata. Rarely accessed for reporting or integrations.</p>
-        </li>
-        <li>
-          <p><span class="label">BBxxxxxxxxxxxx_stats</span> — Reporting and analytics database.</p>
-          <ul>
-            <li><code>activity_accumulator</code> — Includes a permanent copy of the activity log, which is truncated to 180 days in the production database.</li>
-            <li><code>ODS</code> tables — Transformed data specifically for activity reporting.</li>
-          </ul>
-        </li>
-        <li>
-          <p><span class="label">BBxxxxxxxxxxxx_cms_doc</span> — Content Collection document store. Powers file storage/retrieval; not documented and generally not used for reporting.</p>
-        </li>
-        <li>
-          <p><span class="label">BBxxxxxxxxxxxx_cms</span> — Content Collection admin database. Manages metadata/configuration; rarely accessed and not typically relevant for reporting.</p>
-        </li>
-      </ul>
+      <section class="section" id="schema-explorer">
+        <h2>Expanded Schema Explorer</h2>
+        <p>
+          You can explore the expanded schema package here:
+          <a href="./schema-3902.1.0/schema/index.html" target="_blank" rel="noopener noreferrer"> Browse Schema v3902.1.0</a>
+        </p>
+      </section>
 
-      <div class="note" role="note" aria-label="Database prefix note">
-        <p>Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>). Some older systems may have individual databases for each Content Collection root folder (e.g., <code>BBxxxxxxxxxxxx_cms_users</code>, <code>BBxxxxxxxxxxxx_cms_orgs</code>) with the same schema as <code>BBxxxxxxxxxxxx_cms_doc</code>.</p>
-      </div>
-    </section>
+	  <section class="section" id="security">
+	  <h2>Security Considerations</h2>
+	  <p>
+	    When working with DDA, ensure that access credentials are stored securely and that queries do not expose sensitive student or institutional data. Use encrypted connections and follow your organization's data governance policies.
+	  </p>
+	  </section>
+	  
+	  <section class="section" id="refresh">
+	    <h2>Schema Refresh and Permissions</h2>
+	    <p>
+		  Occasionally new tables are added to the schema and your DDA account may not have permission to read them. If you get a table-specific permission message, you can request that support "refresh" your DDA account by copying the username/password, deleting the account, and recreating it with the same name and password.
+		</p>
+	  </section>
 
-    <section id="cross-db-joins">
-      <h2>Cross‑database joins with <code>dblink</code></h2>
-      <p>Because DDA databases are physically separated, cross‑database joins require PostgreSQL’s <code>dblink</code> extension. Typically, connections are permitted from the main database to others (not the reverse) in production.</p>
+      <section class="section" id="dda-overview">
+        <h2>DDA Database Overview</h2>
+        <p>
+          Blackboard SaaS deployments use five distinct PostgreSQL databases to support core application functionality,
+          reporting, and content management. This summary outlines their purpose and relevance for reporting and
+          integration work. Schema details are primarily documented in the Expanded Schema Explorer section above.
+        </p>
 
-      <h3>Enable the extension</h3>
-<pre aria-label="SQL example: enable dblink"><code>CREATE EXTENSION IF NOT EXISTS dblink;</code></pre>
+        <ul class="nested" aria-label="DDA databases">
+          <li>
+            <strong>BBxxxxxxxxxxxx</strong>
+            <ul class="nested">
+              <li>Primary production database</li>
+              <li>Contains all core application tables (courses, users, enrollments, grades, hierarchy, tools, etc.)</li>
+              <li>Most reporting and integration work will use this database</li>
+              <li>Schema is mostly documented in the Expanded Schema Explorer above</li>
+            </ul>
+          </li>
 
-      <h3>Query another database</h3>
-<pre aria-label="SQL example: basic dblink usage"><code>SELECT * FROM dblink(
+          <li>
+            <strong>BBxxxxxxxxxxxx_admin</strong>
+            <ul class="nested">
+              <li>System coordination database</li>
+              <li>Stores internal configuration and metadata</li>
+              <li>Rarely accessed for reporting or integrations</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_stats</strong>
+            <ul class="nested">
+              <li>Reporting and analytics database</li>
+              <li>Includes a permanent copy of <code>activity_accumulator</code>, which is truncated to 180 days in the production database</li>
+              <li><code>ODS</code> tables contain transformed data specifically for activity reporting</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_cms_doc</strong>
+            <ul class="nested">
+              <li>Content Collection document store</li>
+              <li>Powers file storage and retrieval for the Content Collection</li>
+              <li>Not documented and generally not used for reporting</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>BBxxxxxxxxxxxx_cms</strong>
+            <ul class="nested">
+              <li>Content Collection admin database</li>
+              <li>Manages metadata and configuration for the Content Collection</li>
+              <li>Rarely accessed and not typically relevant for reporting</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="note">
+          <strong>Note:</strong><br>
+          Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
+          Some older systems may have been configured with individual <code>_cms</code> databases for each of the various root
+          folders in the Content Collection (for example, <code>BBxxxxxxxxxxxx_cms_users</code> or <code>BBxxxxxxxxxxxx_cms_orgs</code>).
+          The schema for these databases is the same as <code>_cms_doc</code>.
+        </div>
+      </section>
+
+      <section class="section" id="dblink-joins">
+        <h2>Cross-Database Joins with <code>dblink</code></h2>
+        <p>
+          Blackboard's DDA databases are physically separated, so direct joins between them require the use of
+          PostgreSQL's <code>dblink</code> extension. This allows you to query across databases within the same
+          PostgreSQL instance.
+        </p>
+
+        <ul class="nested">
+          <li>
+            <strong>Enable the extension:</strong>
+            <pre><code>CREATE EXTENSION IF NOT EXISTS dblink;</code></pre>
+          </li>
+
+          <li>
+            <strong>Basic usage:</strong>
+            <p>Query another database like this:</p>
+            <pre><code>SELECT * FROM dblink(
   'dbname=BBxxxxxxxxxxxx_stats user=bbuser password=bbpassword',
   'SELECT pk1, activity_date FROM activity_accumulator'
 ) AS aa(pk1 INT, activity_date TIMESTAMP);</code></pre>
+          </li>
 
-      <h3>Join example (<code>BBxxxxxxxxxxxx</code> ↔ <code>BBxxxxxxxxxxxx_stats</code>)</h3>
-<pre aria-label="SQL example: join users with activity via dblink"><code>SELECT u.pk1, u.user_id, aa.activity_date
+          <li>
+            <strong>Join example:</strong>
+            <p>Join data from <code>BBxxxxxxxxxxxx</code> and <code>BBxxxxxxxxxxxx_stats</code>:</p>
+            <pre><code>SELECT u.pk1, u.user_id, aa.activity_date
 FROM users u
 JOIN dblink(
   'dbname=BBxxxxxxxxxxxx_stats user=bbuser password=bbpassword',
   'SELECT user_pk1, activity_date FROM activity_accumulator'
 ) AS aa(user_pk1 INT, activity_date TIMESTAMP)
 ON u.pk1 = aa.user_pk1;</code></pre>
+          </li>
+        </ul>
 
-      <p class="muted"><strong>Note:</strong> Use placeholders above; never embed real credentials in documentation or scripts stored in version control.</p>
-    </section>
-  </main>
+        <div class="note">
+          <strong>Note:</strong><br>
+          <code>dblink</code> requires a valid username and password for the target database.
+          In most Blackboard environments, connections are only permitted <strong>from the main database to others</strong>, not the reverse.
+          This is a standard production security configuration and cannot be altered in those environments.
+          Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer>
-    <p>© 2025 Anthology Inc. · Blackboard Direct Data Access Resources</p>
-    <p>This documentation is provided “as is” without warranty of any kind.</p>
+    © 2025 Anthology Inc. | Blackboard Direct Data Access Resources<br>
+    This documentation is provided "as is" without warranty of any kind.
   </footer>
 </body>
 </html>
