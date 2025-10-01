@@ -4,6 +4,7 @@
 
 -- © 2025 Anthology Inc. All rights reserved.
 -- This software is provided "as is" without warranty or support
+-- jeff.kelley@anthology.com 
 
 
 WITH RECURSIVE node_path AS (
