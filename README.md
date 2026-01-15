@@ -39,7 +39,7 @@ This repository contains helpful SQL scripts and resources for working with **Bl
 Here are some useful links for working with Blackboard DDA:
 
 - 📚 **Blackboard DDA Documentation**  
-  [Official Help Center](https://help.blackboard.com/Learn/Administrator/SaaS/Integrations/Direct_Data_Access)
+  [Official Help Center](https://help.anthology.com/blackboard/administrator/en/integrations/direct-data-access.html)
 
 - 📦 **Schema Downloads**  
   [Browse Schema Releases](https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2Fschema)
