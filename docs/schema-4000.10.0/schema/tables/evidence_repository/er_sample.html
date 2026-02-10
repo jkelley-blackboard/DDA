@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-evidence_repository.html">evidence_repository</a>
+</div>
+
+<h1>er_sample
+  <p>A submission made for an evidence item contained in the repository</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">er_sample_pk1</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    er_sample_fk1
+    <span>(On Delete Cascade)</span>
+  <ul>
+<li> <a href="#column-er_item_pk1">er_item_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    er_sample_fk2
+  <ul>
+<li> <a href="#column-clp_person_pk1">clp_person_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    er_sample_fk3
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-term_pk1">term_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> er_sample_if1
+  <ul>
+<li> <a href="#column-er_item_pk1">er_item_pk1</a>
+</li>
+  </ul>
+</li>
+<li> er_sample_if2
+  <ul>
+<li> <a href="#column-clp_person_pk1">clp_person_pk1</a>
+</li>
+  </ul>
+</li>
+<li> er_sample_term_ak1
+  <ul>
+<li> <a href="#column-term_pk1">term_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-date_collected">date_collected</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date/time the sample was collected.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_last_modified">source_last_modified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date/time the sample was modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_date">submission_date</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date/time the sample was submitted by its author.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-er_item_pk1">er_item_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>A reference to the associated evidence item.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-clp_person_pk1">clp_person_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>A reference to the person record associated with the user who submitted this sample.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-grade">grade</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The grade given to the sample in its originating context.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_text">submission_text</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The comment entered by the submission author for the submission</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-external_id">external_id</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The unique identifier for the item in the originating system</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-points">points</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The score given to the sample in its originating context.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-group_submission_id">group_submission_id</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The unique identifier for the group submission in the originating system</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-term_pk1">term_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>An id reference to the associated term.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-term_name">term_name</a></td>
+  <td>nvarchar(333)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Name of the associated term.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

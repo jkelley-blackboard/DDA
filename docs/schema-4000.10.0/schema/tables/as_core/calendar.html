@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>calendar
+  <p>This table contains calendar of events for all users and courses.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">calendar_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    calendar_fk2
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].users table.</p>
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    calendar_fk1
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_main table.</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> calendar_ie1
+  <ul>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+  </ul>
+</li>
+<li> calendar_ie2
+  <ul>
+<li> <a href="#column-start_date">start_date</a>
+</li>
+<li> <a href="#column-end_date">end_date</a>
+</li>
+  </ul>
+</li>
+<li> calendar_ie3
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+<li> <a href="#column-start_date">start_date</a>
+</li>
+<li> <a href="#column-end_date">end_date</a>
+</li>
+  </ul>
+</li>
+<li> calendar_if1
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+<li> <a href="#column-dtmodified">dtmodified</a>
+</li>
+  </ul>
+</li>
+<li> calendar_if2
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> calendar_if3
+  <ul>
+<li> <a href="#column-lor_calendar_pk1">lor_calendar_pk1</a>
+</li>
+<li> <a href="#column-lor_sync_date">lor_sync_date</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-users_pk1">users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].users table. This is the user who owns/creates the calendar event</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_main table. This is the course that the calendar event is created in</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_date">start_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the datetime when the calendar event is scheduled to start.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_date">end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the datetime when the calendar event is scheduled to end.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-event_type">event_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">event_type_enum
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the type of the calendar event. It can be personal context (P), course context (C), and institution context (I).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime when the calendar event was created or modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-subject">subject</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the subject line of the calendar event.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-location">location</a></td>
+  <td>nvarchar(1024)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the location for the calendar event.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ical_uid">ical_uid</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the unique identifier for the calendar event, and it just for event which import from external calendar.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-message">message</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The is the message body for the calendar event.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_format_type">text_format_type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td class="valueConstraint">text_format_type_enum2
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+          <li> <span>X</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the format of the message text. P=Plain text, H=HTML, S=Smart Text, X=Default</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-extended_data">extended_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Extended attributes for calendar objects with custom properties.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_calendar_pk1">lor_calendar_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The object hosting the root Learning Object Repository item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Time associated Learning Object Repository synchronization was last completed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

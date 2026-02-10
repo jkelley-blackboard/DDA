@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-snapshot.html">snapshot</a>
+</div>
+
+<h1>crs_app_settings_rec_tmp
+  <p>This table holds data concerning the reconciliation of course application settings while course_application_settings_reconcile is being run.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">crs_app_settings_rec_tmp_pk</p>
+  <p>This is the name of primary key constraint.</p>
+  <ul>
+<li> <a href="#column-col_alias">col_alias</a>
+</li>
+<li> <a href="#column-application">application</a>
+</li>
+  </ul>
+</div>
+
+
+
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-col_alias">col_alias</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The alias given to a collection of settings in this table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-application">application</a></td>
+  <td>varchar(64)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the handle of a tool.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enabled_avail">enabled_avail</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">enabled_avail_ck
+      <ul>
+          <li> <span>O</span>
+  <p>Default On. The tool will be enabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>F</span>
+  <p>Default Off. The tool will be disabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>A</span>
+  <p>Always On. The tool will be enabled in all courses, and cannot be disabled.</p>
+          </li>
+          <li> <span>L</span>
+  <p>Always Off. The tool will be disabled in all courses, and cannot be enabled.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column determines the enablement status at the course level.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_guest_avail">allow_guest_avail</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">allow_guest_avail_ck
+      <ul>
+          <li> <span>O</span>
+  <p>Default On. The tool will be enabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>F</span>
+  <p>Default Off. The tool will be disabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>A</span>
+  <p>Always On. The tool will be enabled in all courses, and cannot be disabled.</p>
+          </li>
+          <li> <span>L</span>
+  <p>Always Off. The tool will be disabled in all courses, and cannot be enabled.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column determines the enablement status for guest users.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_observer_avail">allow_observer_avail</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">allow_observer_avail_ck
+      <ul>
+          <li> <span>O</span>
+  <p>Default On. The tool will be enabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>F</span>
+  <p>Default Off. The tool will be disabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>A</span>
+  <p>Always On. The tool will be enabled in all courses, and cannot be disabled.</p>
+          </li>
+          <li> <span>L</span>
+  <p>Always Off. The tool will be disabled in all courses, and cannot be enabled.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column determines the enablement status for observers.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-can_allow_guest">can_allow_guest</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">can_allow_guest_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if guests are allowed to use the tool.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-can_allow_observers">can_allow_observers</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">can_allow_observers_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if observers are allowed to use the tool.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-node_lock_override">node_lock_override</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">node_lock_override_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the settings in the current node are allowed to override settings in ancester nodes.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_app_enable_ind">crs_app_enable_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">crs_app_enable_ind_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+          <li> <span>0</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N/O.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_app_allow_guest_ind">crs_app_allow_guest_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">crs_app_allow_guest_ind_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+          <li> <span>0</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N/O.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_app_allow_observer_ind">crs_app_allow_observer_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">crs_app_allow_obs_ind_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+          <li> <span>0</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N/O.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

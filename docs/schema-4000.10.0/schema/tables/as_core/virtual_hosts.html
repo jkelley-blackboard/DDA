@@ -1,0 +1,639 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>virtual_hosts
+  <p>This table contains virtual_hosts information. Corresponds to the 'brands' in the administrative UI (PortalBranding)</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">virtual_hosts_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    virtual_hosts_fk1
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].theme table.</p>
+  <ul>
+<li> <a href="#column-theme_pk1">theme_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    virtual_hosts_fk2
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].color_palette table, referential action cascade on delete.</p>
+  <ul>
+<li> <a href="#column-color_palette_pk1">color_palette_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> virtual_hosts_ie1
+  <ul>
+<li> <a href="#column-vhost">vhost</a>
+</li>
+  </ul>
+</li>
+<li> virtual_hosts_if1
+  <ul>
+<li> <a href="#column-theme_pk1">theme_pk1</a>
+</li>
+  </ul>
+</li>
+<li> virtual_hosts_if2
+  <ul>
+<li> <a href="#column-color_palette_pk1">color_palette_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event occurred.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-row_status">row_status</a></td>
+  <td>numeric(1,0)</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Row status: 0=enabled, 1=undefined, 2=disabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-short_name">short_name</a></td>
+  <td>nvarchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column is not used.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-page_title">page_title</a></td>
+  <td>nvarchar(250)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is virtual host page title.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The name of the brand</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vhost">vhost</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is virtual host name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-homepage">homepage</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is virtual host home page.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-institution_roles_pk1">institution_roles_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is institution_role reference ID.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_banner_src">portal_options_banner_src</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>URL For the image to display in the top iframe</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_smbanner_src">portal_options_smbanner_src</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>URL for alternative image to display</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_libanner_src">portal_options_libanner_src</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>URL for login logo image to display</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_banner_link">portal_options_banner_link</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Target URL when clicking on the banner image</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_banner_name">portal_options_banner_name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The alt text for the banner image</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_banner_title">portal_options_banner_title</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The title for the banner image</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_icon_set">portal_options_icon_set</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is used to change the icons in the nav bar/images/console/icons/xxx_(this number).gif</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_options_support_link">portal_options_support_link</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The URL to go to when 'help' is chosen in the global nav menu if standard_support_link_ind is 'Y'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-standard_support_link_ind">standard_support_link_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">vc_std_support_link_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>If N and support link is set then use support link. Otherwise use the standard help link</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_src">portal_src</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Can be used to replace the top frame contents entirely (NOTE: no way to set this - not sure if this is a supported product feature as you lose all globalnav functionality if you do this)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-portal_row_height">portal_row_height</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The height of the top iframe in px</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reg_level_ind">reg_level_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is regular level indicator.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gateway_src">gateway_src</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is gateway source.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_alignment">tab_alignment</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is virtual host tab alignment: left, right...</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_display_style">tab_display_style</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is tab display style.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-theme_pk1">theme_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is foreign key to the theme.pk1. The 'not null' constraint is set during post-update</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-color_palette_pk1">color_palette_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-coursenameusage">coursenameusage</a></td>
+  <td>varchar(2)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicatorcoursenameusage
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+          <li> <span>NI</span>
+          </li>
+          <li> <span>IN</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_ind">default_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-courses_row_height">courses_row_height</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-use_default_inst_page_ind">use_default_inst_page_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">use_def_inst_page_vals
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Whether the brand should use the default Institution Page. If null, uses the default Institution Page.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-use_default_libanner_ind">use_default_libanner_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">use_def_libanner_vals
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Whether the brand should use the default login logo. If null, uses the default login logo.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-use_default_login_page_ind">use_default_login_page_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">use_def_login_page_vals
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Whether the brand should use the default login page. If null, uses the default login page.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-use_default_smbanner_ind">use_default_smbanner_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">use_def_smbanner_vals
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Whether the brand should use the default navigation logo. If null, uses the default navigation logo.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-use_default_theme_ind">use_default_theme_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">use_def_theme_vals
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Whether the brand should use the default theme. If null, uses the default theme.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-environment_type">environment_type</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">environment_type_vals
+      <ul>
+          <li> <span>C</span>
+          </li>
+          <li> <span>U</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        The type of Learn environment to which the brand applies. Ignored for the default brand.
+        C: Only applies to classic Learn (Original).
+        U: Only applies to Ultra.
+        A null value is treated as "C"
+      </p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

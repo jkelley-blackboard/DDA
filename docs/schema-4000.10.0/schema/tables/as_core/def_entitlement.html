@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>def_entitlement
+  <p>This table contains the default values for the "entitlement" table.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">def_entitlement_pk</p>
+  <ul>
+<li> <a href="#column-entitlement_uid">entitlement_uid</a>
+</li>
+  </ul>
+</div>
+
+
+
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-context">context</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the context for the entitlement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-entitlement_uid">entitlement_uid</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the code name for the entitlement, constructed by combinding the context and permission. It serves as Primary Key for the table</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-permission">permission</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the action that the entitlement has permission to perform.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-label">label</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the label for the entitlement that will show up in the Privileges list. Used in conjunction with entitlement_type.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-entitlement_type">entitlement_type</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the entitlement type. Valid values are 'Course', 'System', and 'Personal'. If non-null, used for populating the Privileges list for course/system roles ('Personal' is used for the 'None' system role).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-plugins_pk1">plugins_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the Building Block that created this entitlement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate alternate key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-synced_to_foundations">synced_to_foundations</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">def_entitlement_sync_fnds_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) Indicates whether the record has been synced to Foundations. DEFAULT=N.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-owner">owner</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">def_entitlement_owner_ck
+      <ul>
+          <li> <span>L</span>
+  <p>Learn</p>
+          </li>
+          <li> <span>F</span>
+  <p>Foundations</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates which system is the source of truth for the record. Defaults to Learn if unset.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version">version</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The version number of this object. For Learn-owned rows, this is incremented any time the record is written. Defaults to 0 if unset.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-def_table_orig_version">def_table_orig_version</a></td>
+  <td>varchar(10)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>announcements
+  <p>This table contains announcement information.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">announcements_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    announcements_fk1
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_main table.</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    announcements_fk2
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].users table.</p>
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> announcements_ic1
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie2
+  <ul>
+<li> <a href="#column-start_date">start_date</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie3
+  <ul>
+<li> <a href="#column-end_date">end_date</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie4
+  <ul>
+<li> <a href="#column-announcement_type">announcement_type</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie5
+  <ul>
+<li> <a href="#column-show_on_courses">show_on_courses</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie6
+  <ul>
+<li> <a href="#column-show_on_login">show_on_login</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie7
+  <ul>
+<li> <a href="#column-dtcreated">dtcreated</a>
+</li>
+  </ul>
+</li>
+<li> announcements_ie8
+  <ul>
+<li> <a href="#column-dtmodified">dtmodified</a>
+</li>
+  </ul>
+</li>
+<li> announcements_if1
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> announcements_if2
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> announcements_if3
+  <ul>
+<li> <a href="#column-lor_announcements_pk1">lor_announcements_pk1</a>
+</li>
+<li> <a href="#column-lor_sync_date">lor_sync_date</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_date">end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the time when the announcement should be displayed until.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-subject">subject</a></td>
+  <td>nvarchar(333)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The subject line of the annoucement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_format_type">text_format_type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td class="valueConstraint">text_format_type_enum
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+          <li> <span>X</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The text format of the announcement. P = Plain Text, H = HTML, also newline br and multiple newline p, S = Smart Text</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_date">start_date</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The date and time when the announcement will start to be displayed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_main table. This is the course in which the announcement is created. 1 means it is a system announcement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-permanent_ind">permanent_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the flag to indicate if the announcement is a permanent announcement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-announcement">announcement</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text body of the announcement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-users_pk1">users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].Users table. This is the user who created the announcement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-announcement_type">announcement_type</a></td>
+  <td>char(1)</td>
+    <td>'C'</td>
+    <td class="valueConstraint">announcement_type_enum
+      <ul>
+          <li> <span>S</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the type of the announcement. S=System, C=Course</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-announcement_priority">announcement_priority</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">announcement_priority_enum
+      <ul>
+          <li> <span>S</span>
+  <p>Standard</p>
+          </li>
+          <li> <span>I</span>
+  <p>Important</p>
+          </li>
+          <li> <span>U</span>
+  <p>Urgent</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the priority of the announcement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-audience">audience</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the audience criteria string of targeted announcement. This string is in JSON format and generated by AnnounementAudienceTORest.java. The string may contain items like the name of system role, institution role and institution hierarchy node. If the referenced item is subsequently deleted, the reference remains in the audience string and is silently ignored when used.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-show_on_login">show_on_login</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator177
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the flag that indicates if the announcement should be displayed at user logon.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-show_on_courses">show_on_courses</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator178
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the flag that indicates if the announcement should be displayed in courses and organizations.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-push_notify">push_notify</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator179
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is field that used for internal code to flag on whether the system should send email announcement notifications to target users immediately, regardless of their notification settings</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-order_num">order_num</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is an internal number ordering of the announcements.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-subject_color">subject_color</a></td>
+  <td>varchar(20)</td>
+    <td>'#000000'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the color of the subject line that user can have a choice of.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_sms_date">last_sms_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date announcement was last sent via SMS</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_t2v_date">last_t2v_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date announcement was last sent via Text-to-Voice</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date/time at which this announcement was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date/time at which this announcement was last modified. (set to dtcreated on creation). NOT updated if order_num changes</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-is_draft">is_draft</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">indicator180
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the announcement is a draft.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-is_ultra">is_ultra</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">is_ultra_enum
+      <ul>
+          <li> <span>Y</span>
+  <p>The Announcement has been created or converted in an Ultra Course.</p>
+          </li>
+          <li> <span>N</span>
+  <p>The Announcement has not been converted or created in an Ultra Course.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the announcement is an ultra announcement.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-read_tracking">read_tracking</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">read_tracking_enum
+      <ul>
+          <li> <span>Y</span>
+  <p>The announcement read status will be tracked</p>
+          </li>
+          <li> <span>N</span>
+  <p>The announcement read status will NOT be tracked</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+        This field indicates if an announcement supports the read status tracking. This will be used only for announcement in Ultra Courses
+        If this field is set to 'Y', it means that the announcement is enabled to track the reading status in the 'announcement_status' table. There is no tracking support when the field is set as 'N'.
+        This field can be changed only from 'N' to 'Y' when a Original Course is converted to Ultra Course.
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-extended_data">extended_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Used to store arbitrary properties for this item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_announcements_pk1">lor_announcements_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The object hosting the root Learning Object Repository item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Time associated Learning Object Repository synchronization was last completed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

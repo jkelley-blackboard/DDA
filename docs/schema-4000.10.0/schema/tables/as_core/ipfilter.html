@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>ipfilter
+  <p>Each Web Service or Web Service client can have a set of IP Filters associated with it. This
+    table stores filters for both use cases (so one of ws_service_pk1 or ws_client_pk1 should be non-null)</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">ws_ipfilter_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    ws_ipfilter_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].ws_service table, referential action cascade on delete.</p>
+  <ul>
+<li> <a href="#column-ws_service_pk1">ws_service_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    ws_ipfilter_fk2
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].ws_client table, referential action cascade on delete.</p>
+  <ul>
+<li> <a href="#column-ws_client_pk1">ws_client_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    ipfilter_profile_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].ipfilter_profile table, referential action cascade on delete.</p>
+  <ul>
+<li> <a href="#column-ipfilter_profile_pk1">ipfilter_profile_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> ws_ipfilter_if1
+  <ul>
+<li> <a href="#column-ws_service_pk1">ws_service_pk1</a>
+</li>
+  </ul>
+</li>
+<li> ws_ipfilter_if2
+  <ul>
+<li> <a href="#column-ws_client_pk1">ws_client_pk1</a>
+</li>
+  </ul>
+</li>
+<li> ws_ipfilter_if4
+  <ul>
+<li> <a href="#column-design_template_pk1">design_template_pk1</a>
+</li>
+  </ul>
+</li>
+<li> ws_ipfilter_if3
+  <ul>
+<li> <a href="#column-service_level">service_level</a>
+</li>
+  </ul>
+</li>
+<li> ws_ipfilter_if5
+  <ul>
+<li> <a href="#column-ipfilter_profile_pk1">ipfilter_profile_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>Unique identity</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ws_service_pk1">ws_service_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Optional FK to ws_service</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ws_client_pk1">ws_client_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Optional FK to ws_client</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_range">start_range</a></td>
+  <td>char(40)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Either the start of a range of IPs or a single IP (depends on range_ind)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_range">end_range</a></td>
+  <td>char(40)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-range_ind">range_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">ws_ipfilter_enum_1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Y=This is a range from start_range to end_range; N=This is a single IP in start_range</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-exclude_ind">exclude_ind</a></td>
+  <td>char(1)</td>
+    <td>'E'</td>
+    <td class="valueConstraint">ws_ipfilter_enum_2
+      <ul>
+          <li> <span>E</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Inclusion or Exclusion? E=exclude everything matching this; I=Include everything matching</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-priority_order">priority_order</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>IP Filters are applied in order based on this number</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-design_template_pk1">design_template_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Optional FK to design_template</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-service_level">service_level</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">ipfilter_srvc_lvl_ck
+      <ul>
+          <li> <span>F</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        This is the service_level set for the course.
+        F = Full/Free Course
+        C = Community (Organization)
+        Currently, IP profiles can either be set at the course level or the organization level.
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ipfilter_profile_pk1">ipfilter_profile_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Id of the corresponding ipfilter profile referenced from ipfilter_profile</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

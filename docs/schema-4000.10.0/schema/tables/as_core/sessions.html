@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>sessions
+  <p>This table contains the current user sessions.</p>
+</h1>
+
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> sessions_ak1
+  <ul>
+<li> <a href="#column-session_id">session_id</a>
+</li>
+  </ul>
+</li>
+<li> sessions_ie1
+  <ul>
+<li> <a href="#column-user_id_pk1">user_id_pk1</a>
+</li>
+  </ul>
+</li>
+<li> sessions_ak2
+  <ul>
+<li> <a href="#column-md5">md5</a>
+</li>
+  </ul>
+</li>
+<li> sessions_ak3
+  <ul>
+<li> <a href="#column-secured_md5">secured_md5</a>
+</li>
+  </ul>
+</li>
+<li> sessions_ak4
+  <ul>
+<li> <a href="#column-file_server_md5">file_server_md5</a>
+</li>
+  </ul>
+</li>
+<li> sessions_ak5
+  <ul>
+<li> <a href="#column-file_one_time_md5">file_one_time_md5</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+  <h3><span>Sequences</span></h3>
+  <div>
+    <ol>
+<li> sessions_seq
+    (cache: 200)
+    <ul>
+<li> <a href="#column-session_id">session_id</a>
+</li>
+    </ul>
+</li>
+    </ol>
+  </div>
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-timestamp">timestamp</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event occurred.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-session_id">session_id</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This column uniquely identifies a session record.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_id_pk1">user_id_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>FK to users.pk1</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_id">user_id</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is users.pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-md5">md5</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Internal.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-secured_md5">secured_md5</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>MD5 password hashes.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-one_time_token">one_time_token</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is one time session token.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is session batch process UID</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-fingerprint">fingerprint</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This can help detect when a users session has been hijacked by malicious attacker based on changes in the IP addressor Uer-agent HTTP headers. This can be configured as nothing, force re-login, or force log out</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-file_server_md5">file_server_md5</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column identifies a session record for use on the file server domain.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-file_one_time_md5">file_one_time_md5</a></td>
+  <td>varchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This column identifies a session record for use on the file server domain when re-establishing session.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-flags">flags</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        Bit field for session metadata:
+          * First bit - Sesssion folder structure
+              1 = new session folder with BbSessionIdMd5 structure
+              0 = new session folder with BbSecureSessionIdMd5 structure
+          * Second bit - Session type
+              1 = mobile
+              0 = web
+          * Third bit - Impersonation session type
+              1 = impersonated
+              0 = non impersonated
+        When null indicates old structure session and undetermined session type, may be mobile or web.
+        Majority of sessions will have a value of 1 (web session using the new session folder with BbSessionIdMd5 structure).
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date of session creation</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ajax_nonce_key">ajax_nonce_key</a></td>
+  <td>varchar(36)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is session ajax nonce UUID</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-auth_provider_id">auth_provider_id</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Unenforced FK to auth_provider.pk1</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

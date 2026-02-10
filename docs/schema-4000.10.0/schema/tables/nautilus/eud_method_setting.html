@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-nautilus.html">nautilus</a>
+</div>
+
+<h1>eud_method_setting
+  <p>This table represents a notification method setting, which may be for an administrator course or organization, a user global course or organization, or a user-specific course or organization setting. This table defines settings that control whether notifications for specific nautilus event types are enabled for each of the various kinds of distribution mechanisms. Like its general settings counterpart, it allows for hierarchies - which is to say, a method setting can be specified at both the admin the user level, with the latter overriding the former. </p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">eud_meth_settings_pk</p>
+  <p>This is the primary key on column pk1 of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    eud_meth_stng_fk_crs
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the course_main table, referential action cascade on delete (cascade).</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    eud_meth_stng_fk_owner
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the users table, referential action cascade on delete (cascade).</p>
+  <ul>
+<li> <a href="#column-owner_pk1">owner_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> eud_meth_stng_crsmain
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_owner
+  <ul>
+<li> <a href="#column-owner_pk1">owner_pk1</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_evnt_type
+  <ul>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_enabled
+  <ul>
+<li> <a href="#column-enabled_ind">enabled_ind</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_meth_type
+  <ul>
+<li> <a href="#column-method_type">method_type</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_cxt_type
+  <ul>
+<li> <a href="#column-context_type">context_type</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_set_lvl
+  <ul>
+<li> <a href="#column-setting_level">setting_level</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_usr_chg
+  <ul>
+<li> <a href="#column-can_user_change_ind">can_user_change_ind</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_if1
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+<li> <a href="#column-owner_pk1">owner_pk1</a>
+</li>
+<li> <a href="#column-source_type">source_type</a>
+</li>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+<li> <a href="#column-method_type">method_type</a>
+</li>
+<li> <a href="#column-context_type">context_type</a>
+</li>
+<li> <a href="#column-setting_level">setting_level</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_ie1
+  <ul>
+<li> <a href="#column-source_type">source_type</a>
+</li>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+<li> <a href="#column-method_type">method_type</a>
+</li>
+  </ul>
+</li>
+<li> eud_meth_stng_ie2
+  <ul>
+<li> <a href="#column-source_type">source_type</a>
+</li>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+<li> <a href="#column-context_type">context_type</a>
+</li>
+<li> <a href="#column-method_type">method_type</a>
+</li>
+<li> <a href="#column-owner_pk1">owner_pk1</a>
+</li>
+<li> <a href="#column-setting_level">setting_level</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-owner_pk1">owner_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the users table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_type">source_type</a></td>
+  <td>char(2)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the source type of this setting.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-event_type">event_type</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the event type of this setting.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-method_type">method_type</a></td>
+  <td>char(2)</td>
+    <td>'DA'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the type of distribution of this setting.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enabled_ind">enabled_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">eud_settings_enabled
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the setting is enabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-context_type">context_type</a></td>
+  <td>char(1)</td>
+    <td>'C'</td>
+    <td class="valueConstraint">eud_settings_cxt_type
+      <ul>
+          <li> <span>C</span>
+  <p>Text value indicator (C) for Course.</p>
+          </li>
+          <li> <span>O</span>
+  <p>Text value indicator (O) for Organization.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the context of the setting, whether this is a course or organization.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-setting_level">setting_level</a></td>
+  <td>char(1)</td>
+    <td>'A'</td>
+    <td class="valueConstraint">eud_settings_level
+      <ul>
+          <li> <span>A</span>
+  <p>Administrator level setting.</p>
+          </li>
+          <li> <span>G</span>
+  <p>User global level setting.</p>
+          </li>
+          <li> <span>S</span>
+  <p>User individual level setting.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the level that this setting corresponds to. The level at which this setting applies: A (Admin), G (User Global), S (Specific User Context).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-can_user_change_ind">can_user_change_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">eud_settings_user_chge
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if users are allowed to override the Admin setting.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

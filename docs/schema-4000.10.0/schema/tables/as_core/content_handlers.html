@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>content_handlers
+  <p>This table contains content_handlers information.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">content_handlers_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    content_handlers_fk1
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].plugins table.</p>
+  <ul>
+<li> <a href="#column-plugins_pk1">plugins_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    content_handlers_fk2
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].application table.</p>
+  <ul>
+<li> <a href="#column-application">application</a>
+</li>
+  </ul>
+</li>
+<li>
+    content_handlers_fk3
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].proxy_tools table, referential action cascade on delete.</p>
+  <ul>
+<li> <a href="#column-proxy_tools_pk1">proxy_tools_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    content_handlers_fk4
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the blti_placement table, referential action cascade on delete.</p>
+  <ul>
+<li> <a href="#column-blti_placement_pk1">blti_placement_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+  <h3><span>Unique constraints<span></h3>
+  <div>
+    <ol>
+<li>
+    content_handers_uk1
+  <br>
+  <ul>
+<li> <a href="#column-handle">handle</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> content_handlers_ak1
+  <ul>
+<li> <a href="#column-handle">handle</a>
+</li>
+  </ul>
+</li>
+<li> content_handlers_if1
+  <ul>
+<li> <a href="#column-plugins_pk1">plugins_pk1</a>
+</li>
+  </ul>
+</li>
+<li> content_handlers_if2
+  <ul>
+<li> <a href="#column-application">application</a>
+</li>
+  </ul>
+</li>
+<li> content_handlers_if3
+  <ul>
+<li> <a href="#column-proxy_tools_pk1">proxy_tools_pk1</a>
+</li>
+  </ul>
+</li>
+<li> content_handlers_if4
+  <ul>
+<li> <a href="#column-blti_placement_pk1">blti_placement_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-icon_list">icon_list</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is icon gif file name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is content name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-handle">handle</a></td>
+  <td>varchar(65)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is content handle.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-icon_toolbar">icon_toolbar</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is icon toolbar.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-plugins_pk1">plugins_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This refers the primary key of the [AS_CORE].plugins table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-proxy_tools_pk1">proxy_tools_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This refers the primary key of the [AS_CORE].proxy_tools table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-blti_placement_pk1">blti_placement_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key to the primary key of the the blti_placement table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_create">action_http_create</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL for creating content associated with this content handler.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_modify">action_http_modify</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL for modifying content associated with this content handler.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_remove">action_http_remove</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL for removing content associated with this content handler.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_ind">available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator30
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The system availability indicator of this content handler.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enabled_state">enabled_state</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">content_handlers_enbld_st_ck
+      <ul>
+          <li> <span>O</span>
+  <p>Default On. The content handler will be enabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>F</span>
+  <p>Default Off. The content handler will be disabled by default in newly-created courses.</p>
+          </li>
+          <li> <span>A</span>
+  <p>Always On. The content handler will be enabled in all courses, and cannot be disabled.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>If a content handler is enabled (via the available_ind column), this column determines its enablement status level.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-prev_available_ind">prev_available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">content_handlers_ind3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+      The previous configured value of available_ind.  This is used when enabling/disabling Building Blocks
+      so that when a Building Block is disabled, then enabled, the previous customizations are
+      retained.
+     </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-can_copy_ind">can_copy_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">content_handlers_ind2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether or not copies can be made of the content of this content handler type in a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_view">action_http_view</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL used to view the content associated with this content handler as a student.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-action_http_cpview">action_http_cpview</a></td>
+  <td>varchar(512)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL used to edit the content associated with this content handler as an instructor.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-application">application</a></td>
+  <td>varchar(64)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Application name like: blog, journal, etc...</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-alignable_ind">alignable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator_alignable_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether or not content of this content handler type can be aligned to a course standard, goal or objective (SOG).</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

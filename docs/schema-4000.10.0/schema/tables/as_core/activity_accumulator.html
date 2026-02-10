@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>activity_accumulator
+  <p>This is the table that tracks user activity. Almost every page a user visits in your system gets recorded
+here. It is like your apache access logs but with better user tracking. </p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">activity_accumulator_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> activity_accumulator_ie2
+  <ul>
+<li> <a href="#column-timestamp">timestamp</a>
+</li>
+  </ul>
+</li>
+<li> activity_accumulator_ie3
+  <ul>
+<li> <a href="#column-user_pk1">user_pk1</a>
+</li>
+  </ul>
+</li>
+<li> activity_accumulator_ie4
+  <ul>
+<li> <a href="#column-course_pk1">course_pk1</a>
+</li>
+  </ul>
+</li>
+<li> activity_accumulator_ie5
+  <ul>
+<li> <a href="#column-forum_pk1">forum_pk1</a>
+</li>
+  </ul>
+</li>
+<li> activity_accumulator_ie6
+  <ul>
+<li> <a href="#column-session_id">session_id</a>
+</li>
+  </ul>
+</li>
+<li> activity_accumulator_icontent
+  <ul>
+<li> <a href="#column-content_pk1">content_pk1</a>
+</li>
+  </ul>
+</li>
+<li> activity_accumulator_ie7
+  <ul>
+<li> <a href="#column-event_type">event_type</a>
+</li>
+<li> <a href="#column-timestamp">timestamp</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>bigid</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-event_type">event_type</a></td>
+  <td>varchar(30)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the type of activity. Groups the event based on what occurred. For example, TAB_ACCESS (page view), PAGE_ACCESS (page view, Triggered when a page, other than a course, organization, content, module, or tab is accessed on the system. The name of the navigation item will be returned.), LOGIN_ATTEMPT, LOGOUT, SESSION_TIMEOUT, COURSE_ACCESS (Page view, Triggered when a course frameset is loaded, or when a page is accessed in a course. The name of the navigation item will be returned.), SESSION_INT (Triggered when a session is initialized), etc. The full list of values is in the TrackingEvent.Type enumueration.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_pk1">user_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].users table to indicate the owner of the activity. This can be NULL if the user cannot be determined. If the user has logged in, then there activity is tied to their user_pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_pk1">course_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign ley referencing the primary key of the [AS_CORE].course_main table to indicate the Course the activity is occuring in. This will be NULL if the activity occurs outside a Course. If the user has logged in, then there activity is tied to their user_pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-group_pk1">group_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the group table to indicate the Course Group this activity belongs to. This will be NULL if the activity is not Course Group related.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-forum_pk1">forum_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the forum table to indicate the Forum this activity is taking place in. Forum activity can take place within a Course or Institution Discussion Board. This will be NULL if the activity takes place outside a Forum.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-internal_handle">internal_handle</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the internal_handle column of the [AS_CORE].navigation_item table. This is tracked whenever a user accesses a page in the the Academic Suite (eg. When either a PAGE_ACCESS or COURSE_ACCESS event occurs). This will be NULL for events other than PAGE_ACCESS and COURSE_ACCESS. Internal system identifier for the event. This field corresponds to the unique ID in the NAVIGATION_ITEM table. Not all page requests correspond to a navigation item, so this field may often appear blank. If this field is empty, check the CONTENT_PK1 field. If the page accessed displayed content, the primary key for the piece of content will appear in that field.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-content_pk1">content_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_contents table to indicate the Course Content this activity is associated with. This will be NULL if the activity is not Course Content related. If the user has logged in, then there activity is tied to their user_pk1. This field is populated when the EVENT_TYPE is CONTENT_ACCESS.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-data">data</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This contains any free-form text data associated with the event. Data related to the event. This field provides additional information on the event. Each event uses this field, if at all, in different ways. In many instances, the data included in this field is a value that is easily deduced. In some instances, the value in the data field is a number, such as _1_1 or _29_1. These are associated with an EVENT_TYPE of TAB_ACCESS. The first number is an ID that references a tab or a module (the second number can be ignored). The ID number that refers to a tab can be found in the user interface by scrolling over the tab. The ID number appears as part of the URL in the status bar.The ID number that refers to a module can be found in the same manner. Scroll over the Maximize, Minimize, or Edit button associated with a module. The ID number will appear as part of the URL in the status bar. Please note that the Detach Module button returns a different ID number and should be ignored.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-timestamp">timestamp</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event occurred.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-status">status</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This indicates the status of the event. Value values are success (1) or failure (0). The values come from the TrackingEvent.Status enumeration.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-session_id">session_id</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a reference to the primary key of the user session associated with this activity. Identifies the user session that initiated the action. A session is simply a browser connection to the system launched from an end-user machine.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ip_address">ip_address</a></td>
+  <td>ipaddress</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>IP address from which the event was generated (optional).</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

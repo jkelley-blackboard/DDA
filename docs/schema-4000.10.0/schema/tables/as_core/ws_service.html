@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>ws_service
+  <p>The ws_service table has a single row per Web Service installed on the system.
+    Rows are added automatically when the web service is loaded but not deleted when it is unloaded so
+  that per-service settings can be retained across service updates.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">ws_service_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> ws_service_if1
+  <ul>
+<li> <a href="#column-name">name</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>Unique identity</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(128)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The name of the webservice from the webservice manifest (bb-manifest.xml) name attribute</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-active_ind">active_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">ws_settings_enum_1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Is this Web Service available for use in any fashion? Y=Yes,N=No</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-discoverable_ind">discoverable_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">ws_settings_enum_3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Discoverability flag. If Yes then the WSDL url is active, if No then the WSDL url is disabled</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-logging_ind">logging_ind</a></td>
+  <td>char(1)</td>
+    <td>'1'</td>
+    <td class="valueConstraint">ws_settings_enum_4
+      <ul>
+          <li> <span>0</span>
+          </li>
+          <li> <span>1</span>
+          </li>
+          <li> <span>2</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Logging style for this Web Service. 0=None, 1=To common logfile, 2=To per-webservice logfile</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-auth_restriction_ind">auth_restriction_ind</a></td>
+  <td>char(1)</td>
+    <td>'A'</td>
+    <td class="valueConstraint">ws_settings_enum_5
+      <ul>
+          <li> <span>A</span>
+          </li>
+          <li> <span>T</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>A=Any authenticated session may use this webservice; T=Only tool-authenticated sessions may use this webservice</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-uploaded_ws_filename">uploaded_ws_filename</a></td>
+  <td>nvarchar(128)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The name of the uploaded-3rd party webservice file</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-deleteable_ind">deleteable_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">ws_settings_enum_6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Is the webservice deleteable? Y=Yes, N=No</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-log_level">log_level</a></td>
+  <td>char(1)</td>
+    <td>'0'</td>
+    <td class="valueConstraint">ws_settings_enum_7
+      <ul>
+          <li> <span>0</span>
+          </li>
+          <li> <span>1</span>
+          </li>
+          <li> <span>2</span>
+          </li>
+          <li> <span>3</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Log level for this Web Service. 0=Error,1=Warning,2=Information,3=Debug</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

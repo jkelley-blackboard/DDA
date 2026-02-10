@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-group.html">group</a>
+</div>
+
+<h1>groups_stage
+  <p>This table stores temporary (staging) data for groups during creation or update operations.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">groups_stage_pk</p>
+  <p>This is the name of primary key constraint on column pk1 and session_id.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+<li> <a href="#column-session_id">session_id</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    group_stage_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the sessions table.</p>
+  <ul>
+<li> <a href="#column-session_id">session_id</a>
+</li>
+  </ul>
+    <ul>
+<li> [<a href='../../tables/as_core/sessions.html'>sessions</a>].<a href="#column-session_id">session_id</a>
+    (foreign key reference)
+</li>
+    </ul>
+</li>
+<li>
+    group_stage_fk2
+  <p>This is a foreign key referencing the primary key of the sessions table.</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> groups_stage_ie1
+  <ul>
+<li> <a href="#column-session_id">session_id</a>
+</li>
+  </ul>
+</li>
+<li> groups_stage_if1
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-session_id">session_id</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is refering the session of the user</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the Foreign Key referencing course_main table. This is the course in which the group or group set was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the group or group set record was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the group or group set record was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_ind">available_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the group or group set is available. Non-available groups are hidden groups in ultra courses</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-student_create_forum_ind">student_create_forum_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the students in a group can create a forum</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-create_collab_recordings_ind">create_collab_recordings_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the students in a group collaborate session can create a recording</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-set_pk1">set_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the group set PK if this group is part of a group set.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-set_ind">set_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if it is a group set vs. a group.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-self_enroll_ind">self_enroll_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the group or group set is a self enroll group or group set.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-show_self_enroll_ind">show_self_enroll_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates sign up option displayed or not.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-customize_ind">customize_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the group allows for module personalization.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-signup_ind">signup_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates if the group availability is set to sign-up sheet only.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enroll_limit">enroll_limit</a></td>
+  <td>numeric</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is maximum number of members allow to enroll in this group.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-text_format_type">text_format_type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text format of the group or group set. P = Plain text, H = HTML, S = Smart text, X = Default</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-group_name">group_name</a></td>
+  <td>nvarchar(333)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the name of the group.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-group_desc">group_desc</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the group.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_pk1">tab_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the group set PK if this group is part of a group set.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_edit_to_group_ind">allow_edit_to_group_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates group edit rights.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The unique id for the group. Used to store external identifiers for the group.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-uuid">uuid</a></td>
+  <td>nvarchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Universally unique id used to reference the group in external systems.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-extended_data">extended_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Used to store arbitrary properties for this item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_groups_pk1">lor_groups_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The Group hosting the root Learning Object Repository item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Time associated Learning Object Repository synchronization was last completed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

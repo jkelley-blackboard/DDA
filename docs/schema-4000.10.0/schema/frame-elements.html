@@ -1,0 +1,850 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h2><span>All Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/a_creation_setting.html">a_creation_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/aa_reprocess_session.html">aa_reprocess_session</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/achievements_b2/ach_badges.html">ach_badges</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/achievements_b2/ach_notification.html">ach_notification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activemq_acks.html">activemq_acks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activemq_lock.html">activemq_lock</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activemq_msgs.html">activemq_msgs</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/activity_accumulator.html">activity_accumulator</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activity_accumulator.html">activity_accumulator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/activity_accumulator_queue.html">activity_accumulator_queue</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/addressbook.html">addressbook</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/admin_panel_communication.html">admin_panel_communication</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/announcement_status.html">announcement_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/announcements.html">announcements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/application.html">application</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application.html">application</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application_label.html">application_label</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application_registry.html">application_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/application_setting.html">application_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/association_entity.html">association_entity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt.html">attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_files.html">attempt_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_receipt.html">attempt_receipt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_receipt_file.html">attempt_receipt_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_receipt_user.html">attempt_receipt_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/attempt_staged_grading.html">attempt_staged_grading</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_definition.html">attribute_definition</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_list_column.html">attribute_list_column</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_list_column_set.html">attribute_list_column_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/attribute_list_perm_column.html">attribute_list_perm_column</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/auth_device_b2/auth_device_code.html">auth_device_code</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_one_time_login.html">auth_one_time_login</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_provider.html">auth_provider</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_provider_log.html">auth_provider_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/auth_provider_log_counts.html">auth_provider_log_counts</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/adaptive_release/avl_crit.html">avl_crit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/adaptive_release/avl_crit_acl_group.html">avl_crit_acl_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/adaptive_release/avl_crit_acl_user.html">avl_crit_acl_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/adaptive_release/avl_rule.html">avl_rule</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab_ultra_b2/bb_colu_configuration.html">bb_colu_configuration</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/bb_config_registry.html">bb_config_registry</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/bb_groupcode.html">bb_groupcode</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/bb_instance.html">bb_instance</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/bb_instance_host.html">bb_instance_host</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/bb_instance_registry.html">bb_instance_registry</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/bb_instance_stat.html">bb_instance_stat</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learn_analytics_ng_b2_vi/bb_la_copied_courses.html">bb_la_copied_courses</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learn_analytics_ng_b2_vi/bb_la_extract_request.html">bb_la_extract_request</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learn_analytics_ng_b2_vi/bb_la_extrct_vw_defs.html">bb_la_extrct_vw_defs</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/ods_b2_vi/bb_resource_string.html">bb_resource_string</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/goal_performance/bbgs_cbe_performance_scale.html">bbgs_cbe_performance_scale</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/bean_property.html">bean_property</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/bean_registry.html">bean_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blog/blog_comment.html">blog_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blog/blog_entry.html">blog_entry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blog/blog_entry_files.html">blog_entry_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blog/blog_entry_user_status.html">blog_entry_user_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blog/blog_stream_event.html">blog_stream_event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blog/blogs.html">blogs</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_deployment.html">blti_deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_domain_config.html">blti_domain_config</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_domain_host.html">blti_domain_host</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_link_cred.html">blti_link_cred</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_placement.html">blti_placement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_provider_cred.html">blti_provider_cred</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/blti_provider_cred_perm.html">blti_provider_cred_perm</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/brands.html">brands</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/buttonstyles.html">buttonstyles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/c_creation_setting.html">c_creation_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/cache_tokens.html">cache_tokens</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/cache_tokens.html">cache_tokens</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/calendar.html">calendar</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/calendar_event_group.html">calendar_event_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/calendar_event_rule.html">calendar_event_rule</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/calendar_b2/calendar_ical_url_data.html">calendar_ical_url_data</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/cartridge.html">cartridge</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/cartridge_download.html">cartridge_download</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/category.html">category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/ccc_uid.html">ccc_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/channel.html">channel</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/channel_item.html">channel_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/classifications.html">classifications</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_alignable_content.html">clp_alignable_content</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_ap_sog_ext.html">clp_ap_sog_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_ap_template.html">clp_ap_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_ap_template_activity.html">clp_ap_template_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_initiative.html">clp_assessment_initiative</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_initiative_ext.html">clp_assessment_initiative_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_project.html">clp_assessment_project</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_project_ext.html">clp_assessment_project_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_comment.html">clp_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_content_alignment.html">clp_content_alignment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_course.html">clp_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_course_course.html">clp_course_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_course_ext.html">clp_course_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_curr_element.html">clp_curr_element</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_curr_map.html">clp_curr_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_curr_map_entry.html">clp_curr_map_entry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_curr_map_entry_los.html">clp_curr_map_entry_los</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_curr_map_term.html">clp_curr_map_term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_curr_sog.html">clp_curr_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_deploy_resp_unused.html">clp_deploy_resp_unused</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_deployment_response.html">clp_deployment_response</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_deployment_section.html">clp_deployment_section</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee.html">clp_ee</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_ext.html">clp_ee_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section.html">clp_ee_section</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section_affiliation.html">clp_ee_section_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section_affiliation_ext.html">clp_ee_section_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ee_section_ext.html">clp_ee_section_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_homepage_settings.html">clp_homepage_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_institution_roles.html">clp_institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_currmap/clp_level_of_support.html">clp_level_of_support</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_list_def_eesection_aff.html">clp_list_def_eesection_aff</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_list_def_ou_aff.html">clp_list_def_ou_aff</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_list_def_person.html">clp_list_def_person</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_list_def_program_aff.html">clp_list_def_program_aff</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_list_def_section_aff.html">clp_list_def_section_aff</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_ml_member.html">clp_ml_member</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_offline_instrument.html">clp_offline_instrument</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_operating_unit.html">clp_operating_unit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_operating_unit_ext.html">clp_operating_unit_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_affiliation.html">clp_ou_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_affiliation_ext.html">clp_ou_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_ou_ap_template.html">clp_ou_ap_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_attribute_list.html">clp_ou_attribute_list</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_ou_form.html">clp_ou_form</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_ou_sog_association.html">clp_ou_sog_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_person.html">clp_person</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_person_ext.html">clp_person_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_person_inst_roles.html">clp_person_inst_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program.html">clp_program</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_affiliation.html">clp_program_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_affiliation_ext.html">clp_program_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_course.html">clp_program_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_ee.html">clp_program_ee</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_program_ext.html">clp_program_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_role.html">clp_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_role_entitlement.html">clp_role_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section.html">clp_section</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_instrument_core/clp_section_aff_filter.html">clp_section_aff_filter</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section_affiliation.html">clp_section_affiliation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section_affiliation_ext.html">clp_section_affiliation_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_section_ext.html">clp_section_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog.html">clp_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog_activity.html">clp_sog_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog_activity_ext.html">clp_sog_activity_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_sog_alignment.html">clp_sog_alignment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_std_cat_association.html">clp_std_cat_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_std_category.html">clp_std_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_ac_template.html">clp_sv_ac_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_answer_choice.html">clp_sv_answer_choice</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_question.html">clp_sv_question</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_question_response.html">clp_sv_question_response</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_question_sog.html">clp_sv_question_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_question_tag.html">clp_sv_question_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_sq_template.html">clp_sv_sq_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_subquestion.html">clp_sv_subquestion</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_survey.html">clp_sv_survey</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_survey_deployment.html">clp_sv_survey_deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_survey_user.html">clp_sv_survey_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_survey/clp_sv_visual_element.html">clp_sv_visual_element</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_user_home_setting.html">clp_user_home_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_work_ctx_user.html">clp_work_ctx_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_work_space.html">clp_work_space</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_core/clp_x_operating_unit.html">clp_x_operating_unit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/clp_x_std_category.html">clp_x_std_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_bookmarks.html">cms_bookmarks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_comments.html">cms_comments</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_comments.html">cms_comments</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_file_access.html">cms_file_access</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_file_access.html">cms_file_access</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_file_operations.html">cms_file_operations</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_file_operations.html">cms_file_operations</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_md_template.html">cms_md_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_metadata_changes.html">cms_metadata_changes</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_metadata_changes.html">cms_metadata_changes</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/cms_perms_mods.html">cms_perms_mods</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_perms_mods.html">cms_perms_mods</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_resource_link.html">cms_resource_link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_saved_search.html">cms_saved_search</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/cntnt.html">cntnt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/cntnt_comment.html">cntnt_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/cntnt_file.html">cntnt_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/collab_archive_descriptor.html">collab_archive_descriptor</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/collab_session.html">collab_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/collab_tool.html">collab_tool</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/collab_tool_ctr_type.html">collab_tool_ctr_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/collab_tool_supported_ctr.html">collab_tool_supported_ctr</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/color_palette.html">color_palette</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/community_categories.html">community_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/community_categories_roles.html">community_categories_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/community_course_categories.html">community_course_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/conference_main.html">conference_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/content_handler_setting.html">content_handler_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/content_handler_type.html">content_handler_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/content_handlers.html">content_handlers</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/video_integration_b2/content_owner.html">content_owner</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/conversation.html">conversation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/conversation_group.html">conversation_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_application.html">course_application</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/course_assessment.html">course_assessment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_brands.html">course_brands</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_completed.html">course_completed</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_content_avail.html">course_content_avail</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_group.html">course_content_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_handlers.html">course_content_handlers</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_history.html">course_content_history</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_users.html">course_content_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_contents.html">course_contents</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_contents_files.html">course_contents_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_contents_reviewed.html">course_contents_reviewed</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_course.html">course_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_hierarchy.html">course_hierarchy</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/course_main.html">course_main</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_main.html">course_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/course_msg.html">course_msg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/course_msg_files.html">course_msg_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/course_msg_folder.html">course_msg_folder</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/course_msg_migration.html">course_msg_migration</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/course_messages/course_msg_participant.html">course_msg_participant</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_navigation_item.html">course_navigation_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/notes_b2/course_note.html">course_note</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_registry.html">course_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_requirements.html">course_requirements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/course_roles.html">course_roles</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_roles.html">course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_roles_entitlement.html">course_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_size.html">course_size</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_tags.html">course_tags</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_term.html">course_term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_theme.html">course_theme</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_toc.html">course_toc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/course_users.html">course_users</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_users.html">course_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_users_he.html">course_users_he</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/course_users_uid.html">course_users_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/criterion_value.html">criterion_value</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assignment_b2_docviewer/crocodoc_cleanup_queue.html">crocodoc_cleanup_queue</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/crs_app_settings_rec_tmp.html">crs_app_settings_rec_tmp</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/custom_localization.html">custom_localization</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/custom_localization_anchor.html">custom_localization_anchor</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_intgr.html">data_intgr</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_attr.html">data_intgr_attr</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_data_set_status.html">data_intgr_data_set_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_intgr_hndlr.html">data_intgr_hndlr</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_intgr_hndlr_links.html">data_intgr_hndlr_links</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_id_map_tmp.html">data_intgr_id_map_tmp</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_id_map_tmp_lgcy.html">data_intgr_id_map_tmp_lgcy</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_id_mapping.html">data_intgr_id_mapping</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_ims_xml_b2/data_intgr_ims_xml.html">data_intgr_ims_xml</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_log.html">data_intgr_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/data_integration_b2/data_intgr_obj.html">data_intgr_obj</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/data_source.html">data_source</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/data_source.html">data_source</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/date_management_b2/date_rollover_metadata.html">date_rollover_metadata</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/date_management_b2/date_rollover_summary.html">date_rollover_summary</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/date_management_b2/date_rollover_task.html">date_rollover_task</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/dead_node.html">dead_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_course_roles.html">def_course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_crs_roles_entitlement.html">def_crs_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_design_template_item.html">def_design_template_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_entitlement.html">def_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_layout.html">def_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_layout_family.html">def_layout_family</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_lf_req_module.html">def_lf_req_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module.html">def_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module_group.html">def_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module_layout.html">def_module_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module_module_group.html">def_module_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_sys_roles_entitlement.html">def_sys_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_system_roles.html">def_system_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_tab.html">def_tab</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_tab_group.html">def_tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/def_tab_tab_group.html">def_tab_tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/delegated_grader.html">delegated_grader</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/delegated_grader_group.html">delegated_grader_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/delegated_grader_user.html">delegated_grader_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment.html">deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_announcements.html">deployment_announcements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_contact.html">deployment_contact</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_criteria.html">deployment_criteria</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_list_def.html">deployment_list_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_mat_list.html">deployment_mat_list</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_recipient.html">deployment_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_reminder.html">deployment_reminder</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_resp_crit.html">deployment_resp_crit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_response.html">deployment_response</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/design_template.html">design_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/design_template_item.html">design_template_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/discussion_stream_event.html">discussion_stream_event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain.html">domain</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_admin.html">domain_admin</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_blti_deployment.html">domain_blti_deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course.html">domain_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course_categories.html">domain_course_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course_coll.html">domain_course_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_course_coll_uid.html">domain_course_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_data_source.html">domain_data_source</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_institution_role.html">domain_institution_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_module.html">domain_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_module_coll.html">domain_module_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_org_categories.html">domain_org_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_org_coll_uid.html">domain_org_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_organization.html">domain_organization</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_organization_coll.html">domain_organization_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_program_coll.html">domain_program_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_program_coll_uid.html">domain_program_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_subject_coll.html">domain_subject_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_subject_coll_uid.html">domain_subject_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_system_role.html">domain_system_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_tab.html">domain_tab</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_tab_coll.html">domain_tab_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_tabgroup_coll.html">domain_tabgroup_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_user.html">domain_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_user_coll.html">domain_user_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/domain_user_coll_uid.html">domain_user_coll_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/ods_b2_vi/dw_replicated_table.html">dw_replicated_table</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/email_list_member.html">email_list_member</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/email_verification.html">email_verification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/engagement.html">engagement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/enroll_requests.html">enroll_requests</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/entitlement.html">entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/entity_contents_files.html">entity_contents_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/entity_form.html">entity_form</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/enum_attribute_type.html">enum_attribute_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/enum_attribute_value.html">enum_attribute_value</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_eval_session.html">er_eval_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_eval_session_rater.html">er_eval_session_rater</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_evl_sessn_rater_assoc.html">er_evl_sessn_rater_assoc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item.html">er_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_file.html">er_item_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_owner.html">er_item_owner</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set.html">er_item_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_clp_sog.html">er_item_set_clp_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_course.html">er_item_set_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_educ_level.html">er_item_set_educ_level</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_inst_role.html">er_item_set_inst_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_item.html">er_item_set_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_item_sample.html">er_item_set_item_sample</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_node.html">er_item_set_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_tag.html">er_item_set_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_set_term.html">er_item_set_term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_item_sog.html">er_item_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample.html">er_sample</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_crs_node.html">er_sample_crs_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_file.html">er_sample_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_review.html">er_sample_review</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_set.html">er_sample_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_set_item_sample.html">er_sample_set_item_sample</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_sample_usr_node.html">er_sample_usr_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task.html">er_task</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_item_set_item.html">er_task_item_set_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_place.html">er_task_place</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_sog.html">er_task_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence_repository/er_task_term.html">er_task_term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_index_sproc.html">etl_index_sproc</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_log.html">etl_log</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_materialized_view.html">etl_materialized_view</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/etl_status.html">etl_status</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_distributor_setting.html">eud_distributor_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_general_setting.html">eud_general_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item.html">eud_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item_group.html">eud_item_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item_recipient.html">eud_item_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_item_role.html">eud_item_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/nautilus/eud_method_setting.html">eud_method_setting</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/evaluation_entity.html">evaluation_entity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc.html">evdnc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_comment.html">evdnc_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_content.html">evdnc_content</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_file.html">evdnc_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_review.html">evdnc_review</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_text.html">evdnc_text</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_tmplt.html">evdnc_tmplt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_tmplt_content.html">evdnc_tmplt_content</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/evidence/evdnc_tmplt_deployment.html">evdnc_tmplt_deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_sog/evdnc_tmplt_sog.html">evdnc_tmplt_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/event.html">event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/event_prop.html">event_prop</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_activity.html">ews_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_course_users.html">ews_course_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_gradebook_main.html">ews_gradebook_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_note.html">ews_note</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_notif_attachment.html">ews_notif_attachment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_notif_recipient.html">ews_notif_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_notification.html">ews_notification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_rule.html">ews_rule</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/ews_status.html">ews_status</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/extension_download.html">extension_download</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/external_courses.html">external_courses</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/field.html">field</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/files.html">files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assignment_b2_docviewer/files_crocodoc_data.html">files_crocodoc_data</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/files_registries.html">files_registries</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/foundations_connector_b2/fnds_connector_backlog.html">fnds_connector_backlog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/foundations_connector_b2/fnds_connector_sync_queue.html">fnds_connector_sync_queue</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/foundations_file_association_b2/fnds_file_association.html">fnds_file_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/form.html">form</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/forum_default_role.html">forum_default_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/forum_main.html">forum_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/forum_registry.html">forum_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/fulltextsearch/ft_index_update_event.html">ft_index_update_event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gateway_categories.html">gateway_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gateway_categories_roles.html">gateway_categories_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gateway_course_categories.html">gateway_course_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gb_custom_view_alias.html">gb_custom_view_alias</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gb_student_info_layout.html">gb_student_info_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gcc_uid.html">gcc_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/grade_performance_scale.html">grade_performance_scale</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_color_scheme.html">gradebook_color_scheme</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_courseusers_ext.html">gradebook_courseusers_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_custom_view.html">gradebook_custom_view</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_formula.html">gradebook_formula</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_formula_alias.html">gradebook_formula_alias</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade.html">gradebook_grade</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade_calc.html">gradebook_grade_calc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade_calc_up.html">gradebook_grade_calc_up</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grade_color.html">gradebook_grade_color</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_grading_period.html">gradebook_grading_period</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_log.html">gradebook_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_main.html">gradebook_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_main_user_option.html">gradebook_main_user_option</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_performance_code.html">gradebook_performance_code</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_settings.html">gradebook_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_sstu_stat_cache.html">gradebook_sstu_stat_cache</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_symbol.html">gradebook_symbol</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_translator.html">gradebook_translator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/gradebook_type.html">gradebook_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/grades_to_auto_zero.html">grades_to_auto_zero</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_application.html">group_application</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt.html">group_attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_activity.html">group_attempt_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_files.html">group_attempt_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_log.html">group_attempt_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/group_attempt_staged_grading.html">group_attempt_staged_grading</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_role.html">group_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_role_entitlement.html">group_role_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_signup_sheet.html">group_signup_sheet</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_uploads.html">group_uploads</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_users.html">group_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/group_users_stage.html">group_users_stage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/groups.html">groups</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/group/groups_stage.html">groups_stage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/institution_roles.html">institution_roles</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/institution_roles.html">institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/instructions.html">instructions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/interactive_count.html">interactive_count</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/interactive_count_col_def.html">interactive_count_col_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment_b2/ipfilter.html">ipfilter</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ipfilter.html">ipfilter</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment_b2/ipfilterBlocks.html">ipfilterBlocks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ipfilterBlocks.html">ipfilterBlocks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ipfilter_profile.html">ipfilter_profile</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/item_category.html">item_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout.html">layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout_family.html">layout_family</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout_family_req_module.html">layout_family_req_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout_module_group.html">layout_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_column_scale_item.html">learning_outcome_column_scale_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_entity_scale.html">learning_outcome_entity_scale</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_entity_scale_item.html">learning_outcome_entity_scale_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/learning_outcome_node_entity_scale_item.html">learning_outcome_node_entity_scale_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/limited_grader.html">limited_grader</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/link.html">link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/list_criterion.html">list_criterion</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/list_definition.html">list_definition</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/lo_category.html">lo_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/lo_item.html">lo_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/locales.html">locales</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/locks.html">locks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/long_term_sessions.html">long_term_sessions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/lor_data_summary.html">lor_data_summary</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_standard.html">lrn_standard</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_crs_main.html">lrn_stds_crs_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_crs_main_uid.html">lrn_stds_crs_main_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_discipline.html">lrn_stds_discipline</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc.html">lrn_stds_doc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_ctx.html">lrn_stds_doc_ctx</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_map.html">lrn_stds_doc_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_map_log.html">lrn_stds_doc_map_log</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_doc_set.html">lrn_stds_doc_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_map.html">lrn_stds_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_map_settings.html">lrn_stds_map_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_provider.html">lrn_stds_provider</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/learning_standard/lrn_stds_sub_doc.html">lrn_stds_sub_doc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/asset_processor/lti_asset_processor_asset.html">lti_asset_processor_asset</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/asset_processor/lti_asset_processor_asset_score.html">lti_asset_processor_asset_score</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/asset_processor/lti_asset_processor_link.html">lti_asset_processor_link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_base_url_choice.html">lti_base_url_choice</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/asset_processor/lti_eula_acceptance.html">lti_eula_acceptance</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_icon_info.html">lti_icon_info</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/lti_institution_roles.html">lti_institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_message.html">lti_message</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_message_parameter.html">lti_message_parameter</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_resource_handler.html">lti_resource_handler</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/lti_roles.html">lti_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_security_service.html">lti_security_service</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_service_offered.html">lti_service_offered</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_tool_config.html">lti_tool_config</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_tool_proxy.html">lti_tool_proxy</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_tool_proxy_capability.html">lti_tool_proxy_capability</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_tool_proxy_custom.html">lti_tool_proxy_custom</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/blti/lti_toolproxy_temp_creds.html">lti_toolproxy_temp_creds</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/maintenance_window.html">maintenance_window</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/manageable_course_roles.html">manageable_course_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/materialized_list.html">materialized_list</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/mdata_cnt_area_ass.html">mdata_cnt_area_ass</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/mdata_pkr_attr_val.html">mdata_pkr_attr_val</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/mdata_pkr_usr_pref.html">mdata_pkr_usr_pref</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_catalog.html">meta_catalog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_contributor.html">meta_contributor</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_formats.html">meta_formats</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_main.html">meta_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/metric/metric.html">metric</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/metric/metric_dimension.html">metric_dimension</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/metric/metric_dimension_value.html">metric_dimension_value</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/metric/metric_unit.html">metric_unit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/metric/metric_value.html">metric_value</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/metric/metric_value_dimension.html">metric_value_dimension</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/mi_affiliate_context.html">mi_affiliate_context</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/domain/mi_node.html">mi_node</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module.html">module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_admin.html">module_admin</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_category.html">module_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_display_criteria.html">module_display_criteria</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_group.html">module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_layout.html">module_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_module_category.html">module_module_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_module_group.html">module_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_type.html">module_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_cache.html">mon_cache</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_db_pool.html">mon_db_pool</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_db_sql.html">mon_db_sql</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_memory.html">mon_memory</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_session.html">mon_session</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_task.html">mon_task</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/mon_thread_deadlock.html">mon_thread_deadlock</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/msg_attachment.html">msg_attachment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/msg_label.html">msg_label</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/msg_main.html">msg_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/msg_tag.html">msg_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/navigation_item.html">navigation_item</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/navigation_item.html">navigation_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/nonces.html">nonces</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/observer_user.html">observer_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/observer_user_uid.html">observer_user_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/ods_aa_content_activity.html">ods_aa_content_activity</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/ods_aa_course_activity.html">ods_aa_course_activity</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/ods_aa_session_activity.html">ods_aa_session_activity</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/palette_item.html">palette_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/password_history.html">password_history</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/peer_service.html">peer_service</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/pflio.html">pflio</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio.html">pflio</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_acc_course.html">pflio_acc_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_acc_portal_role.html">pflio_acc_portal_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_acc_user.html">pflio_acc_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_comment.html">pflio_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_folder_association.html">pflio_folder_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_item.html">pflio_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_page_tmplt.html">pflio_page_tmplt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/pflio_pass.html">pflio_pass</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/plugin_activity_history.html">plugin_activity_history</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/plugins.html">plugins</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/portal_extra_info.html">portal_extra_info</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/portal_viewer.html">portal_viewer</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/predefined_gb_symbol.html">predefined_gb_symbol</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/predefined_gb_translator.html">predefined_gb_translator</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/predefined_gb_type.html">predefined_gb_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/proctoring_service.html">proctoring_service</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/pronouns.html">pronouns</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/proxy_links.html">proxy_links</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/proxy_tools.html">proxy_tools</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl.html">prtfl</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl.html">prtfl</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_cntnt.html">prtfl_cntnt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_comment.html">prtfl_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_course.html">prtfl_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_evdnc.html">prtfl_evdnc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_folder.html">prtfl_folder</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_folder_association.html">prtfl_folder_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_layout.html">prtfl_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_page.html">prtfl_page</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_page_coll.html">prtfl_page_coll</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_page_tmplt.html">prtfl_page_tmplt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_pass.html">prtfl_pass</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_portal_role.html">prtfl_portal_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_review.html">prtfl_review</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_snapshot.html">prtfl_snapshot</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_style.html">prtfl_style</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_style.html">prtfl_style</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_tmplt.html">prtfl_tmplt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_tmplt_content.html">prtfl_tmplt_content</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_tmplt_deployment.html">prtfl_tmplt_deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio/prtfl_tmplt_sog.html">prtfl_tmplt_sog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_tmplt_usage.html">prtfl_tmplt_usage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_user.html">prtfl_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/prtfl_x_folder.html">prtfl_x_folder</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/purgesync_log.html">purgesync_log</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/qti_asi_data.html">qti_asi_data</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/qti_block_mapping.html">qti_block_mapping</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/qti_result_data.html">qti_result_data</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/qti_upgrade_helper.html">qti_upgrade_helper</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/queued_task_limit.html">queued_task_limit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/queued_tasks.html">queued_tasks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report.html">report</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bdl_asc_param_reg.html">report_bdl_asc_param_reg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bdl_def_param_reg.html">report_bdl_def_param_reg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_brand.html">report_brand</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_brand_default.html">report_brand_default</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle.html">report_bundle</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle_assoc.html">report_bundle_assoc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle_assoc_tag.html">report_bundle_assoc_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_bundle_report_def.html">report_bundle_report_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def.html">report_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def_avail.html">report_def_avail</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def_tag.html">report_def_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_def_type.html">report_def_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_param_reg.html">report_param_reg</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_pub_ctx.html">report_pub_ctx</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_set.html">report_set</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_set_report.html">report_set_report</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/report/report_tag.html">report_tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/rest_b2/rest_cors_allowed_headers.html">rest_cors_allowed_headers</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/rest_b2/rest_cors_config.html">rest_cors_config</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage.html">retention_center_stage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage_attempt.html">retention_center_stage_attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage_grade.html">retention_center_stage_grade</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/retention_b2/retention_center_stage_ods.html">retention_center_stage_ods</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric.html">rubric</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_association.html">rubric_association</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_cell.html">rubric_cell</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_cell_eval.html">rubric_cell_eval</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_column.html">rubric_column</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_eval.html">rubric_eval</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_link.html">rubric_link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/rubric_row.html">rubric_row</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/auth_provider_saml_b2/saml_security_context.html">saml_security_context</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/score_provider.html">score_provider</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/score_provider_action.html">score_provider_action</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/scormengine_b2/scormbbattempttoinstance.html">scormbbattempttoinstance</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/scormengine_b2/scormbbgradebookinfo.html">scormbbgradebookinfo</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/scormengine_b2/scormbbpackageinfo.html">scormbbpackageinfo</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/scormengine_b2/scormregistration.html">scormregistration</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/session_inds.html">session_inds</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/sessions.html">sessions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/sessions_impersonated.html">sessions_impersonated</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/sharable_lock.html">sharable_lock</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/content_editor_b2/spellcheck_dictionaries.html">spellcheck_dictionaries</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/sponsorships.html">sponsorships</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/staffinformation.html">staffinformation</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/step.html">step</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/system_history.html">system_history</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/system_info_registry.html">system_info_registry</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/admin/system_information.html">system_information</a>
+    <span>Admin</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_registry.html">system_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/system_roles.html">system_roles</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_roles.html">system_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_roles_entitlement.html">system_roles_entitlement</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/system_tracking.html">system_tracking</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_tracking.html">system_tracking</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/system_tracking_pv.html">system_tracking_pv</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab.html">tab</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_group.html">tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_group_inst_roles.html">tab_group_inst_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_institution_roles.html">tab_institution_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tab_tab_group.html">tab_tab_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tag.html">tag</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/target_audience.html">target_audience</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/task_progress_b2/task_progress.html">task_progress</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tasks.html">tasks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tasks_users.html">tasks_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_activity_summary.html">telem_activity_summary</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_content_access.html">telem_content_access</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_course_notification.html">telem_course_notification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_grade_rollup.html">telem_grade_rollup</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_media_summary.html">telem_media_summary</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_notification.html">telem_notification</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_notification_recipient.html">telem_notification_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_notification_user.html">telem_notification_user</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/telemetry_b2/telem_xray_discuss_score.html">telem_xray_discuss_score</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/template_course.html">template_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/term.html">term</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/term_hierarchy.html">term_hierarchy</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/textbook_b2/textbook.html">textbook</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/textbook_b2/textbook_crs_contents.html">textbook_crs_contents</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/theme.html">theme</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/theme_registry.html">theme_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/theme_type.html">theme_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_cc_keys.html">tmp_cc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccc_badpk1.html">tmp_ccc_badpk1</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccc_key_mappings.html">tmp_ccc_key_mappings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccc_keys.html">tmp_ccc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccm_keys.html">tmp_ccm_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_course_keys.html">tmp_course_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_cu_keys.html">tmp_cu_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_gc_keys.html">tmp_gc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_gcc_keys.html">tmp_gcc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/item_analysis_b2/tmp_ia_answer_stats.html">tmp_ia_answer_stats</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/item_analysis_b2/tmp_ia_question_stats.html">tmp_ia_question_stats</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/item_analysis_b2/tmp_ia_summary.html">tmp_ia_summary</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_key_maps.html">tmp_key_maps</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/tmp_managed_resource.html">tmp_managed_resource</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_obs_user_keys.html">tmp_obs_user_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_org_keys.html">tmp_org_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ou_keys.html">tmp_ou_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ss_session.html">tmp_ss_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/tmp_template_keys.html">tmp_template_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_user_keys.html">tmp_user_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_userrole_keys.html">tmp_userrole_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/gradebook/unique_attempt.html">unique_attempt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/common/update_history.html">update_history</a>
+    <span>Common</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_column_access.html">user_column_access</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portfolio_b2/user_comment.html">user_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_comment.html">user_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/user_forum_settings.html">user_forum_settings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_map.html">user_map</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_mapping.html">user_mapping</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/discussionboard/user_msg_state.html">user_msg_state</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_registry.html">user_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/user_roles.html">user_roles</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_roles.html">user_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_roles_uid.html">user_roles_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/user_rubric_prefs.html">user_rubric_prefs</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/assessment/user_test_option.html">user_test_option</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/stats/users.html">users</a>
+    <span>Stats</span>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/users.html">users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/users_blocks.html">users_blocks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/users_constraints.html">users_constraints</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/vc_archive_event.html">vc_archive_event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/vc_archive_event_type.html">vc_archive_event_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/collab/vc_server.html">vc_server</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/video_integration_b2/video_studio_quiz.html">video_studio_quiz</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/video_integration_b2/videv_video.html">videv_video</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/virtual_hosts.html">virtual_hosts</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/wiki_b2/wiki.html">wiki</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/wiki_b2/wiki_stream_event.html">wiki_stream_event</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow.html">wkflow</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_assgnmnt.html">wkflow_assgnmnt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_comment.html">wkflow_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_file.html">wkflow_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_sharing_role.html">wkflow_sharing_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_stage.html">wkflow_stage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_subscription.html">wkflow_subscription</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_task.html">wkflow_task</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_task_course.html">wkflow_task_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_task_crs_role.html">wkflow_task_crs_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/work_ctx.html">work_ctx</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/work_ctx_list_def.html">work_ctx_list_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_client.html">ws_client</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_onetime_passwords.html">ws_onetime_passwords</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_operations.html">ws_operations</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_service.html">ws_service</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_sessions.html">ws_sessions</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/ws_tool_entitlements.html">ws_tool_entitlements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_classifications.html">x_classifications</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_community_categories.html">x_community_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/x_course_contents.html">x_course_contents</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_gateway_categories.html">x_gateway_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/as_core/x_staffinformation.html">x_staffinformation</a>
+</ul>
+
+
+</body>
+</html>

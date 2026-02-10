@@ -1,0 +1,396 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-item_analysis_b2.html">item_analysis_b2</a>
+</div>
+
+<h1>tmp_ia_question_stats
+  <p>DEVELOPER INPUT NEEDED.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">ia_question_stats_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    ia_question_stats_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a Foreign Key referencing the primary key of the tmp_ia_summary table.</p>
+  <ul>
+<li> <a href="#column-tmp_ia_summary_pk1">tmp_ia_summary_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> ia_question_stats_if1
+  <ul>
+<li> <a href="#column-tmp_ia_summary_pk1">tmp_ia_summary_pk1</a>
+</li>
+  </ul>
+</li>
+<li> ia_question_stats_if2
+  <ul>
+<li> <a href="#column-qti_asi_data_pk1">qti_asi_data_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tmp_ia_summary_pk1">tmp_ia_summary_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a Foreign Key referencing the primary key of tmp_ia_summary table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qti_asi_data_pk1">qti_asi_data_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This refers to the primary key of [ASSESSMENT].qti_asi_data table. We do not have foreign key relationship though. It is the id of question.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ques_type">ques_type</a></td>
+  <td>int</td>
+    <td>1</td>
+    <td class="valueConstraint">ia_ques_stats_enum1
+      <ul>
+          <li> <span>1</span>
+          </li>
+          <li> <span>2</span>
+          </li>
+          <li> <span>3</span>
+          </li>
+          <li> <span>4</span>
+          </li>
+          <li> <span>5</span>
+          </li>
+          <li> <span>6</span>
+          </li>
+          <li> <span>7</span>
+          </li>
+          <li> <span>8</span>
+          </li>
+          <li> <span>9</span>
+          </li>
+          <li> <span>10</span>
+          </li>
+          <li> <span>11</span>
+          </li>
+          <li> <span>12</span>
+          </li>
+          <li> <span>13</span>
+          </li>
+          <li> <span>14</span>
+          </li>
+          <li> <span>15</span>
+          </li>
+          <li> <span>16</span>
+          </li>
+          <li> <span>17</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Question type identifier for this question. This is the duplicate of how we map each Question Type             in AsiObjectDbMap class. 1: Multiple Choice. 2: True False. 3: Multiple Answer. 4: Ordering. 5: Matching.             6: Fill in the Blank. 7: Essay. 8: Calculated Numeric. 9: Calculated Formula. 10: File Upload/Response.             11: Hot Spot. 12: Fill in Multiple Blanks. 13: Jumbled Sentence. 14: Quiz Bowl.15: Opinion Scale/Likerts.             16: Short Answer. 17: Binary Choice/Either Or.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ques_title">ques_title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The title of question. The length is derived from AsiObject.getTitle method</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ques_desc">ques_desc</a></td>
+  <td>nvarchar(80)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Medium description of the question. The length is derived from QuestionWrapper.getMediumDescription method</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Question created timestamp</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-discrimination">discrimination</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Discrimination per question is calculated based on Pearson Correlation Coefficient.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-difficulty">difficulty</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Difficulty per question is reported in percentage and calculated as total points earned             by all students upon total points possible for all students.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-graded_submissions">graded_submissions</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows number of submissions auto graded or manually graded.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-not_answered">not_answered</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows number of submissions not answered.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-container_flag">container_flag</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">ia_ques_stats_enum2
+      <ul>
+          <li> <span>Q</span>
+          </li>
+          <li> <span>R</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates whether question is part of Question Set or Random Block. Q: Question Set; R: Random block; N: None</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-not_all_graded_flag">not_all_graded_flag</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">ia_ques_stats_enum3
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates not all submitted questions requiring manual grading have been graded. N: No; Y: Yes</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_flag">modified_flag</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">ia_ques_stats_enum4
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates if the question has been modified since the assessment question has been deployed. N: Not modified; Y: Modified</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avg_score">avg_score</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows average of all the question point.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-std_deviation">std_deviation</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows how much variation exists from average, mean or expected value.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-std_error">std_error</a></td>
+  <td>float</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Shows the standard deviation of the sampling distribution of a statistic.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

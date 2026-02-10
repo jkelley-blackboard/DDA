@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>rubric_association
+  <p>This table contains the relationship between a rubric and an association_entity.
+    TODO: Document logical use of sub_rubric_assoc_pk1 and rubric_visible_ind</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">rubric_association_pk1</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    rubric_association_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].rubric table.</p>
+  <ul>
+<li> <a href="#column-rubric_pk1">rubric_pk1</a>
+</li>
+  </ul>
+    <ul>
+<li> [<a href='../../tables/as_core/rubric.html'>rubric</a>].<a href="#column-pk1">pk1</a>
+    (foreign key reference)
+</li>
+    </ul>
+</li>
+<li>
+    rubric_association_fk2
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].association_entity table.</p>
+  <ul>
+<li> <a href="#column-association_entity_pk1">association_entity_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    rubric_association_fk3
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].rubric_association table.</p>
+  <ul>
+<li> <a href="#column-sub_rubric_assoc_pk1">sub_rubric_assoc_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> rubric_association_if1
+  <ul>
+<li> <a href="#column-rubric_pk1">rubric_pk1</a>
+</li>
+<li> <a href="#column-association_entity_pk1">association_entity_pk1</a>
+</li>
+<li> <a href="#column-sub_rubric_assoc_pk1">sub_rubric_assoc_pk1</a>
+</li>
+  </ul>
+</li>
+<li> rubric_association_if5
+  <ul>
+<li> <a href="#column-rubric_pk1">rubric_pk1</a>
+</li>
+<li> <a href="#column-version">version</a>
+</li>
+  </ul>
+</li>
+<li> rubric_association_if3
+  <ul>
+<li> <a href="#column-association_entity_pk1">association_entity_pk1</a>
+</li>
+  </ul>
+</li>
+<li> rubric_association_if4
+  <ul>
+<li> <a href="#column-sub_rubric_assoc_pk1">sub_rubric_assoc_pk1</a>
+</li>
+  </ul>
+</li>
+<li> rubric_association_if6
+  <ul>
+<li> <a href="#column-lor_rubric_assoc_pk1">lor_rubric_assoc_pk1</a>
+</li>
+<li> <a href="#column-lor_sync_date">lor_sync_date</a>
+</li>
+  </ul>
+</li>
+<li> rubric_association_ie1
+  <ul>
+<li> <a href="#column-dtcreated">dtcreated</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-rubric_pk1">rubric_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is part of a foreign key referencing the primary key of the [AS_CORE].rubric table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version">version</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is part of a foreign key referencing the primary key of the [AS_CORE].rubric table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-association_entity_pk1">association_entity_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].association_entity table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-sub_rubric_assoc_pk1">sub_rubric_assoc_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a self-referencing foreign key reference. It is currently used for one purpose only: to associate a Rubric to an Outcomes instrument through a SOG to which the Rubric is already associated.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-rubric_visible_ind">rubric_visible_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">rubric_assoc_visible_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>A boolean flag indicating whether this association (of a Rubric to an Outcomes Instrument) is visible to the creator of the work that will be evaluated using the Rubric referenced by this association.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-display_before_grading">display_before_grading</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">courserubric_dsplbfrgrdng_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Determines if a rubric is visible to students prior to grading</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-display_after_grading">display_after_grading</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">courserubric_dsplaftergrdng_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Determines if a rubric is visible to students after grading (with or without results - see display_graded_rubric)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-display_graded_rubric">display_graded_rubric</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">courserubric_dsplgrdrbrc_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Determines if the actual results of the rubric evaluation are shown to the student (i.e. cells chosen, per-cell feedback, etc.)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-percent_of_grade">percent_of_grade</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>To support grading with multiple rubrics, this specifies how much of the grade for this item is based on this rubric association. Note that for 9.1SP6 we will only be supporting grading with a single rubric so this value will be either 100 or 0.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time when the rubric association record was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-extended_data">extended_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Used to store arbitrary properties for this item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_rubric_assoc_pk1">lor_rubric_assoc_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The object hosting the root Learning Object Repository item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Time associated Learning Object Repository synchronization was last completed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

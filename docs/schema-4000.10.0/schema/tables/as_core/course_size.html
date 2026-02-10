@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>course_size
+  <p>This table contains size information for a course. It uses a foreign key to tie back into the course_main table.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">course_size_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    course_size_fk1
+    <span>(On Delete Cascade)</span>
+  <p>Foreign key referencing the course_main table.</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> course_size_ak1
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_size_ie1
+  <ul>
+<li> <a href="#column-size_coursefiles">size_coursefiles</a>
+</li>
+  </ul>
+</li>
+<li> course_size_ie2
+  <ul>
+<li> <a href="#column-size_protectedfiles">size_protectedfiles</a>
+</li>
+  </ul>
+</li>
+<li> course_size_ie3
+  <ul>
+<li> <a href="#column-size_legacyfiles">size_legacyfiles</a>
+</li>
+  </ul>
+</li>
+<li> course_size_ie4
+  <ul>
+<li> <a href="#column-size_total">size_total</a>
+</li>
+  </ul>
+</li>
+<li> course_size_ie5
+  <ul>
+<li> <a href="#column-last_calculated">last_calculated</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Foreign key referencing the course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_coursefiles">size_coursefiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The size (in bytes) of all files stored under Course Files.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_protectedfiles">size_protectedfiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The size (in bytes) of all files stored under course internal files.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_legacyfiles">size_legacyfiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The size (in bytes) of all files stored on the backend filesystem.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_total">size_total</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of all files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_imagefiles">size_imagefiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of image files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_audiofiles">size_audiofiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of audio files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_videofiles">size_videofiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of video files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_archivefiles">size_archivefiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of archive files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_documentfiles">size_documentfiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of document files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-size_otherfiles">size_otherfiles</a></td>
+  <td>bigint</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The total size (in bytes) of other files associated to a course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_calculated">last_calculated</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The timestamp of the last time the course size values were calculated.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

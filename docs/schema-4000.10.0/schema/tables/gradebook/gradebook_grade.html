@@ -1,0 +1,804 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-gradebook.html">gradebook</a>
+</div>
+
+<h1>gradebook_grade
+  <p>
+      Main Grade record to which all attempts are connected. A grade can either be an override (value in this record) or an attempt grade - which attempt  is chosen for the grade depends on the Attempt Aggregation Scheme (see gradebook_main.aggregation_model). It describes a cell in the gradebook.
+    </p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">gradebook_grade_pk</p>
+  <p>This is the primary key on column pk1 of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    gradebook_grade_fk1
+  <p>This is a foreign key referencing the primary key of the course_users table. </p>
+  <ul>
+<li> <a href="#column-course_users_pk1">course_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk2
+  <p>This is a foreign key referencing the primary key of the gradebook_main table. </p>
+  <ul>
+<li> <a href="#column-gradebook_main_pk1">gradebook_main_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk3
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the attempt table. </p>
+  <ul>
+<li> <a href="#column-last_graded_attempt_pk1">last_graded_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk4
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the attempt table. </p>
+  <ul>
+<li> <a href="#column-first_graded_attempt_pk1">first_graded_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk5
+    <span>(On Delete SetNull)</span>
+  <p>FK to the last created attempt that is not ignored for this grade.</p>
+  <ul>
+<li> <a href="#column-last_attempt_pk1">last_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk6
+    <span>(On Delete SetNull)</span>
+  <p>FK to the first created attempt that is not ignored for this grade.</p>
+  <ul>
+<li> <a href="#column-first_attempt_pk1">first_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk7
+    <span>(On Delete SetNull)</span>
+  <p>FK to the highest created attempt that is not ignored for this grade.</p>
+  <ul>
+<li> <a href="#column-highest_attempt_pk1">highest_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk8
+    <span>(On Delete SetNull)</span>
+  <p>FK to the lowest created attempt that is not ignored for this grade.</p>
+  <ul>
+<li> <a href="#column-lowest_attempt_pk1">lowest_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    gradebook_grade_fk9
+    <span>(On Delete SetNull)</span>
+  <p>FK to the performance code applied to this grade.</p>
+  <ul>
+<li> <a href="#column-perf_code_pk1">perf_code_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+  <h3><span>Unique constraints<span></h3>
+  <div>
+    <ol>
+<li>
+    gradebook_grade_unique1
+  <br>
+  <ul>
+<li> <a href="#column-gradebook_main_pk1">gradebook_main_pk1</a>
+</li>
+<li> <a href="#column-course_users_pk1">course_users_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> gradebook_grade_ak1
+  <ul>
+<li> <a href="#column-batch_uid">batch_uid</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_ic1
+  <ul>
+<li> <a href="#column-gradebook_main_pk1">gradebook_main_pk1</a>
+</li>
+<li> <a href="#column-last_override_date">last_override_date</a>
+</li>
+<li> <a href="#column-course_users_pk1">course_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if1
+  <ul>
+<li> <a href="#column-course_users_pk1">course_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if3
+  <ul>
+<li> <a href="#column-highest_attempt_pk1">highest_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if4
+  <ul>
+<li> <a href="#column-lowest_attempt_pk1">lowest_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if5
+  <ul>
+<li> <a href="#column-last_attempt_pk1">last_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if6
+  <ul>
+<li> <a href="#column-first_attempt_pk1">first_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if7
+  <ul>
+<li> <a href="#column-version">version</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if8
+  <ul>
+<li> <a href="#column-last_graded_attempt_pk1">last_graded_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if9
+  <ul>
+<li> <a href="#column-first_graded_attempt_pk1">first_graded_attempt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if10
+  <ul>
+<li> <a href="#column-date_modified">date_modified</a>
+</li>
+  </ul>
+</li>
+<li> gradebook_grade_if11
+  <ul>
+<li> <a href="#column-perf_code_pk1">perf_code_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_main_pk1">gradebook_main_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>FK to the Gradable Item to which that grade belongs</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_users_pk1">course_users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>FK to the Student (course membership) record to which that grade belongs.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The unique id for the grade value when used in SIS operations. Generally set by an SIS feed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comments">comments</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted Text for instructor overridden grade notes.  Formatted text type specified by notes_format_type field</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-notes_format_type">notes_format_type</a></td>
+  <td>char(1)</td>
+    <td>'H'</td>
+    <td class="valueConstraint">gradebook_grade_enum2
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text type for instructor overridden grade notes: H=HTML, P=PLAIN TEXT, S=SMART TEXT.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-for_student_comments">for_student_comments</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text for instructor overridden grade feedback.  Formatted text type specified by feedback_format_type field</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-feedback_format_type">feedback_format_type</a></td>
+  <td>char(1)</td>
+    <td>'H'</td>
+    <td class="valueConstraint">gradebook_grade_enum3
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Formatted text type for instructor overridden grade feedback.  Formatted text specified by for_student_comments field</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-date_added">date_added</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event occurred.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-date_modified">date_modified</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which this event modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_override_date">last_override_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>If the grade has been overriden, this is the time the override took place. We will always populate this col if an overridden grade is reverted back</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_graded_date_via_lti_ags">last_graded_date_via_lti_ags</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Date and time, an external LTI tool tell us, when the grading request was sent to Learn. Please note the actual grading timestamp recorded in Learn is saved in the column 'last_override_date'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_attempt_date">last_attempt_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Denormalization of the last attempt date (attempt.attempt_date where attempt.pk1 = last_attempt.pk1)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-status">status</a></td>
+  <td>int</td>
+    <td>2</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>(Deprecated). Current Status of the Grade (1=graded,2=needsgrading)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-highest_attempt_pk1">highest_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Highest Graded Attempt</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-up_highest_attempt_pk1">up_highest_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Ready to post highest Graded Attempt</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lowest_attempt_pk1">lowest_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Lowest Graded Attempt</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-up_lowest_attempt_pk1">up_lowest_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Ready to post lowest Graded Attempt</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_attempt_pk1">last_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Last Attempt Created for this grade, excluding ignored attempts</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-first_attempt_pk1">first_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>First Attempt Created for this grade, excluding ignored attempts</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_submitted_attempt_pk1">last_submitted_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Last Attempt Submitted for this grade, excluding ignored and draft attempts</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_graded_attempt_pk1">last_graded_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Last Graded Attempt, used for Grading</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-up_last_graded_attempt_pk1">up_last_graded_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Ready to post last Graded Attempt, used for Grading</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-first_graded_attempt_pk1">first_graded_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>First Graded Attempt, used for Grading</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-up_first_graded_attempt_pk1">up_first_graded_attempt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Ready to post first Graded Attempt, used for Grading</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-exempt_attempt_ind">exempt_attempt_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">gb_att_exempt_ind
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates whether or not there are any ignored attempts</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-average_score">average_score</a></td>
+  <td>numeric(15,5)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Average value of Graded Attempts</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-up_average_score">up_average_score</a></td>
+  <td>numeric(15,5)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Ready to post average value of Graded Attempts</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-manual_grade">manual_grade</a></td>
+  <td>nvarchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Grade Override, textual input (for example A+)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-manual_score">manual_score</a></td>
+  <td>numeric(15,5)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Grade Override, actual score (for example A+ could be translated to 18)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version">version</a></td>
+  <td>rowversion</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Db counter, always incremented when this record is modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-exempt_ind">exempt_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">gradebook_grade_enum1
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Y means the student is exempted from this activity and this grade will not be accounted in during calculation</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-excluded_ind">excluded_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">gradebook_grade_excl
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Used in conjonction with gradebook_main.limited_attendance, indicates the user is not part of the activity and thus this grade will be skipped during calculation.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pending_manual_grade">pending_manual_grade</a></td>
+  <td>nvarchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Pending Grade Override, textual input (for example A+).When attempt is not posted but graded, grade is saved here</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pending_manual_score">pending_manual_score</a></td>
+  <td>numeric(15,5)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Pending Grade Override, actual score (for example A+ could be translated to 18).When attempt is not posted but graded/scored, score is saved here</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-perf_code_pk1">perf_code_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Performance code override, used for grading.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-automatic_zero">automatic_zero</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">gradebook_grade_enum4
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Y for true and values other than that(including null) are considered false.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-has_been_viewed_ind">has_been_viewed_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">gradebook_grade_enum5
+      <ul>
+          <li> <span>N</span>
+          </li>
+          <li> <span>Y</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates whether the student has viewed their grade or not. 'N' means there is a new grading activity yet to be seen. 'Y' means the grading activity is now seen. NULL for old records and cases where we don't support grade newness.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-student_reviewed_timestamp">student_reviewed_timestamp</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and time at which the grade has been reviewed by the student. </p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

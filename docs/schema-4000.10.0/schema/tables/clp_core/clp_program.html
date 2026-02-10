@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-clp_core.html">clp_core</a>
+</div>
+
+<h1>clp_program
+  <p>This table contains general information on programs in outcomes system.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">clp_program_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    clp_program_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the clp_operating_unit table, referential action cascade on delete (cascade).</p>
+  <ul>
+<li> <a href="#column-clp_operating_unit_pk1">clp_operating_unit_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_program_fk2
+  <p>This is a foreign key referencing the primary key of the form table. </p>
+  <ul>
+<li> <a href="#column-form_pk1">form_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_program_fk3
+  <p>This is a foreign key referencing the primary key of the enum_attribute_value table. </p>
+  <ul>
+<li> <a href="#column-degree">degree</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_program_fk4
+  <p>This is a foreign key referencing the primary key of the enum_attribute_value table. </p>
+  <ul>
+<li> <a href="#column-frequency">frequency</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_program_fk5
+  <p>This is a foreign key referencing the primary key of the work_ctx table. </p>
+  <ul>
+<li> <a href="#column-work_ctx_pk1">work_ctx_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    clp_program_fk6
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table, referential action cascade on delete (setnull).</p>
+  <ul>
+<li> <a href="#column-modifying_user_pk1">modifying_user_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> clp_program_if1
+  <ul>
+<li> <a href="#column-clp_operating_unit_pk1">clp_operating_unit_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_program_if2
+  <ul>
+<li> <a href="#column-form_pk1">form_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_program_if3
+  <ul>
+<li> <a href="#column-work_ctx_pk1">work_ctx_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_program_ak1
+  <ul>
+<li> <a href="#column-batch_uid">batch_uid</a>
+</li>
+  </ul>
+</li>
+<li> clp_program_if4
+  <ul>
+<li> <a href="#column-modifying_user_pk1">modifying_user_pk1</a>
+</li>
+  </ul>
+</li>
+<li> clp_program_if5
+  <ul>
+<li> <a href="#column-degree">degree</a>
+</li>
+  </ul>
+</li>
+<li> clp_program_if6
+  <ul>
+<li> <a href="#column-frequency">frequency</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-work_ctx_pk1">work_ctx_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the work_ctx table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the unique id of the program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-clp_operating_unit_pk1">clp_operating_unit_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the clp_operating_unit table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_date">start_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The is the date time when the program would start.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_date">end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The is the date time when the program would end.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the title of the program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the name of the program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(1000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-form_pk1">form_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the form table. It it the form that was used to create this program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vision">vision</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the vision statement of the program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modifying_user_pk1">modifying_user_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user who modified this user record.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-vision_type">vision_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">clp_program_enum_1
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text format of the vision statement. H = HTML, S = Smart Text, P = Plain Text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mission">mission</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the vision or future goal statement of the program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mission_type">mission_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">clp_program_enum_2
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text format of the mission statement. H = HTML, S = Smart Text, P = Plain Text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-degree">degree</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the degree that would be earn from this program.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-frequency">frequency</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the frequency of the program. It can be annual, biannual, semiannual etc.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_reviewed">last_reviewed</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time this program was last reviewed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time when the program record was first creatd.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time when the program record was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-public_ind">public_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">clp_program_public
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a boolean flag (Y/N) that indicates whether the program is viewable by public (all users).</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

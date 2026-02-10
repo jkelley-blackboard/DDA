@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-domain.html">domain</a>
+</div>
+
+<h1>mi_affiliate_context
+  <p>
+      Maintains the position of the institutional hierarchy to which all affiliates attach,
+      along with any details of that attachment.
+    </p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">mi_affiliate_context_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    mi_affiliate_context_fk1
+    <span>(On Delete Cascade)</span>
+  <ul>
+<li> <a href="#column-mi_node_pk1">mi_node_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    mi_affiliate_context_fk2
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-context_override_pk1">context_override_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    mi_affiliate_context_fk3
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-node_lock_override_pk1">node_lock_override_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> mi_affiliate_context_if1
+  <ul>
+<li> <a href="#column-mi_node_pk1">mi_node_pk1</a>
+</li>
+  </ul>
+</li>
+<li> mi_affiliate_context_if2
+  <ul>
+<li> <a href="#column-context_override_pk1">context_override_pk1</a>
+</li>
+  </ul>
+</li>
+<li> mi_affiliate_context_if3
+  <ul>
+<li> <a href="#column-node_lock_override_pk1">node_lock_override_pk1</a>
+</li>
+  </ul>
+</li>
+<li> mi_affiliate_context_ie1
+  <ul>
+<li> <a href="#column-mi_node_pk1">mi_node_pk1</a>
+</li>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+<li> <a href="#column-assoc_object_type">assoc_object_type</a>
+</li>
+<li> <a href="#column-affiliate_group_id">affiliate_group_id</a>
+</li>
+<li> <a href="#column-context_override_pk1">context_override_pk1</a>
+</li>
+  </ul>
+</li>
+<li> mi_affiliate_context_ak1
+  <ul>
+<li> <a href="#column-mi_node_pk1">mi_node_pk1</a>
+</li>
+<li> <a href="#column-affiliate_group_id">affiliate_group_id</a>
+</li>
+<li> <a href="#column-affiliate_id">affiliate_id</a>
+</li>
+<li> <a href="#column-assoc_object_type">assoc_object_type</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>The surrogate primary key for the table</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mi_node_pk1">mi_node_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The node to which this affiliate applies.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-node_locked_ind">node_locked_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">mi_aff_context_node_lckd_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether this affiliate is locked at this node -- ie, if child nodes can't override it.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-context_override_pk1">context_override_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>If this context has been overridden by a context at a higher node (through locks), then this column points to that context.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-node_lock_override_pk1">node_lock_override_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>If this context had a node lock imposed by a context at a higher node but it is to be ignored and overridden, then this column points the context at which the node lock override is set.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-affiliate_group_id">affiliate_group_id</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The type of affiliate this context represents.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-affiliate_id">affiliate_id</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>An identifier that uniquely identifiers the affiliate. The combination of affiliate group and affiliate should uniquely represent an affiliate.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-assoc_object_type">assoc_object_type</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">mi_aff_context_assoc_obj_tp_ck
+      <ul>
+          <li> <span>C</span>
+  <p>course designation</p>
+          </li>
+          <li> <span>O</span>
+  <p>organization designation</p>
+          </li>
+          <li> <span>U</span>
+  <p>user designation</p>
+          </li>
+          <li> <span>M</span>
+  <p>module designation</p>
+          </li>
+          <li> <span>T</span>
+  <p>tab designation</p>
+          </li>
+          <li> <span>G</span>
+  <p>tab group designation</p>
+          </li>
+          <li> <span>D</span>
+  <p>default value to use instead of null</p>
+          </li>
+          <li> <span>L</span>
+  <p>LTI Deployment designation</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The node object that this affilaite refers to.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

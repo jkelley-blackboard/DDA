@@ -1,0 +1,496 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-notes_b2.html">notes_b2</a>
+</div>
+
+<h1>course_note
+  <p>Table holding notes against course student memberships</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">course_note_pk1</p>
+  <p>This is the primary key on column pk1 of this table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    course_note_fk1
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table for the author relationship.</p>
+  <ul>
+<li> <a href="#column-author_users_pk1">author_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_note_fk2
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the course_users table for the student relationship.</p>
+  <ul>
+<li> <a href="#column-subject_course_users_pk1">subject_course_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_note_fk3
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the users table for the last modified user relationship.</p>
+  <ul>
+<li> <a href="#column-modified_by_users_pk1">modified_by_users_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> course_note_if1
+  <ul>
+<li> <a href="#column-subject_course_users_pk1">subject_course_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_note_if2
+  <ul>
+<li> <a href="#column-author_users_pk1">author_users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_note_if3
+  <ul>
+<li> <a href="#column-modified_by_users_pk1">modified_by_users_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_users_pk1">author_users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>FK to the Users record of the author. Linking to users so that unenrolled administrators can provide notes. User data is denormalized so that deleted users' records are retained</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_user_id">author_user_id</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Note creator User Name. This refers to the users table user_id column.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_firstname">author_firstname</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Note creator First Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_lastname">author_lastname</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Note creator Last Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_middlename">author_middlename</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note creator Middle Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_othername">author_othername</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note creator Other Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_suffix">author_suffix</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note creator Suffix Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_title">author_title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note creator Title</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-author_pref_name">author_pref_name</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">author_pref_name_ck
+      <ul>
+          <li> <span>G</span>
+  <p>Given name</p>
+          </li>
+          <li> <span>O</span>
+  <p>Other name</p>
+          </li>
+          <li> <span>B</span>
+  <p>Both (Given name and Other name)</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note creator Preferred Display Name. Null value should be treated as Given name as display name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-subject_course_users_pk1">subject_course_users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>FK to the Student (course membership) record to which the note belongs.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The datetime when the note was originally created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The datetime when the note was last modified</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_users_pk1">modified_by_users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>FK to the Users record of the person who last modified this note. Linking to users so that unenrolled administrators can update notes. User data is denormalized so that deleted users' records are retained</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_user_id">modified_by_user_id</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier User Name. This refers to the users table user_id column.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_firstname">modified_by_firstname</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier First Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_lastname">modified_by_lastname</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier Last Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_middlename">modified_by_middlename</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier Middle Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_othername">modified_by_othername</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier Other Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_suffix">modified_by_suffix</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier Suffix Name</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_title">modified_by_title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier Title</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-modified_by_pref_name">modified_by_pref_name</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">modified_by_pref_name_ck
+      <ul>
+          <li> <span>G</span>
+  <p>Given name</p>
+          </li>
+          <li> <span>O</span>
+  <p>Other name</p>
+          </li>
+          <li> <span>B</span>
+  <p>Both (Given name and Other name)</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Note modifier Preferred Display Name. Null value should be treated as Given name as display name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-note">note</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>BbML raw text (smart type) holding the note.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-note_format_type">note_format_type</a></td>
+  <td>char(1)</td>
+    <td>'S'</td>
+    <td class="valueConstraint">course_note_note_format_type
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>H</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the format of the note text. P=Plain text, H=HTML, S=Smart Text</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-deleted_ind">deleted_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">course_note_deleted_ind
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Whether this note has been deleted</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

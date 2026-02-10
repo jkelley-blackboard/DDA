@@ -1,0 +1,828 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>lor_data_summary
+  <p>This table contains collected information regarding the usage of Learning Object entities.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">lor_data_summary_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> lor_data_summary_if1
+  <ul>
+<li> <a href="#column-avl_rule_pk1">avl_rule_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if2
+  <ul>
+<li> <a href="#column-avl_acl_group_pk1">avl_acl_group_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if3
+  <ul>
+<li> <a href="#column-avl_crit_pk1">avl_crit_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if4
+  <ul>
+<li> <a href="#column-blogs_pk1">blogs_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if5
+  <ul>
+<li> <a href="#column-clp_align_cnt_pk1">clp_align_cnt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if6
+  <ul>
+<li> <a href="#column-clp_cnt_align_pk1">clp_cnt_align_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if7
+  <ul>
+<li> <a href="#column-course_contents_pk1">course_contents_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if8
+  <ul>
+<li> <a href="#column-crs_cnt_group_pk1">crs_cnt_group_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if9
+  <ul>
+<li> <a href="#column-course_assessment_pk1">course_assessment_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if10
+  <ul>
+<li> <a href="#column-forum_main_pk1">forum_main_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if11
+  <ul>
+<li> <a href="#column-gradebook_main_pk1">gradebook_main_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if12
+  <ul>
+<li> <a href="#column-gradebook_translator_pk1">gradebook_translator_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if13
+  <ul>
+<li> <a href="#column-groups_pk1">groups_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if14
+  <ul>
+<li> <a href="#column-layout_pk1">layout_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if15
+  <ul>
+<li> <a href="#column-layout_family_pk1">layout_family_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if16
+  <ul>
+<li> <a href="#column-layout_family_req_mod_pk1">layout_family_req_mod_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if17
+  <ul>
+<li> <a href="#column-module_layout_pk1">module_layout_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if18
+  <ul>
+<li> <a href="#column-msg_main_pk1">msg_main_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if19
+  <ul>
+<li> <a href="#column-qti_asi_data_pk1">qti_asi_data_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if20
+  <ul>
+<li> <a href="#column-rubric_pk1">rubric_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if21
+  <ul>
+<li> <a href="#column-rubric_column_pk1">rubric_column_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if22
+  <ul>
+<li> <a href="#column-rubric_row_pk1">rubric_row_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if23
+  <ul>
+<li> <a href="#column-rubric_assoc_pk1">rubric_assoc_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if24
+  <ul>
+<li> <a href="#column-tab_pk1">tab_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if25
+  <ul>
+<li> <a href="#column-lor_crsmain_pk1">lor_crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if26
+  <ul>
+<li> <a href="#column-dtmodified">dtmodified</a>
+</li>
+<li> <a href="#column-lor_sync_date">lor_sync_date</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if27
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if28
+  <ul>
+<li> <a href="#column-lor_parent_pk1">lor_parent_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if29
+  <ul>
+<li> <a href="#column-gradebook_settings_pk1">gradebook_settings_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if30
+  <ul>
+<li> <a href="#column-course_registry">course_registry</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if31
+  <ul>
+<li> <a href="#column-gradebook_symbol">gradebook_symbol</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if32
+  <ul>
+<li> <a href="#column-gradebook_custom_view_pk1">gradebook_custom_view_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if33
+  <ul>
+<li> <a href="#column-gradebook_grading_period_pk1">gradebook_grading_period_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if34
+  <ul>
+<li> <a href="#column-gradebook_type_pk1">gradebook_type_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if35
+  <ul>
+<li> <a href="#column-announcements_pk1">announcements_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if36
+  <ul>
+<li> <a href="#column-calendar_pk1">calendar_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if37
+  <ul>
+<li> <a href="#column-cal_event_rule_pk1">cal_event_rule_pk1</a>
+</li>
+  </ul>
+</li>
+<li> lor_data_summary_if38
+  <ul>
+<li> <a href="#column-calendar_event_group">calendar_event_group</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-announcements_pk1">announcements_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].announcements table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avl_rule_pk1">avl_rule_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].avl_rule table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avl_acl_group_pk1">avl_acl_group_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].avl_crit_acl_group table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avl_crit_pk1">avl_crit_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].avl_crit table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-blogs_pk1">blogs_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].blogs table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-calendar_pk1">calendar_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].calendar table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-cal_event_rule_pk1">cal_event_rule_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].calendar_event_rule table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-clp_align_cnt_pk1">clp_align_cnt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].clp_alignable_content table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-clp_cnt_align_pk1">clp_cnt_align_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].clp_content_alignment table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_assessment_pk1">course_assessment_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_assessment table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_contents_pk1">course_contents_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_contents table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_cnt_group_pk1">crs_cnt_group_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_content_group table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-forum_main_pk1">forum_main_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].forum_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_custom_view_pk1">gradebook_custom_view_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].gradebook_custom_view table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_main_pk1">gradebook_main_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].gradebook_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_settings_pk1">gradebook_settings_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].gradebook_settings table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_translator_pk1">gradebook_translator_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].gradebook_translator table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_type_pk1">gradebook_type_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].gradebook_type table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_grading_period_pk1">gradebook_grading_period_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].gradebook_grading_period table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-groups_pk1">groups_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].groups table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-layout_pk1">layout_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].layout table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-layout_family_pk1">layout_family_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].layout_family table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-layout_family_req_mod_pk1">layout_family_req_mod_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].layout_family_req_module table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-module_layout_pk1">module_layout_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].module_layout table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-msg_main_pk1">msg_main_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].msg_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qti_asi_data_pk1">qti_asi_data_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].qti_asi_data table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-rubric_pk1">rubric_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].rubric table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-rubric_column_pk1">rubric_column_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].rubric_column table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-rubric_row_pk1">rubric_row_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].rubric_row table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-rubric_assoc_pk1">rubric_assoc_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].rubric_association table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_pk1">tab_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].tab table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-calendar_event_group">calendar_event_group</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a [AS_CORE].calendar_event_rule id representing changes to [AS_CORE].calendar_event_group.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_registry">course_registry</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a [AS_CORE].course_main id representing changes to [AS_CORE].course_registry.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gradebook_symbol">gradebook_symbol</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a [AS_CORE].course_main id representing changes to [AS_CORE].gradebook_symbol.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_crsmain_pk1">lor_crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_parent_pk1">lor_parent_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the LOR parent at time of deletion. Populated by trigger ON DELETE.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date and/or time at which the LOR parent record was touched.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date and/or time at which the LOR parent record was synchronized.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-child_count">child_count</a></td>
+  <td>numeric</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Attribute tracking number of children for associated entity.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-crs_content.html">crs_content</a>
+</div>
+
+<h1>course_toc
+  <p>The course_toc is the left-side 'course menu' inside a course/org</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">course_toc_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    course_toc_fk1
+  <p>This is a foreign key referencing the primary key of the course_contents table. </p>
+  <ul>
+<li> <a href="#column-course_contents_pk1">course_contents_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_toc_fk2
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the navigation_item table. </p>
+  <ul>
+<li> <a href="#column-internal_handle">internal_handle</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_toc_fk3
+  <p>This is a foreign key referencing the primary key of the course_main table. </p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> course_toc_if1
+  <ul>
+<li> <a href="#column-course_contents_pk1">course_contents_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_toc_if2
+  <ul>
+<li> <a href="#column-internal_handle">internal_handle</a>
+</li>
+  </ul>
+</li>
+<li> course_toc_if3
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing course_main.pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_contents_pk1">course_contents_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing course_contents.pk1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-label">label</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The label for a course menu item - for built in values it will be a key to a language bundle (design_template_item.properties) but if not found there then used as raw text</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-href">href</a></td>
+  <td>varchar(1024)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>When target_type is HREF (Web Link in UI) this is the target url.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-target_type">target_type</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Type of the target ike: application, content_link, module, staff, etc.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-position">position</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Item position within the menu.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-launch_ind">launch_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator51
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Flag to determine if item should be launched in a new window (Y=new window)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enabled_ind">enabled_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator52
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Flag to indicate if the menu item is available to students</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-entry_point_ind">entry_point_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator53
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>A value of Y indicates that this menu item is the entry point for the course (i.e. select a course from any normal nav path aside from the cross-course-nav menu and you will enter the course at this menu item)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_observer_ind">allow_observer_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator54
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This column indicates whether an observer is allowed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-internal_handle">internal_handle</a></td>
+  <td>varchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This refers the internal_handle column of the navigation_item table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_guest_ind">allow_guest_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator55
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This column indicates whether a guest is allowed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

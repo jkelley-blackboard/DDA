@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuSchemas">
+
+
+<p>
+  <a onclick="selectSchema(this, 'frame-overview.html')" target="elementFrame" href="frame-elements.html">All Database Objects</a>
+</p>
+
+<h2><span>Schemas</span></h2>
+<ul>
+    <li> <a onclick="selectSchema(this, 'overview-schema-achievements_b2.html')" target="elementFrame" href="schema-achievements_b2.html">achievements_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-adaptive_release.html')" target="elementFrame" href="schema-adaptive_release.html">adaptive_release</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-admin.html')" target="elementFrame" href="schema-admin.html">admin</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-as_core.html')" target="elementFrame" href="schema-as_core.html">as_core</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-assessment.html')" target="elementFrame" href="schema-assessment.html">assessment</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-assessment_b2.html')" target="elementFrame" href="schema-assessment_b2.html">assessment_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-asset_processor.html')" target="elementFrame" href="schema-asset_processor.html">asset_processor</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-assignment_b2_docviewer.html')" target="elementFrame" href="schema-assignment_b2_docviewer.html">assignment_b2_docviewer</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-auth-device_b2.html')" target="elementFrame" href="schema-auth_device_b2.html">auth-device_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-auth_provider_saml_b2.html')" target="elementFrame" href="schema-auth_provider_saml_b2.html">auth_provider_saml_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-blog.html')" target="elementFrame" href="schema-blog.html">blog</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-blti.html')" target="elementFrame" href="schema-blti.html">blti</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-calendar_b2.html')" target="elementFrame" href="schema-calendar_b2.html">calendar_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-caliper_b2.html')" target="elementFrame" href="schema-caliper_b2.html">caliper_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-clp_assess.html')" target="elementFrame" href="schema-clp_assess.html">clp_assess</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-clp_core.html')" target="elementFrame" href="schema-clp_core.html">clp_core</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-clp_currmap.html')" target="elementFrame" href="schema-clp_currmap.html">clp_currmap</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-clp_instrument_core.html')" target="elementFrame" href="schema-clp_instrument_core.html">clp_instrument_core</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-clp_sog.html')" target="elementFrame" href="schema-clp_sog.html">clp_sog</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-clp_survey.html')" target="elementFrame" href="schema-clp_survey.html">clp_survey</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-cms.html')" target="elementFrame" href="schema-cms.html">cms</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-collab.html')" target="elementFrame" href="schema-collab.html">collab</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-collab_ultra_b2.html')" target="elementFrame" href="schema-collab_ultra_b2.html">collab_ultra_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-common.html')" target="elementFrame" href="schema-common.html">common</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-content_editor_b2.html')" target="elementFrame" href="schema-content_editor_b2.html">content_editor_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-course_messages.html')" target="elementFrame" href="schema-course_messages.html">course_messages</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-crs_content.html')" target="elementFrame" href="schema-crs_content.html">crs_content</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-data_integration_b2.html')" target="elementFrame" href="schema-data_integration_b2.html">data_integration_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-data_integration_ims_xml_b2.html')" target="elementFrame" href="schema-data_integration_ims_xml_b2.html">data_integration_ims_xml_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-date_management_b2.html')" target="elementFrame" href="schema-date_management_b2.html">date_management_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-discussionboard.html')" target="elementFrame" href="schema-discussionboard.html">discussionboard</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-domain.html')" target="elementFrame" href="schema-domain.html">domain</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-enterprise-survey_b2.html')" target="elementFrame" href="schema-enterprise_survey_b2.html">enterprise-survey_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-evidence.html')" target="elementFrame" href="schema-evidence.html">evidence</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-evidence_collection_b2.html')" target="elementFrame" href="schema-evidence_collection_b2.html">evidence_collection_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-evidence_collection_b2_stats.html')" target="elementFrame" href="schema-evidence_collection_b2_stats.html">evidence_collection_b2_stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-evidence_repository.html')" target="elementFrame" href="schema-evidence_repository.html">evidence_repository</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-financial_aid_b2_stats.html')" target="elementFrame" href="schema-financial_aid_b2_stats.html">financial_aid_b2_stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-foundations_connector_b2.html')" target="elementFrame" href="schema-foundations_connector_b2.html">foundations_connector_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-foundations_file_association_b2.html')" target="elementFrame" href="schema-foundations_file_association_b2.html">foundations_file_association_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-fulltextsearch.html')" target="elementFrame" href="schema-fulltextsearch.html">fulltextsearch</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-goal_b2.html')" target="elementFrame" href="schema-goal_b2.html">goal_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-goal-performance.html')" target="elementFrame" href="schema-goal_performance.html">goal-performance</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-goal-performance_stats.html')" target="elementFrame" href="schema-goal_performance_stats.html">goal-performance_stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-gradebook.html')" target="elementFrame" href="schema-gradebook.html">gradebook</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-group.html')" target="elementFrame" href="schema-group.html">group</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-instrument_core.html')" target="elementFrame" href="schema-instrument_core.html">instrument_core</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-item_analysis_b2.html')" target="elementFrame" href="schema-item_analysis_b2.html">item_analysis_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-learn-analytics-ng_b2-stats.html')" target="elementFrame" href="schema-learn_analytics_ng_b2_stats.html">learn-analytics-ng_b2-stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-learn-analytics-ng_b2-vi.html')" target="elementFrame" href="schema-learn_analytics_ng_b2_vi.html">learn-analytics-ng_b2-vi</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-learning_standard.html')" target="elementFrame" href="schema-learning_standard.html">learning_standard</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-metric.html')" target="elementFrame" href="schema-metric.html">metric</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-nautilus.html')" target="elementFrame" href="schema-nautilus.html">nautilus</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-notes_b2.html')" target="elementFrame" href="schema-notes_b2.html">notes_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-ods.html')" target="elementFrame" href="schema-ods.html">ods</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-ods_b2_stats.html')" target="elementFrame" href="schema-ods_b2_stats.html">ods_b2_stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-ods_b2_vi.html')" target="elementFrame" href="schema-ods_b2_vi.html">ods_b2_vi</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-portal.html')" target="elementFrame" href="schema-portal.html">portal</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-portfolio.html')" target="elementFrame" href="schema-portfolio.html">portfolio</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-portfolio_b2.html')" target="elementFrame" href="schema-portfolio_b2.html">portfolio_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-report.html')" target="elementFrame" href="schema-report.html">report</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-rest_b2.html')" target="elementFrame" href="schema-rest_b2.html">rest_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-retention_b2.html')" target="elementFrame" href="schema-retention_b2.html">retention_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-retention_b2_stats.html')" target="elementFrame" href="schema-retention_b2_stats.html">retention_b2_stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-scormengine_b2.html')" target="elementFrame" href="schema-scormengine_b2.html">scormengine_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-scormengine-pre-upgrade_b2.html')" target="elementFrame" href="schema-scormengine_pre_upgrade_b2.html">scormengine-pre-upgrade_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-snapshot.html')" target="elementFrame" href="schema-snapshot.html">snapshot</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-software_updates_b2.html')" target="elementFrame" href="schema-software_updates_b2.html">software_updates_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-stats.html')" target="elementFrame" href="schema-stats.html">stats</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-student_preview_b2.html')" target="elementFrame" href="schema-student_preview_b2.html">student_preview_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-task_progress_b2.html')" target="elementFrame" href="schema-task_progress_b2.html">task_progress_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-telemetry_b2.html')" target="elementFrame" href="schema-telemetry_b2.html">telemetry_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-textbook_b2.html')" target="elementFrame" href="schema-textbook_b2.html">textbook_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-video-integration_b2.html')" target="elementFrame" href="schema-video_integration_b2.html">video-integration_b2</a>
+    <li> <a onclick="selectSchema(this, 'overview-schema-wiki_b2.html')" target="elementFrame" href="schema-wiki_b2.html">wiki_b2</a>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,883 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-stats.html">stats</a>
+</div>
+
+<h1>users
+  <p>This table contains detailed information on users that are in the system. This excludes staff??? see staffinformation table</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">users_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> users_ak1
+  <ul>
+<li> <a href="#column-batch_uid">batch_uid</a>
+</li>
+  </ul>
+</li>
+<li> users_ak2
+  <ul>
+<li> <a href="#column-user_id">user_id</a>
+</li>
+  </ul>
+</li>
+<li> users_ak3
+  <ul>
+<li> <a href="#column-data_src_pk1">data_src_pk1</a>
+</li>
+<li> <a href="#column-row_status">row_status</a>
+</li>
+<li> <a href="#column-user_id">user_id</a>
+</li>
+  </ul>
+</li>
+<li> users_ie1
+  <ul>
+<li> <a href="#column-last_login_date">last_login_date</a>
+</li>
+  </ul>
+</li>
+<li> users_ie3
+  <ul>
+<li> <a href="#column-email">email</a>
+</li>
+  </ul>
+</li>
+<li> users_if1
+  <ul>
+<li> <a href="#column-system_role">system_role</a>
+</li>
+  </ul>
+</li>
+<li> users_if2
+  <ul>
+<li> <a href="#column-data_src_pk1">data_src_pk1</a>
+</li>
+  </ul>
+</li>
+<li> users_if3
+  <ul>
+<li> <a href="#column-institution_roles_pk1">institution_roles_pk1</a>
+</li>
+  </ul>
+</li>
+<li> users_if4
+  <ul>
+<li> <a href="#column-locale">locale</a>
+</li>
+  </ul>
+</li>
+<li> users_ie4
+  <ul>
+<li> <a href="#column-uuid">uuid</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-city">city</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is user's city.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-data_src_pk1">data_src_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a reference to the Data Source associated with this user, used for SIS integration.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-system_role">system_role</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p> This is the user's primary system role.
+                N = None
+                C = Course Administrator
+                U = Guest
+                BB_LE_ADMIN = Learning Environment Administrator
+                O = Observer
+                R = Support
+                Z = System Administrator
+                H = System Support
+                A = User Administrator
+        </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the datetime when the user is created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime when the user is last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-row_status">row_status</a></td>
+  <td>numeric(1,0)</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Row status: 0=enabled, 1=undefined, 2=disabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's batch uid.  It is used mostly for SIS integration, representing the user's id in the external system.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-user_id">user_id</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user's user_id, the same as user_name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-passwd">passwd</a></td>
+  <td>varchar(400)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the encrypted user's password.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_password_modified_dt">last_password_modified_dt</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime when the password is last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-password_expired_ind">password_expired_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">password_expired_ind_enum
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the flag indicating if the user's password is expired. By default 'NULL' means false not expired.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-firstname">firstname</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user's first name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-middlename">middlename</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's middle name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lastname">lastname</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user's last name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-othername">othername</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's other name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-suffix">suffix</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the suffix on the user's name.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-gender">gender</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">gender_enum
+      <ul>
+          <li> <span>M</span>
+          </li>
+          <li> <span>F</span>
+          </li>
+          <li> <span>X</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's gender.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-educ_level">educ_level</a></td>
+  <td>numeric(2,0)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p> This is a user's education level.
+                0 = None
+                8 = K-8
+                12 = High school
+                13 = Freshman
+                14 = Sophomore
+                15 = Junior
+                16 = Senior
+                18 = Graduate School
+                20 = Post Graduate School
+        </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-birthdate">birthdate</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's birth date.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's title. E.g. Mr., Dr., etc.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-student_id">student_id</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's student id.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-email">email</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's email address.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-inst_email">inst_email</a></td>
+  <td>varchar(254)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's institutional email address.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-job_title">job_title</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's job title.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-department">department</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's department.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-company">company</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's company.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-street_1">street_1</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This the user's first line street address.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-institution_roles_pk1">institution_roles_pk1</a></td>
+  <td>id</td>
+    <td>1</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the foreign key referencing Institution_Roles table. This is the user's primary institutional role.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-street_2">street_2</a></td>
+  <td>nvarchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This the user's second line street address.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-state">state</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is user's state.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-zip_code">zip_code</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's zip code.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-country">country</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's country.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-b_phone_1">b_phone_1</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's business phone number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-b_phone_2">b_phone_2</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's secondary business phone number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-h_phone_1">h_phone_1</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's home phone number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-h_phone_2">h_phone_2</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's secondary home phone number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-m_phone">m_phone</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's mobile phone number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-b_fax">b_fax</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's business fax number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-h_fax">h_fax</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's home fax number.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-webpage">webpage</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user's webpage.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-public_ind">public_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator102
+      <ul>
+          <li> <span>Y</span>
+  <p>Everyone</p>
+          </li>
+          <li> <span>N</span>
+  <p>Nobody</p>
+          </li>
+          <li> <span>C</span>
+  <p>Classmates</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean (Y/N) indicator of whether the user's information should be in the user directory.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-address_ind">address_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator103
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean (Y/N) indicator of whether the user's address should be in the user directory.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-phone_ind">phone_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator104
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean (Y/N) indicator of whether the user's phone number should be in the user directory.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-work_ind">work_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator105
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean (Y/N) indicator of whether the user's work information should be in the user directory.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-email_ind">email_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator106
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean (Y/N) indicator of whether the user's email address should be in the user directory.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_ind">available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator107
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean (Y/N) indicator of whether the user is available or unavailable.  Unavailable users cannot log in.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-last_login_date">last_login_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime the user last logged on to BB Learn.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-locale">locale</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the locale that the user wishes to view the application in.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-avatar_type">avatar_type</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">user_avatar_type_enum
+      <ul>
+          <li> <span>D</span>
+  <p>Default. This user does not set an avatar but uses the default one.</p>
+          </li>
+          <li> <span>B</span>
+  <p>Both. A user avatar and a system avatar have both been set.</p>
+          </li>
+          <li> <span>C</span>
+  <p>This value is deprecated.</p>
+          </li>
+          <li> <span>U</span>
+  <p>User. A user avatar has been set.</p>
+          </li>
+          <li> <span>S</span>
+  <p>System. A system avatar has been set.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The user's avatar type (different than system level avatar type). Null means unknown type (callers should determine themselves).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-uuid">uuid</a></td>
+  <td>nvarchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>A unique (generated) identifier for this user.  Sent as the user_id in LTI launches.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

@@ -1,0 +1,1376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>course_main
+  <p>This table contains the basic information for a course. Records are created when a course is created or imported.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">course_main_pk</p>
+  <p>This is the name of primary key constraint on column pk1.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    course_main_fk1
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].cartridge table.</p>
+  <ul>
+<li> <a href="#column-cartridge_pk1">cartridge_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_main_fk4
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].data_source table.</p>
+  <ul>
+<li> <a href="#column-data_src_pk1">data_src_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_main_fk3
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].buttonstyles table.</p>
+  <ul>
+<li> <a href="#column-buttonstyles_pk1">buttonstyles_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_main_fk2
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].classifications table.</p>
+  <ul>
+<li> <a href="#column-classifications_pk1">classifications_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_main_fk5
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_theme table.</p>
+  <ul>
+<li> <a href="#column-course_theme_pk1">course_theme_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_main_fk6
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the queued_tasks table.</p>
+  <ul>
+<li> <a href="#column-import_task_pk1">import_task_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    course_main_fk7
+    <span>(On Delete SetNull)</span>
+  <p>This is a foreign key referencing the primary key of the queued_tasks table.</p>
+  <ul>
+<li> <a href="#column-convert_task_pk1">convert_task_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> course_main_ak1
+  <ul>
+<li> <a href="#column-batch_uid">batch_uid</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ak2
+  <ul>
+<li> <a href="#column-course_id">course_id</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ak3
+  <ul>
+<li> <a href="#column-lower_course_id">lower_course_id</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ic1
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ie1
+  <ul>
+<li> <a href="#column-course_name">course_name</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ie2
+  <ul>
+<li> <a href="#column-service_level">service_level</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ie3
+  <ul>
+<li> <a href="#column-start_date">start_date</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ie4
+  <ul>
+<li> <a href="#column-end_date">end_date</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ie5
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+<li> <a href="#column-available_ind">available_ind</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ie6
+  <ul>
+<li> <a href="#column-uuid">uuid</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if1
+  <ul>
+<li> <a href="#column-cartridge_pk1">cartridge_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if2
+  <ul>
+<li> <a href="#column-classifications_pk1">classifications_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if3
+  <ul>
+<li> <a href="#column-buttonstyles_pk1">buttonstyles_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if4
+  <ul>
+<li> <a href="#column-data_src_pk1">data_src_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if5
+  <ul>
+<li> <a href="#column-locale">locale</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if6
+  <ul>
+<li> <a href="#column-course_theme_pk1">course_theme_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if7
+  <ul>
+<li> <a href="#column-import_task_pk1">import_task_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if8
+  <ul>
+<li> <a href="#column-convert_task_pk1">convert_task_pk1</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if9
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+<li> <a href="#column-honor_term_avail_ind">honor_term_avail_ind</a>
+</li>
+<li> <a href="#column-available_ind">available_ind</a>
+</li>
+<li> <a href="#column-row_status">row_status</a>
+</li>
+<li> <a href="#column-is_closed_ind">is_closed_ind</a>
+</li>
+<li> <a href="#column-service_level">service_level</a>
+</li>
+  </ul>
+</li>
+<li> course_main_if10
+  <ul>
+<li> <a href="#column-lor_crsmain_pk1">lor_crsmain_pk1</a>
+</li>
+<li> <a href="#column-lor_sync_date">lor_sync_date</a>
+</li>
+  </ul>
+</li>
+<li> course_main_ak4
+  <ul>
+<li> <a href="#column-foundations_id">foundations_id</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-buttonstyles_pk1">buttonstyles_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].buttonstyles table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-cartridge_pk1">cartridge_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].cartridge table. It is the course cartridge that is used for the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-classifications_pk1">classifications_pk1</a></td>
+  <td>id</td>
+    <td>113</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].classifications table. This determines the classification (subject area and the discipline) of the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-data_src_pk1">data_src_pk1</a></td>
+  <td>id</td>
+    <td>2</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].data_source table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the datetime when the course was first created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime when the course was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_name">course_name</a></td>
+  <td>nvarchar(333)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the name of the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_id">course_id</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the ID of the course. It can be provided by the user.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lower_course_id">lower_course_id</a></td>
+  <td>varchar(100)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the ID of the course in lowercase letters.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_desc">course_desc</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-row_status">row_status</a></td>
+  <td>numeric(1,0)</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Row status: 0=enabled, 1=undefined, 2=disabled, 3=deleted.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The unique id for the course. For internally created courses it is the same as course_id but for SIS-sourced courses it is set by the SIS feed</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enroll_option">enroll_option</a></td>
+  <td>char(1)</td>
+    <td>'I'</td>
+    <td class="valueConstraint">enroll_option_enum
+      <ul>
+          <li> <span>S</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+          <li> <span>E</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+         This is the enrollment method that is set for the course.
+        S = Self Enrollment
+        I = Instructor/ System Administrator
+        E = Email Enrollment
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-duration">duration</a></td>
+  <td>char(1)</td>
+    <td>'C'</td>
+    <td class="valueConstraint">course_main_duration_ck
+      <ul>
+          <li> <span>C</span>
+          </li>
+          <li> <span>R</span>
+          </li>
+          <li> <span>D</span>
+          </li>
+          <li> <span>T</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+        This is to indicate if the duration of the course availability is continuous, date range, x days from enrollment, or term-dictated.
+        C = Continuous
+        R = Date Range
+        D = x days from enrollment
+        T = term-dictated (the associated term's duration controls this course's duration)
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-pace">pace</a></td>
+  <td>char(1)</td>
+    <td>'I'</td>
+    <td class="valueConstraint">course_main_pace_ck
+      <ul>
+          <li> <span>I</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+    Deprecated Field: Not used anymore
+    I = Instructor Led
+    S = Self Paced
+    </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-service_level">service_level</a></td>
+  <td>char(1)</td>
+    <td>'F'</td>
+    <td class="valueConstraint">course_main_srvc_lvl_ck
+      <ul>
+          <li> <span>F</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+          <li> <span>R</span>
+          </li>
+          <li> <span>T</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+          <li> <span>L</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>J</span>
+          </li>
+          <li> <span>M</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+          <li> <span>O</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+         This is the service_level set for the course.
+        F = Full/Free Course
+        C = Community (Organization)
+        R = Registered Course
+        T = Test Drive
+        S = System
+        L = System
+        P = Program
+        J = Subject
+        M = Course Template
+        N = Organization Template
+        O = Learning Object Repository
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-abs_limit">abs_limit</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Handles the disk quota absolute limit on content. The content in the course may not exceed this limit. Expressed in bytes.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-soft_limit">soft_limit</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Handles the disk quota soft limit on content. Instructors receive a warning email when this limit is exceeded. Expressed in bytes.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-upload_limit">upload_limit</a></td>
+  <td>numeric</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>No longer used in Learn 9.1.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-start_date">start_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime that the course starts to be available to access.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-end_date">end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime that the course stops to be available to access.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enroll_start_date">enroll_start_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime when the enrollment to the course can be started.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enroll_end_date">enroll_end_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the datetime when the enrollment to the course ends.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-days_of_use">days_of_use</a></td>
+  <td>numeric(6,0)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Number of days that Students may access the course after enrollment. Useful for self-paced learning.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-fee">fee</a></td>
+  <td>numeric(11,2)</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This field is not used</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-enroll_access_code">enroll_access_code</a></td>
+  <td>nvarchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the access code/password for students to use when enrolling to the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-banner_url">banner_url</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL where the course banner image is stored at. Link to an image that will display at the top of the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-banner_alt">banner_alt</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the ALT text for the course banner image.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-institution_name">institution_name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The institution name associated with this course (not used?)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reg_level_ind">reg_level_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator42
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This field is used for the Blackboard.com service. It has not relevance outside of the Blackboard.com site. This field is not used</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-navigation_style">navigation_style</a></td>
+  <td>varchar(20)</td>
+    <td>'TEXT'</td>
+    <td class="valueConstraint">navigation_style_enum
+      <ul>
+          <li> <span>TEXT</span>
+          </li>
+          <li> <span>BUTTON</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the navigation menu style that is set for the course. Determines whether the Course Menu uses buttons or text links.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-textcolor">textcolor</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text color used for text in the Course Menu.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-background_color">background_color</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the background color that is set for the Course Menu.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-collapsible_ind">collapsible_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator43
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Determines whether or not the Course Menu can be consolidated to show just the top headings or expanded to show subheads. This field is not used. Original intention: This flag determines whether or not users of a course should be allowed to 'collapse' (slide into the side) the navigation links which appear on the left hand side of the course page.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_guest_ind">allow_guest_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator44
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the flag that indicates if guest access is allowed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-catalog_ind">catalog_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator45
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This field is not used</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lockout_ind">lockout_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator46
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This field is not used. Original intent: lockout all but administrator user from the course. Indicates if access to the course or organization has been restricted. If set to Y access to the course or organization will be restricted based on the END_DATE and START_DATE.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-desc_page_ind">desc_page_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator47
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This field is not used</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_ind">available_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">indicator48
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+        This is the flag that indicates if this course is set to be available.
+        If honor_term_avail_ind is true, this flag is ignored and this course's availability is determined by its
+        associated term available_ind.
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-allow_observer_ind">allow_observer_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">indicator49
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the flag that indicates if observers are allowed for this course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-show_banner_ind">show_banner_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">show_banner_ind_ck
+      <ul>
+          <li> <span>Y</span>
+  <p>the course banner is visible</p>
+          </li>
+          <li> <span>N</span>
+  <p>the course banner is hidden</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        Determines whether or not the course banner should be shown or hidden in an Ultra Course.
+        A null value here means that a choice has not yet been made to show or hide the course banner and will be
+        effectively treated as hidden ("N") by the java code.
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_content_view">default_content_view</a></td>
+  <td>char(1)</td>
+    <td>'X'</td>
+    <td class="valueConstraint">default_content_view_enum3
+      <ul>
+          <li> <span>T</span>
+          </li>
+          <li> <span>I</span>
+          </li>
+          <li> <span>X</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>
+        This is the view option that decides how the course content view looks like.
+        T = Text Only
+        I = Icon Only
+        X = Icon and Text
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-locale">locale</a></td>
+  <td>varchar(20)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The locale (language) in which the course should be delivered - see is_locale_enforced. A null value means 'use system default'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-is_locale_enforced">is_locale_enforced</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Values:Y/N: If Y then the locale will be forced to locale regardless of what the user's personal preferences have set for their locale</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-asmt_upgrade_version">asmt_upgrade_version</a></td>
+  <td>numeric</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>The assessment data has to go through a number of runtime upgrade steps before assessments are usable in a course.  This field records the current upgrade-state of the assessments data within this course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-asmt_upgrade_flags">asmt_upgrade_flags</a></td>
+  <td>numeric</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>After any import or restore operation the asmt_upgrade_version is set back to 0 and any new data re-upgraded.  There are certain parts of the upgrade which do not have to run in this case (i.e. the upgrade is only required once per course, not after each import operation).  This field is used to store those flags to avoid re-running pieces of the upgrade</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-honor_term_avail_ind">honor_term_avail_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">course_main_hnr_trm_av_ck
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>if Y then use the term for available_ind; if N then use those fields from this table. (Note that duration implicitly affects availability through fields such as startdate and enddate but those are only controlled by the term when course.duration=T)</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_theme_pk1">course_theme_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the [AS_CORE].course_theme table. It is the course theme that is used for the course.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-import_task_pk1">import_task_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The latest queued task pk1 which is import/restore/copy into this course. it is overwritten if multiple ones are queued. This field is transient so not be included in course copy or content exchange operations</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-uuid">uuid</a></td>
+  <td>nvarchar(32)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>A unique (generated) identifier for this course.  Sent as the context_id in LTI launch requests.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-copy_from_uuids">copy_from_uuids</a></td>
+  <td>varchar(329)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The source course uuid(s) on copy. This could be a comma-separated list. Sent as the context_id_history in LTI launch requests. Configured to hold up to 10.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_view_option">course_view_option</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">course_main_ck1
+      <ul>
+          <li> <span>I</span>
+  <p>Instructors can choose course view at anytime</p>
+          </li>
+          <li> <span>U</span>
+  <p>The course will use Ultra view, instructors can't change it</p>
+          </li>
+          <li> <span>C</span>
+  <p>The course will use Original view, instructors can't change it</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        This is course view option flag. It's different from ultra_status flag, this flag control if instructor can change the course view or change directly by admin,
+        while ultra_status just indicate the current course view of this course is. Also, if the course ultra_status is in ULTRA_DECIDED state, then this flag will be ignored.
+        If null, then the default value depends on the system-wide ultra setting:
+        If ultra is ON then null is effectively 'I'
+        If ultra is OFF then null is effectively 'C'
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ultra_status">ultra_status</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">ultra_status_enum
+      <ul>
+          <li> <span>N</span>
+  <p>No explicit decision has been made yet (for now treated the same as classic-decided)</p>
+          </li>
+          <li> <span>C</span>
+  <p>The classic user experience has explicitly been chosen</p>
+          </li>
+          <li> <span>U</span>
+  <p>The Ultra user experience has explicitly been chosen.</p>
+          </li>
+          <li> <span>P</span>
+  <p>The course is currently an Ultra course but in preview mode.</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        This is the flag indicating if the course is classic, ultra, or ultra preview.  Note that updates to this field are controlled in java code so please do not blindly change it directly.
+        Specifically you can only perform these transitions:
+        N->C, N->U, N->P, C->U, C->P, P->U, P->C, U->NOTHING. You cannot go back once you pick U
+        The NULL value, which represents classic, will be left for all the legacy courses and treated the same as classic
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-is_closed_ind">is_closed_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">course_main_is_closed_ck
+      <ul>
+          <li> <span>Y</span>
+  <p>the course is closed for student access</p>
+          </li>
+          <li> <span>N</span>
+  <p>the student is able to access the course</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        This is the flag indicating if the course is closed for student access.  Even if the course is closed, the course is still listed in the student's course listing.
+        The NULL value will be interpreted as N
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-convert_task_pk1">convert_task_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The latest queued task pk1 which is a course conversion. it is overwritten if multiple ones are queued. This field is transient so not be included in course copy or content exchange operations</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-ultra_conversion_report_id">ultra_conversion_report_id</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The identifier for the conversion report when the course was converted from original to Ultra. This field is transient so not be included in content exchange operations</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-owner">owner</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">course_main_owner_ck
+      <ul>
+          <li> <span>L</span>
+  <p>Learn</p>
+          </li>
+          <li> <span>F</span>
+  <p>Foundations</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates which system is the source of truth for the record. Defaults to Learn if unset.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-foundations_id">foundations_id</a></td>
+  <td>varchar(36)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The ID of this course in Foundations</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-progress_tracking_ind">progress_tracking_ind</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">course_progress_tracking_ck
+      <ul>
+          <li> <span>Y</span>
+  <p>Progress tracking is enabled for the course</p>
+          </li>
+          <li> <span>N</span>
+  <p>Progress tracking is disabled for the course, and enabling it will require data migration. New Ultra courses should use the 'O' indicator</p>
+          </li>
+          <li> <span>O</span>
+  <p>Progress tracking is disabled</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Indicates if the course is set to track student progress. Null values will be treated as 'N'</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-catalog_video_url">catalog_video_url</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the URL for preview of course to show within catalog listing.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-version">version</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The version number of this object. For Learn-owned rows, this is incremented any time the record is written. Defaults to 0 if unset.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-course_type">course_type</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">course_main_course_type_ck
+      <ul>
+          <li> <span>U</span>
+  <p>Undergraduate</p>
+          </li>
+          <li> <span>G</span>
+  <p>Graduate</p>
+          </li>
+          <li> <span>D</span>
+  <p>Developmental</p>
+          </li>
+          <li> <span>N</span>
+  <p>UndergraduateNonTransferable</p>
+          </li>
+          <li> <span>T</span>
+  <p>UndergraduateTransferable</p>
+          </li>
+          <li> <span>P</span>
+  <p>Professional</p>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>
+        This is the course type. Added for service-level Subject, can be used for other service levels too.
+      </p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-extended_data">extended_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Used to store arbitrary properties for this item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_crsmain_pk1">lor_crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>The object hosting the root Learning Object Repository item</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-lor_sync_date">lor_sync_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Time associated Learning Object Repository synchronization was last completed.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

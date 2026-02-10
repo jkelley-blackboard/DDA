@@ -1,0 +1,725 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-domain.html">domain</a>
+</div>
+
+<h1>domain
+  <p>This table contains general information for domain and domain collection settings. Tracks the domain, as well as all of its criteria, for all objects in the system. </p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">domain_pk</p>
+  <p>This is the surrogate primary key for the table.</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> domain_if1
+  <ul>
+<li> <a href="#column-batch_uid">batch_uid</a>
+</li>
+  </ul>
+</li>
+<li> domain_if2
+  <ul>
+<li> <a href="#column-default_ind">default_ind</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time when the domain was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time the domain was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-batch_uid">batch_uid</a></td>
+  <td>nvarchar(256)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>A unique identifier for the association.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-name">name</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the name of the domain.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(1000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the domain.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-default_ind">default_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag indicating if the domain is the default domain.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-manual_ind">manual_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">domain_enum1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolean flag indicating if the domain only has manually managed collections of objects or its collections can be criteria-based.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_include_crit">crs_include_crit</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the course collection criteria for the domain defining general collection options. N=Include no items, A=Include all items, C=Include items according to the criteria below.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_availability_ind">crs_check_availability_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if course collection criteria for the domain should check the availability. N=Do not check availability, Y=Check the availability.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_availability_val">crs_check_availability_val</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the course collection criteria for the domain defining availability criteria. When crs_check_availability_ind is set to Y, then, Y=Include only available, N=Include only unavailable.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_row_status_ind">crs_check_row_status_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if course collection criteria for the domain should check the disabled status criteria. N=Do not check disabled status. Y=Check the disabled status.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_row_status_val">crs_check_row_status_val</a></td>
+  <td>int</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the course collection criteria for the domain defining disabled status criteria. When crs_check_row_status_ind is set to Y, then, 0=Include only enabled, 2=Include only disabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_enrollment_ind">crs_check_enrollment_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if course collection criteria for the domain should check the enrollment criteria. N=Do not check enrollment option. Y=Check the enrollment option.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_enrollment_val">crs_check_enrollment_val</a></td>
+  <td>char(1)</td>
+    <td>'I'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the course collection criteria for the domain defining enrollment criteria. When crs_check_row_status_ind is set to Y, then, I=Include only courses with instructor and administrator controlled enrollment, E=Include only courses with email request enrollment. S=Include only courses with self-enrollment.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_categories_ind">crs_check_categories_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if course collection criteria for the domain should check the course catalog categories criteria. N=All (Ignore course categorization), Y=Specific Categories (Courses that have any of the select categories will be included in the collection).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_data_source_ind">crs_check_data_source_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if course collection criteria for the domain should check the data source criteria. N=Do not check data source criteria, Y=Check the data souce keys. It is set to Y when any data source keys are specified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crs_check_list_ind">crs_check_list_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if course collection criteria for the domain should check the specific courses. N=THere is no course specified, Y=Courses are specified, all courses specified here will be included in the collection regardless of other criteria settings.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_include_crit">org_include_crit</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the organization collection criteria for the domain defining general collection options. N=Include no items, A=Include all items, C=Include items according to the criteria below.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_availability_ind">org_check_availability_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if organization collection criteria for the domain should check the availability. N=Do not check availability, Y=Check the availability.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_availability_val">org_check_availability_val</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the organization collection criteria for the domain defining availability criteria. When org_check_availability_ind is set to Y, then, Y=Include only available, N=Include only unavailable.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_row_status_ind">org_check_row_status_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if organization collection criteria for the domain should check the disabled status criteria. N=Do not check disabled status. Y=Check the disabled status.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_row_status_val">org_check_row_status_val</a></td>
+  <td>int</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the organization collection criteria for the domain defining disabled status criteria. When usr_check_row_status_ind is set to Y, then, 0=Include only enabled, 2=Include only disabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_enrollment_ind">org_check_enrollment_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if organization collection criteria for the domain should check the enrollment criteria. N=Do not check enrollment option. Y=Check the enrollment option.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_enrollment_val">org_check_enrollment_val</a></td>
+  <td>char(1)</td>
+    <td>'I'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the organization collection criteria for the domain defining enrollment criteria. When org_check_enrollment_ind is set to Y, then, I=Include only courses with leader and administrator controlled enrollment, E=Include only courses with email request enrollment. S=Include only courses with self-enrollment.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_categories_ind">org_check_categories_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if organization collection criteria for the domain should check the organization catalog categories criteria. N=All (Ignore organization categorization), Y=Specific Categories (Organizations that have any of the select categories will be included in the collection).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_data_source_ind">org_check_data_source_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if organization collection criteria for the domain should check the data source criteria. N=Do not check data source criteria, Y=Check the data souce keys. It is set to Y when any data source keys are specified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-org_check_list_ind">org_check_list_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if organization collection criteria for the domain should check the specific organizations. N=THere is no organization specified, Y=organizations are specified, all organizations specified here will be included in the collection regardless of other criteria settings.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_include_crit">usr_include_crit</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user collection criteria for the domain defining general collection options. N=Include no items, A=Include all items, C=Include items according to the criteria below.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_availability_ind">usr_check_availability_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the availability. N=Do not check availability, Y=Check the availability.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_availability_val">usr_check_availability_val</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user collection criteria for the domain defining availability criteria. When usr_check_availability_ind is set to Y, then, Y=Include only available, N=Include only unavailable.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_row_status_ind">usr_check_row_status_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the disabled status criteria. N=Do not check disabled status. Y=Check the disabled status.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_row_status_val">usr_check_row_status_val</a></td>
+  <td>int</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user collection criteria for the domain defining disabled status criteria. When usr_check_row_status_ind is set to Y, then, 0=Include only enabled, 2=Include only disabled.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_enrollment_ind">usr_check_enrollment_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Unused. Will be removed in a future release.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_enrollment_val">usr_check_enrollment_val</a></td>
+  <td>int</td>
+    <td>0</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Unused. Will be removed in a future release.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_department_ind">usr_check_department_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Unused. Will be removed in a future release.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_privacy_ind">usr_check_privacy_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the privacy options criteria. N=Do not check privacy options. Y=Check privacy options.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_privacy_val">usr_check_privacy_val</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the user collection criteria for the domain defining privacy options criteria. When usr_check_privacy_val is set to Y, then, Y=Include only users who are listed in the User Directory. N=Include only users who are not listed in the User Directory.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_inst_role_ind">usr_check_inst_role_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the institution roles criteria. N=ALL (ignore institution roles), Y=Specific institution roles (users who have any of the selected roles will be included in the collection.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_sys_role_ind">usr_check_sys_role_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the system roles criteria. N=ALL (ignore system roles), Y=Specific system roles (users who have any of the selected roles will be included in the collection.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_data_source_ind">usr_check_data_source_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the data source criteria. N=Do not check data source criteria, Y=Check the data souce keys. It is set to Y when any data source keys are specified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-usr_check_list_ind">usr_check_list_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if user collection criteria for the domain should check the specific users. N=There is no user specified, Y=Users are specified, all users specified here will be included in the collection regardless of other criteria settings.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_include_crit">tab_include_crit</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the tab collection criteria for the domain defining general collection options. N=Include no items, A=Include all items, C=Include items according to the criteria below.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_check_availability_ind">tab_check_availability_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if tab collection criteria for the domain should check the availability. N=Do not check availability, Y=Check the availability.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_check_availability_val">tab_check_availability_val</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the tab collection criteria for the domain defining availability criteria. When tab_check_availability_ind is set to Y, then, Y=Include only available, N=Include only unavailable.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_check_list_ind">tab_check_list_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if tab collection criteria for the domain should check the specific tabs. N=There is no tab specified, Y=Tabs are specified, all tabs specified here will be included in the collection regardless of other criteria settings.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mod_include_crit">mod_include_crit</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the module collection criteria for the domain defining general collection options. N=Include no items, A=Include all items, C=Include items according to the criteria below.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mod_check_availability_ind">mod_check_availability_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if module collection criteria for the domain should check the availability. N=Do not check availability, Y=Check the availability.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mod_check_availability_val">mod_check_availability_val</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the module collection criteria for the domain defining availability criteria. When mod_check_availability_ind is set to Y, then, Y=Include only available, N=Include only unavailable.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-mod_check_list_ind">mod_check_list_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a boolearn flag (Y/N) indicating if module collection criteria for the domain should check the specific modules. N=There is no module specified, Y=modules are specified, all modules specified here will be included in the collection regardless of other criteria settings.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

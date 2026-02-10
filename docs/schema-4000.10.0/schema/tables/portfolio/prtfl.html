@@ -1,0 +1,576 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-portfolio.html">portfolio</a>
+</div>
+
+<h1>prtfl
+  <p>Records in this table indicate the Portfolio instance generated from template. Each record is associated to an owner also referred to as the Portfolio author.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">prtfl_pk1</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    prtfl_fk1
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-prtfl_tmplt_pk1">prtfl_tmplt_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_fk2
+  <ul>
+<li> <a href="#column-prtfl_style_pk1">prtfl_style_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_fk3
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_fk4
+  <ul>
+<li> <a href="#column-parent_pk1">parent_pk1</a>
+</li>
+  </ul>
+</li>
+<li>
+    prtfl_fk5
+    <span>(On Delete SetNull)</span>
+  <ul>
+<li> <a href="#column-response_pk1">response_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> prtfl_if1
+  <ul>
+<li> <a href="#column-prtfl_tmplt_pk1">prtfl_tmplt_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_if2
+  <ul>
+<li> <a href="#column-prtfl_style_pk1">prtfl_style_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_if3
+  <ul>
+<li> <a href="#column-users_pk1">users_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_if4
+  <ul>
+<li> <a href="#column-parent_pk1">parent_pk1</a>
+</li>
+  </ul>
+</li>
+<li> prtfl_if5
+  <ul>
+<li> <a href="#column-response_pk1">response_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtcreated">dtcreated</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the date time the portfolio was first created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-dtmodified">dtmodified</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the date time the portfolio was last modified.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-users_pk1">users_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing users table. It is the author of the Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-response_pk1">response_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing deployment_response table. It is the instrument core response record associated with this Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-prtfl_tmplt_pk1">prtfl_tmplt_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key referencing prtfl_tmplt table. It is the template that is associated with this Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-prtfl_style_pk1">prtfl_style_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the Foreign Key referencing prtfl_style table. It is the portfolio style that is associated with this Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-parent_pk1">parent_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the Foreign Key self referencing prtfl table. The records with parent_pk1 as null, is the live version of this Portfolio record. The records with parent_pk1 filled are the submitted version of the portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(255)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is the title of the Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(2000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the description of the Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-acc_accounts_ind">acc_accounts_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether this Portfolio is shared with system accounts.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_comment">submission_comment</a></td>
+  <td>nvarchar(1000)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the user comment when Portfolio is submitted for review.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-available_ind">available_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_enum_1
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether this Portfolio is available for sharing with others.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comment_shared_ind">comment_shared_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_enum_2
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether user comment are viewable by others.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-evaluation_viewable_ind">evaluation_viewable_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_enum_3
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether evaluations are viewable by others.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_ind">submission_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_enum_4
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether this Portfolio is submitted for review.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-submission_date">submission_date</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This the date time the Portfolio is submitted for review.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reflection">reflection</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text for author reflection.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-reflection_type">reflection_type</a></td>
+  <td>char(1)</td>
+    <td>'P'</td>
+    <td class="valueConstraint">prtfl_enum_5
+      <ul>
+          <li> <span>H</span>
+          </li>
+          <li> <span>P</span>
+          </li>
+          <li> <span>S</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the text format of user reflection. H = HTML, P = Plain text, S = Smart text.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-basic_ind">basic_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_enum_6
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether this Portfolio is a personal or outcomes portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-complete_ind">complete_ind</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">prtfl_enum_7
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates the completion status of this Portfolio.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_style">tab_status_style</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">prtfl_enum_8
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the status of style tab for creating a portfolio that indicates whether the tab is P=In Progress, or C=Completed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_build">tab_status_build</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">prtfl_enum_9
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the status of build tab for creating a portfolio that indicates whether the tab is P=In Progress, or C=Completed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_reflect">tab_status_reflect</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">prtfl_enum_10
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the status of refect tab for creating a portfolio that indicates whether the tab is P=In Progress, or C=Completed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-tab_status_settings">tab_status_settings</a></td>
+  <td>char(1)</td>
+    <td></td>
+    <td class="valueConstraint">prtfl_enum_11
+      <ul>
+          <li> <span>P</span>
+          </li>
+          <li> <span>C</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>This is the status of settings tab for creating a portfolio that indicates whether the tab is P=In Progress, or C=Completed.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-comment_enabled_ind">comment_enabled_ind</a></td>
+  <td>char(1)</td>
+    <td>'Y'</td>
+    <td class="valueConstraint">prtfl_enum_12
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This a boolean flag (Y/N) that indicates whether comments are enabled on personal portfolios. The value is inherited from the portfolio template at creation time.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.10.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>
