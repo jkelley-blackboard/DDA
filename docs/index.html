@@ -95,7 +95,7 @@
 
         <ul class="nested" aria-label="DDA databases">
           <li>
-            <strong>BBxxxxxxxxxxxx</strong>
+            <strong>BB[deployment_id]</strong>
             <ul class="nested">
               <li>Primary production database</li>
               <li>Contains all core application tables (courses, users, enrollments, grades, hierarchy, tools, etc.)</li>
@@ -105,7 +105,7 @@
           </li>
 
           <li>
-            <strong>BBxxxxxxxxxxxx_admin</strong>
+            <strong>BB[deployment_id]_admin</strong>
             <ul class="nested">
               <li>System coordination database</li>
               <li>Stores internal configuration and metadata</li>
@@ -114,7 +114,7 @@
           </li>
 
           <li>
-            <strong>BBxxxxxxxxxxxx_stats</strong>
+            <strong>BB[deployment_id]_stats</strong>
             <ul class="nested">
               <li>Reporting and analytics database</li>
               <li>Includes a permanent copy of <code>activity_accumulator</code>, which is truncated to 180 days in the production database</li>
@@ -123,7 +123,7 @@
           </li>
 
           <li>
-            <strong>BBxxxxxxxxxxxx_cms_doc</strong>
+            <strong>BB[deployment_id]_cms_doc</strong>
             <ul class="nested">
               <li>Content Collection document store</li>
               <li>Powers file storage and retrieval for the Content Collection</li>
@@ -132,7 +132,7 @@
           </li>
 
           <li>
-            <strong>BBxxxxxxxxxxxx_cms</strong>
+            <strong>BB[deployment_id]_cms</strong>
             <ul class="nested">
               <li>Content Collection admin database</li>
               <li>Manages metadata and configuration for the Content Collection</li>
@@ -143,9 +143,9 @@
 
         <div class="note">
           <strong>Note:</strong><br>
-          Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
+          Replace <code>BB[deployment_id]</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
           Some older systems may have been configured with individual <code>_cms</code> databases for each of the various root
-          folders in the Content Collection (for example, <code>BBxxxxxxxxxxxx_cms_users</code> or <code>BBxxxxxxxxxxxx_cms_orgs</code>).
+          folders in the Content Collection (for example, <code>BB[deployment_id]_cms_users</code> or <code>BB[deployment_id]_cms_orgs</code>).
           The schema for these databases is the same as <code>_cms_doc</code>.
         </div>
       </section>
@@ -168,18 +168,18 @@
             <strong>Basic usage:</strong>
             <p>Query another database like this:</p>
             <pre><code>SELECT * FROM dblink(
-  'dbname=BBxxxxxxxxxxxx_stats user=bbuser password=bbpassword',
+  'dbname=BB[deployment_id]_stats user=bbuser password=bbpassword',
   'SELECT pk1, activity_date FROM activity_accumulator'
 ) AS aa(pk1 INT, activity_date TIMESTAMP);</code></pre>
           </li>
 
           <li>
             <strong>Join example:</strong>
-            <p>Join data from <code>BBxxxxxxxxxxxx</code> and <code>BBxxxxxxxxxxxx_stats</code>:</p>
+            <p>Join data from <code>BB[deployment_id]</code> and <code>BB[deployment_id]_stats</code>:</p>
             <pre><code>SELECT u.pk1, u.user_id, aa.activity_date
 FROM users u
 JOIN dblink(
-  'dbname=BBxxxxxxxxxxxx_stats user=bbuser password=bbpassword',
+  'dbname=BB[deployment_id]_stats user=bbuser password=bbpassword',
   'SELECT user_pk1, activity_date FROM activity_accumulator'
 ) AS aa(user_pk1 INT, activity_date TIMESTAMP)
 ON u.pk1 = aa.user_pk1;</code></pre>
@@ -191,14 +191,14 @@ ON u.pk1 = aa.user_pk1;</code></pre>
           <code>dblink</code> requires a valid username and password for the target database.
           In most Blackboard environments, connections are only permitted <strong>from the main database to others</strong>, not the reverse.
           This is a standard production security configuration and cannot be altered in those environments.
-          Replace <code>BBxxxxxxxxxxxx</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
+          Replace <code>BB[deployment_id]</code> with your actual database prefix (for example, <code>BB5c1c67a3c99fc</code>).
         </div>
       </section>
     </main>
   </div>
 
   <footer>
-    © 2025 Anthology Inc. | Blackboard Direct Data Access Resources<br>
+    © 2026 Blackboard | Blackboard Direct Data Access Resources<br>
     This documentation is provided "as is" without warranty of any kind.
   </footer>
 </body>
