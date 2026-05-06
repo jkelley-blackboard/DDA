@@ -153,6 +153,10 @@ pre code {
 pre .highlight,
 .highlight pre { background: var(--bb-navy); }
 
+.highlighter-rouge .highlight {
+  background: var(--bb-navy) !important;
+}
+
 .highlight .c,  .highlight .c1, .highlight .cm,
 .highlight .cs, .highlight .cp { color: #68d391; }        /* comments — green */
 .highlight .k,  .highlight .kd, .highlight .kn,
