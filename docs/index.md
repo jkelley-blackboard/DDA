@@ -9,12 +9,6 @@ title: Working with DDA
 
 ### Navigation
 
-- [Official Docs](#official-docs)
-- [Schema Packages](#schema-changes)
-- [Schema Explorer](#schema-explorer)
-- [Repository](#repository)
-- [DDA Database Overview](#dda-overview)
-- [Cross-Database Joins](#dblink-joins)
 - [Getting Connected](getting-connected.md)
 - [Understanding the Read Replica](read-replica.md)
 - [Key Tables Guide](key-tables.md)
