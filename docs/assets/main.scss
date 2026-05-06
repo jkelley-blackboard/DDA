@@ -149,6 +149,33 @@ pre code {
   line-height: 1.6;
 }
 
+/* Override Rouge syntax highlighter — ensure all tokens are readable on navy */
+pre .highlight,
+.highlight pre { background: var(--bb-navy); }
+
+.highlight .c,  .highlight .c1, .highlight .cm,
+.highlight .cs, .highlight .cp { color: #68d391; }        /* comments — green */
+.highlight .k,  .highlight .kd, .highlight .kn,
+.highlight .kp, .highlight .kr, .highlight .kt { color: #76e4f7; font-weight: 500; } /* keywords — cyan */
+.highlight .s,  .highlight .s1, .highlight .s2,
+.highlight .sb, .highlight .sc, .highlight .se,
+.highlight .sh, .highlight .si, .highlight .sx { color: #fbd38d; } /* strings — amber */
+.highlight .mi, .highlight .mf, .highlight .mh,
+.highlight .mo, .highlight .il, .highlight .m  { color: #b794f4; } /* numbers — purple */
+.highlight .n,  .highlight .na, .highlight .nb,
+.highlight .nc, .highlight .nd, .highlight .ni,
+.highlight .ne, .highlight .nf, .highlight .nl,
+.highlight .nn, .highlight .nx, .highlight .py,
+.highlight .nt, .highlight .nv { color: #e2e8f0; }        /* names — light gray */
+.highlight .o,  .highlight .ow { color: #76e4f7; }        /* operators — cyan */
+.highlight .p                  { color: #cbd5e0; }        /* punctuation — light */
+.highlight .err                { color: #fc8181; background: transparent; } /* errors */
+.highlight .gd                 { color: #fc8181; }        /* diff deleted */
+.highlight .gi                 { color: #68d391; }        /* diff inserted */
+.highlight .gh, .highlight .gu { color: #76e4f7; font-weight: 500; }
+/* catch-all: any unclassed span inside pre gets light text */
+pre span { color: #e2e8f0; }
+
 /* ── Blockquotes / notes ─────────────────────────────────────── */
 blockquote {
   border-left: 4px solid var(--bb-teal);
