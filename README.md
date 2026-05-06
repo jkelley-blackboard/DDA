@@ -29,4 +29,4 @@ See [LICENSE.txt](LICENSE.txt) for full terms.
 
 ---
 
-*This is an unofficial community resource. Not affiliated with or endorsed by Blackboard, Inc.*
+*This is a supplemental community resource. Content is the property of Blackboard, Inc. and is provided without official support or endorsement. Always refer to official Blackboard documentation and your institution's agreements.*
