@@ -7,7 +7,7 @@ title: Community & Resources
 
 [← Back to Overview](index.md)
 
-DDA is not well documented by Blackboard — most practical knowledge lives in the community. This page collects the best places to find help, share queries, and stay current.
+Most practical knowledge lives in the community. This page collects the best places to find help, share queries, and stay current.  Let us know if you have other resources you'd like to publicize.
 
 ---
 
