@@ -46,7 +46,14 @@ Occasionally new tables are added to the schema and your DDA account may not hav
 
 ## DDA Database Overview
 
-<iframe src="dda-databases.html" width="100%" height="640" frameborder="0" scrolling="no" style="border:none;"></iframe>
+<iframe id="dda-db-frame" src="dda-databases.html" width="100%" height="800" frameborder="0" scrolling="no" style="border:none; display:block;"></iframe>
+<script>
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.iframeHeight) {
+      document.getElementById('dda-db-frame').style.height = (e.data.iframeHeight + 20) + 'px';
+    }
+  });
+</script>
 
 Some older systems may have been configured with individual `_cms` databases for each root folder in the Content Collection (for example, `BB<deployment_id>_cms_users` or `BB<deployment_id>_cms_orgs`). The schema for these is the same as `_cms_doc`.
 

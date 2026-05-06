@@ -186,5 +186,14 @@
 
 <p class="note">Replace <code>BB&lt;deployment_id&gt;</code> with your actual database prefix (e.g. <code>BB5c1c67a3c99fc</code>).<br>Legacy documentation may refer to this as <code>bb_bb60</code> or <code>BBLEARN</code>.</p>
 
+<script>
+  // Tell the parent page our height whenever it might change
+  function sendHeight() {
+    const h = document.documentElement.scrollHeight;
+    window.parent.postMessage({ iframeHeight: h }, '*');
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+</script>
 </body>
 </html>
