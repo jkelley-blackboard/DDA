@@ -34,7 +34,7 @@ This repository includes a growing collection of ready-to-use SQL queries for co
 
 ## Schema Resources
 
-- **Schema Explorer (v4000.15)** — [Browse the expanded schema](https://jkelley-blackboard.github.io/DDA/schema-4000.15.0/schema/index.html)
+- **Schema Explorer (v4000.15)** — [Browse the expanded schema](https://jkelley-blackboard.github.io/DDA/docs/schema-4000.15.0/schema/index.html)
 - **Schema Downloads** — [bbprepo schema releases](https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2Fschema)
 - **Changes Packages** — [bbprepo jdiff releases](https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fjdiff)
 
