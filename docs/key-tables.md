@@ -17,6 +17,91 @@ For full column-level detail, use the [Expanded Schema Explorer](https://jkelley
 
 ---
 
+## Common Fields
+
+Many tables in the Blackboard schema share a consistent set of columns. Understanding these fields once will save time when working across the schema. These fields are most consistently found on **entity tables** (courses, users, terms, enrollments). Simpler relationship and mapping tables may have only a subset, or none of them.
+
+---
+
+### PK1
+
+Every table uses `pk1` as its surrogate primary key — a system-generated integer with no inherent business meaning. It is the standard join column across the schema.
+
+`pk1` values surface in other contexts you may already be familiar with:
+- In the **browser address bar**, the format `_##_1` corresponds directly to the `pk1` value. For example, a course with `pk1 = 42` will appear as `_42_1` in the URL.
+- In the **REST API**, the `id` field returned for most objects is the `pk1` in this same `_##_1` format.
+
+> Do not rely on `pk1` values being consistent across environments (e.g., production vs. test). Use `batch_uid` or natural keys like `course_id` / `user_id` for cross-environment references.
+
+---
+
+### ROW_STATUS
+
+Controls the lifecycle state of a record.
+
+| Value | Meaning |
+|-------|---------|
+| 0 | Enabled — normal active record |
+| 1 | Undefined — treat as inactive |
+| 2 | Disabled — record exists but is inactive |
+| 3 | In process of being deleted — transient, do not rely on records in this state persisting |
+
+Most queries should filter on `row_status = 0` unless you specifically need disabled or inactive records. Status 3 is temporary and records in this state are expected to be removed shortly.
+
+---
+
+### AVAILABLE_IND
+
+A `Y`/`N` flag indicating availability to end users. Distinct from `row_status` — a record can be enabled (`row_status = 0`) but still unavailable. The precise meaning depends on the table:
+
+- On `course_main` — controls whether the course is visible to students. Ignored if `honor_term_avail_ind = 'Y'`, in which case the associated term's availability takes precedence.
+- On `users` — determines whether the user can log in.
+- On `course_users` — determines whether the user can access the specific course.
+
+For active course queries, filtering on both is common:
+```sql
+WHERE cm.row_status = 0
+  AND cm.available_ind = 'Y'
+```
+
+---
+
+### DTCREATED / DTMODIFIED
+
+Audit timestamps recording when a record was created and last modified. Both are stored in UTC.
+
+- `dtcreated` is present on most entity tables but not all — notably absent from `term` and `course_users`.
+- `dtmodified` is more consistently present across tables.
+- On `course_users`, be aware that `dtmodified` is updated by `last_access_date` changes. A separate `date_last_modified` column exists that excludes access-date updates if you need to track true record changes.
+
+```sql
+WHERE dtmodified >= CURRENT_DATE - INTERVAL '7 days'
+```
+
+---
+
+### BATCH_UID
+
+A stable external identifier, primarily used for SIS integration. On entity tables like `course_main` and `users`, it represents the record's ID in the external system. For internally-created records it typically matches the natural key (e.g., `course_id`).
+
+On relationship tables like `course_hierarchy`, `batch_uid` is only populated when the record was created by a SIS feed — it will be `NULL` for records created within Learn.
+
+> Prefer `batch_uid` over `pk1` for any cross-environment references or SIS-related queries.
+
+---
+
+### DATA_SRC_PK1
+
+A foreign key to the `data_source` table, indicating the origin of the record (e.g., a specific SIS feed, manual entry, or API). Useful for filtering records by their source or auditing data provenance. The default value of `2` represents the internal Blackboard data source.
+
+---
+
+### UUID
+
+A system-generated unique identifier present on key entity tables including `course_main` and `users`. Used in LTI integrations — sent as `context_id` in course LTI launches and as `user_id` in user LTI launches. Less commonly needed for general reporting queries.
+
+---
+
 ## Courses & Terms
 
 ### `course_main`
@@ -46,7 +131,7 @@ For most academic reporting, filter by `service_level IN ('F', 'C')` to return c
 
 **Watch out for:** `row_status` uses numeric values, not text — `0` is enabled, `2` is disabled, `3` is deleted. This differs from many other tables that use `P`/`D`. Also note that `course_type` exists in this table but refers to academic classification (Undergraduate, Graduate, etc.) — it is **not** the column to use for filtering out non-course records. Use `service_level` for that.
 
-Commonly joined to: `course_users`, `course_hierarchy`, `term`, `domain_course_coll`, `mi_node`
+Commonly joined to: `course_users`, `course_hierarchy`, `term` (via `course_term`), `domain_course_coll`, `mi_node`
 
 ---
 
@@ -102,14 +187,14 @@ Commonly joined to: `course_main`
 Defines the terms (semesters) configured in Blackboard.
 
 Key columns:
-- `pk1` — primary key, referenced by `course_main.term_pk1`
-- `term_id` — human-readable identifier (e.g. `2026SP`)
-- `term_name` — display name
+- `pk1` — primary key
+- `name` — display name of the term
+- `sourcedid_id` — the external identifier, set by SIS feed or autogenerated for terms created within Learn
 - `start_date`, `end_date` — term date range
 
-**Watch out for:** Not all courses are assigned to a term. A null `term_pk1` on `course_main` is common for organization courses, shell courses, and older content that predates term configuration at your institution.
+**Watch out for:** Courses are linked to terms via the `course_term` junction table, not via a direct foreign key on `course_main`. Not all courses are assigned to a term — organization courses, shell courses, and older content that predates term configuration at your institution will have no entry in `course_term`.
 
-Commonly joined to: `course_main`
+Commonly joined to: `course_main` (via `course_term`)
 
 ---
 
@@ -178,7 +263,7 @@ Commonly joined to: `users`, `course_main`
 
 ## Grades & Assessments
 
-> ⚠️ Grade table names and column names have not yet been verified against the schema. This section will be added once confirmed. Use the [Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.15.0/schema/index.html) to browse the `bb_bb60_*` tables in the meantime.
+> ⚠️ Grade table names and column names have not yet been verified against the schema. This section will be added once confirmed. Use the [Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.15.0/schema/index.html) in the meantime.
 
 ---
 
