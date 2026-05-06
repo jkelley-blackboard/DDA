@@ -64,6 +64,17 @@ WHERE cm.row_status = 0
   AND cm.available_ind = 'Y'
 ```
 
+To surface a human-readable status combining both fields:
+```sql
+CASE
+  WHEN row_status = 2 THEN 'Disabled'
+  WHEN row_status = 3 THEN 'Deleting'
+  WHEN row_status = 0 AND available_ind = 'Y' THEN 'Available'
+  WHEN row_status = 0 AND available_ind = 'N' THEN 'Unavailable'
+  ELSE 'Undefined'
+END AS status
+```
+
 ---
 
 ### DTCREATED / DTMODIFIED
