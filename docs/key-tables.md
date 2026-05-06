@@ -129,7 +129,7 @@ Key columns:
 
 For most academic reporting, filter by `service_level IN ('F', 'C')` to return courses and organizations, excluding programs, subjects, LORs, and system records.
 
-**Watch out for:** `row_status` uses numeric values, not text — `0` is enabled, `2` is disabled, `3` is deleted. This differs from many other tables that use `P`/`D`. Also note that `course_type` exists in this table but refers to academic classification (Undergraduate, Graduate, etc.) — it is **not** the column to use for filtering out non-course records. Use `service_level` for that.
+**Watch out for:** `course_type` exists in this table but refers to academic classification (Undergraduate, Graduate, etc.) — it is **not** the column to use for filtering out non-course records. Use `service_level` for that.
 
 Commonly joined to: `course_users`, `course_hierarchy`, `term` (via `course_term`), `domain_course_coll`, `mi_node`
 
@@ -253,7 +253,7 @@ Key columns:
 - `last_access_date` — last time the user accessed the course via the Blackboard UI
 - `child_crsmain_pk1` — if the user is enrolled in a child course within a cross-listed set, this references the actual child course
 
-**Watch out for:** `row_status` is numeric, same as `course_main` — filter on `row_status = 0` for active enrollments, not `'P'`. Also note `available_ind` is separate from `row_status` — a user can have `row_status = 0` but `available_ind = 'N'`, meaning the enrollment exists but the user cannot access the course. For most reporting, filter both: `row_status = 0 AND available_ind = 'Y'`.
+**Watch out for:** `row_status` is numeric — filter on `row_status = 0` for active enrollments. Also note `available_ind` is separate from `row_status` — a user can have `row_status = 0` but `available_ind = 'N'`, meaning the enrollment exists but the user cannot access the course. For most reporting, filter both: `row_status = 0 AND available_ind = 'Y'`.
 
 For cross-listed courses, enrolled users appear in the master course record. `child_crsmain_pk1` identifies which child course they actually enrolled in directly.
 
