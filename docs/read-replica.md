@@ -64,7 +64,7 @@ The schema packages document the majority of tables and columns, but not everyth
 - Detailed commentary for some tables and columns
 - Some internal system tables
 
-This does not mean those objects don't exist — they do. It means you may encounter undocumented tables when exploring. Use the [Expanded Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.10.0/schema/index.html) for the most complete picture, and the community resources below when you hit a gap.
+This does not mean those objects don't exist — they do. It means you may encounter undocumented tables when exploring. Use the [Expanded Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.15.0/schema/index.html) for the most complete picture, and the community resources below when you hit a gap.
 
 ### Tables You Can See But Cannot Query
 
