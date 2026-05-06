@@ -146,7 +146,7 @@ Use `EXPLAIN` to understand how PostgreSQL is planning your query before running
 EXPLAIN
 SELECT user_id, firstname, lastname
 FROM users
-WHERE row_status = 'P';
+WHERE row_status = '2';
 ```
 
 This shows the query plan without executing it, helping identify missing indexes or full table scans.
