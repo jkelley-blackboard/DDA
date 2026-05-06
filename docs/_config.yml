@@ -1,0 +1,31 @@
+title: Blackboard DDA Resource Guide
+description: Community documentation and SQL resources for Blackboard Direct Data Access (DDA)
+url: "https://jkelley-blackboard.github.io"
+baseurl: "/DDA"
+
+theme: minima
+
+markdown: kramdown
+kramdown:
+  html_to_native: true
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

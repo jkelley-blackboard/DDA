@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA Database Overview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f0e8;
+    padding: 28px 16px 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: #0d2d45;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+
+  .cards {
+    max-width: 620px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card {
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+
+  .icon-panel {
+    width: 88px;
+    min-width: 88px;
+    background: #2B9E8E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-panel svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .body {
+    padding: 14px 18px;
+  }
+
+  .db-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0d2d45;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    margin-bottom: 2px;
+  }
+
+  .db-role {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2B9E8E;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+  }
+
+  .db-desc {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .db-desc code {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+    background: #edf2f7;
+    padding: 1px 4px;
+    border-radius: 3px;
+    color: #2d3748;
+  }
+
+  .note {
+    max-width: 620px;
+    margin: 12px auto 0;
+    font-size: 12px;
+    color: #718096;
+    text-align: center;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<h1>DDA Database Overview</h1>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="icon-panel">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 5L36 13V21C36 29.5 29.3 36.8 21 38C12.7 36.8 6 29.5 6 21V13L21 5Z" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M14 21.5L19 26.5L28 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="body">
+      <p class="db-name">BB&lt;deployment_id&gt;</p>
+      <p class="db-role">Primary database</p>
+      <p class="db-desc">Core application tables — courses, users, enrollments, grades, hierarchy, and tools. Most reporting and integration work starts here. Activity data is retained for approximately 180 days.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon-panel">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="7" y="11" width="28" height="6" rx="3" fill="white" fill-opacity="0.25" stroke="white" stroke-width="1.5"/>
+        <rect x="7" y="20" width="28" height="6" rx="3" fill="white" fill-opacity="0.25" stroke="white" stroke-width="1.5"/>
+        <rect x="7" y="29" width="28" height="6" rx="3" fill="white" fill-opacity="0.25" stroke="white" stroke-width="1.5"/>
+        <circle cx="30" cy="14" r="2" fill="white"/>
+        <circle cx="30" cy="23" r="2" fill="white"/>
+        <circle cx="30" cy="32" r="2" fill="white"/>
+      </svg>
+    </div>
+    <div class="body">
+      <p class="db-name">BB&lt;deployment_id&gt;_stats</p>
+      <p class="db-role">Reporting and analytics database</p>
+      <p class="db-desc">Permanent copy of <code>activity_accumulator</code> with no 180-day truncation. ODS tables contain transformed data for activity reporting. Requires <code>dblink</code> for cross-database queries.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon-panel">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="5.5" stroke="white" stroke-width="1.5"/>
+        <path d="M21 8V12M21 30V34M8 21H12M30 21H34" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12.2 12.2L15 15M27 27L29.8 29.8M29.8 12.2L27 15M15 27L12.2 29.8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="body">
+      <p class="db-name">BB&lt;deployment_id&gt;_admin</p>
+      <p class="db-role">System coordination database</p>
+      <p class="db-desc">Internal configuration and metadata. Rarely accessed for reporting or integrations — primarily used for system-level coordination.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon-panel">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="17" height="22" rx="3" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5"/>
+        <path d="M12 15H21M12 19H21M12 23H17" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="30" cy="30" r="7" fill="#2B9E8E" stroke="white" stroke-width="1.5"/>
+        <path d="M27.5 30L29.5 32L33 27.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="body">
+      <p class="db-name">BB&lt;deployment_id&gt;_cms_doc</p>
+      <p class="db-role">Content Collection document store</p>
+      <p class="db-desc">Powers file storage and retrieval for the Content Collection. Not documented in schema packages and generally not used for reporting.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon-panel">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="9" width="15" height="20" rx="3" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5"/>
+        <rect x="18" y="14" width="15" height="20" rx="3" fill="white" fill-opacity="0.12" stroke="white" stroke-width="1.5"/>
+        <path d="M12 17H19M12 21H19" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="body">
+      <p class="db-name">BB&lt;deployment_id&gt;_cms</p>
+      <p class="db-role">Content Collection admin database</p>
+      <p class="db-desc">Manages metadata and configuration for the Content Collection. Rarely accessed and not typically relevant for reporting.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="note">Replace <code>BB&lt;deployment_id&gt;</code> with your actual database prefix (e.g. <code>BB5c1c67a3c99fc</code>).<br>Legacy documentation may refer to this as <code>bb_bb60</code> or <code>BBLEARN</code>.</p>
+
+</body>
+</html>

@@ -51,38 +51,9 @@ Occasionally new tables are added to the schema and your DDA account may not hav
 
 ## DDA Database Overview
 
-Blackboard SaaS deployments use five distinct PostgreSQL databases to support core application functionality, reporting, and content management. This summary outlines their purpose and relevance for reporting and integration work. Schema details are primarily documented in the Expanded Schema Explorer section above.
+<iframe src="dda-databases.html" width="100%" height="640" frameborder="0" scrolling="no" style="border:none;"></iframe>
 
-- **BB\<deployment_id\>**
-  * Primary production database
-  * Contains all core application tables (courses, users, enrollments, grades, hierarchy, tools, etc.)
-  * Most reporting and integration work will use this database
-  * Schema is mostly documented in the Expanded Schema Explorer above
-- **BB\<deployment_id\>_admin**
-  * System coordination database
-  * Stores internal configuration and metadata
-  * Rarely accessed for reporting or integrations
-- **BB\<deployment_id\>_stats**
-  * Reporting and analytics database
-  * Includes a permanent copy of `activity_accumulator`, which is truncated to 180 days in the production database
-  * `ODS` tables contain transformed data specifically for activity reporting
-- **BB\<deployment_id\>_cms_doc**
-  * Content Collection document store
-  * Powers file storage and retrieval for the Content Collection
-  * Not documented and generally not used for reporting
-- **BB\<deployment_id\>_cms**
-  * Content Collection admin database
-  * Manages metadata and configuration for the Content Collection
-  * Rarely accessed and not typically relevant for reporting
-
-**Note:**  
-Replace `BB<deployment_id>` with your actual database prefix (for example, `BB5c1c67a3c99fc`).
-Some older systems may have been configured with individual `_cms` databases for each of the various root
-folders in the Content Collection (for example, `BB<deployment_id>_cms_users` or `BB<deployment_id>_cms_orgs`).
-The schema for these databases is the same as `_cms_doc`.
-
-**A note on legacy database names:**
-Older documentation, community SQL examples, and schema references may use `bb_bb60` or `BBLEARN` as the database name. These were used in self-hosted and managed-hosted Blackboard deployments. In SaaS environments, they are equivalent to your `BB<deployment_id>` database. If you encounter either name in a query or external resource, treat it as referring to your primary DDA database.
+Some older systems may have been configured with individual `_cms` databases for each root folder in the Content Collection (for example, `BB<deployment_id>_cms_users` or `BB<deployment_id>_cms_orgs`). The schema for these is the same as `_cms_doc`.
 
 ## Cross-Database Joins with `dblink`
 
