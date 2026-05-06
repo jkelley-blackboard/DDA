@@ -67,4 +67,4 @@ For detailed examples, see the [Cross-Database Joins](dblink.md) page.
 
 ---
 
-This is an unofficial community resource. Not affiliated with or endorsed by Blackboard, Inc. Always refer to official Blackboard documentation and your institution's agreements.
+This is a supplemental community resource. Content is the property of Blackboard, Inc. and is provided without official support or endorsement. Always refer to official Blackboard documentation and your institution's agreements.
