@@ -5,6 +5,11 @@ baseurl: "/DDA"
 
 theme: minima
 
+minima:
+  skin: classic
+
+header_pages: []
+
 markdown: kramdown
 kramdown:
   html_to_native: true
