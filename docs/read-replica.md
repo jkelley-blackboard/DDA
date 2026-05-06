@@ -107,4 +107,4 @@ Not possible. Use the Blackboard REST API or a supported SIS integration instead
 
 ---
 
-This is an unofficial community resource. Not affiliated with or endorsed by Blackboard, Inc. Always refer to official Blackboard documentation and your institution's agreements.
+This is a supplemental community resource. Content is the property of Blackboard, Inc. and is provided without official support or endorsement. Always refer to official Blackboard documentation and your institution's agreements.
