@@ -13,7 +13,7 @@ The Blackboard database contains hundreds of tables. This guide covers the most 
 
 For ready-to-use queries, see the [SQL Library](https://github.com/jkelley-blackboard/DDA/tree/main/sql_library).
 
-For full column-level detail, use the [Expanded Schema Explorer](https://jkelley-blackboard.github.io/DDA/docs/schema-4000.15.0/schema/index.html).
+For full column-level detail, use the [Expanded Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.15.0/schema/index.html).
 
 ---
 
