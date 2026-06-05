@@ -1,13 +1,13 @@
 MIT License – Company-Owned, No Warranty
 
-Copyright (c) 2025 Anthology Inc. and its affiliates. All rights reserved.
+Copyright (c) 2025 Blackboard Inc. and its affiliates. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to use,
 copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
 the Software, subject to the following conditions:
 
-1. The Software remains the property of Anthology. This license does
+1. The Software remains the property of Blackboard. This license does
    not transfer ownership or imply any rights to claim the Software as your own.
 
 2. The Software is provided “as is”, without any warranty of any kind,
@@ -21,7 +21,7 @@ the Software, subject to the following conditions:
    this license and copyright notice intact.
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED. IN NO EVENT SHALL ANTHOLOGY BE LIABLE FOR ANY CLAIM, DAMAGES,
+IMPLIED. IN NO EVENT SHALL BLACKBOARD BE LIABLE FOR ANY CLAIM, DAMAGES,
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
 ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.

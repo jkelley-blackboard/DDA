@@ -6,7 +6,7 @@
 
 WITH calc AS (
   SELECT
-    DATE(mv.metric_timestamp AT TIME ZONE 'America/Chicago') AS the_date,
+    DATE(mv.metric_timestamp AT TIME ZONE 'America/Chicago') AS the_date,  -- Adjust timezone to match your institution
     
     SUM(COALESCE(mv.value, 0)) FILTER (
       WHERE m.name = 'total-space' AND d.name = 'location' AND dv.value = 'xythos'
@@ -38,8 +38,8 @@ WITH calc AS (
   LEFT JOIN metric_value_dimension mdv ON mdv.metric_value_pk1 = mv.pk1
   LEFT JOIN metric_dimension_value dv ON dv.pk1 = mdv.metric_dimension_value_pk1
   LEFT JOIN metric_dimension d ON d.pk1 = dv.metric_dimension_pk1
-  WHERE mv.metric_timestamp::DATE > '2023-04-03'  -- Oldest records in US East region
-  GROUP BY DATE(mv.metric_timestamp AT TIME ZONE 'America/Chicago')
+  WHERE mv.metric_timestamp::DATE > '2023-04-03'  -- Oldest records in US East region; adjust for your region
+  GROUP BY DATE(mv.metric_timestamp AT TIME ZONE 'America/Chicago')  -- Adjust timezone to match your institution
 )
 
 SELECT

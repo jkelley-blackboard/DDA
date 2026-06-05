@@ -1,7 +1,7 @@
 -- sumarizes a count of log files and their total size by month
 -- run against the content collection database (_cms_doc)
 
--- © 2025 Anthology Inc. All rights reserved.
+-- © 2025 Blackboard Inc. All rights reserved.
 -- This software is provided "as is" without warranty or support
 -- jeff.kelley@anthology.com 
 

@@ -1,6 +1,6 @@
 /*
 Author: Jeff Kelley  Date: 2025-11-17
-Anthology retains all rights to this content.
+Blackboard retains all rights to this content.
 It is provided "AS IS" without support or warranty of any kind, express or implied.
 */
 
