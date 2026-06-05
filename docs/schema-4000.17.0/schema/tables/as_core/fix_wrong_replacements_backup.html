@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="../../styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../../typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body>
+
+
+<form name="search_form" id="searchForm">
+  <input type="hidden" id="topLevel" value="../.."/>
+  <input type="text" id="searchBox" name="page" title="Search"/>
+  <img src="../../images/spinner.gif" alt="Loading..." class="spinner" style="display: none"/>
+</form>
+
+<script type="text/javascript">
+  // Hide search form if there is no internet connection/access to jquery libraries
+  if (typeof window.$ !== 'function')
+  {
+    window.noInternet = true;
+    document.getElementById('searchForm').style.display = 'none';
+  }
+</script>
+
+<div class="navigation">
+  <a href="../../index.html" target="_parent">Home</a>
+  &gt;
+  <a href="../../overview-schema-as_core.html">as_core</a>
+</div>
+
+<h1>fix_wrong_replacements_backup
+  <p>Backup of BBML content before FixWrongReplacementsUpgradeListener modifications. Stores data from course_contents and qti_asi_data tables to enable rollback if issues occur during link repair.</p>
+</h1>
+
+
+<h3><span>Primary key constraint</span></h3>
+<div>
+    <p class="primaryName">fix_wr_backup_pk</p>
+  <ul>
+<li> <a href="#column-pk1">pk1</a>
+</li>
+  </ul>
+</div>
+
+  <h3><span>Foreign key constraints</span></h3>
+  <div>
+    <ol>
+<li>
+    fix_wr_backup_fk1
+    <span>(On Delete Cascade)</span>
+  <p>This is a foreign key referencing the primary key of the course_main table.</p>
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+  <h3><span>Indexes</span></h3>
+  <div>
+    <ol>
+<li> fix_wr_backup_if1
+  <ul>
+<li> <a href="#column-source_table">source_table</a>
+</li>
+<li> <a href="#column-source_pk1">source_pk1</a>
+</li>
+  </ul>
+</li>
+<li> fix_wr_backup_if2
+  <ul>
+<li> <a href="#column-crsmain_pk1">crsmain_pk1</a>
+</li>
+  </ul>
+</li>
+<li> fix_wr_backup_if3
+  <ul>
+<li> <a href="#column-queue_task_pk1">queue_task_pk1</a>
+</li>
+  </ul>
+</li>
+<li> fix_wr_backup_if4
+  <ul>
+<li> <a href="#column-backup_timestamp">backup_timestamp</a>
+</li>
+  </ul>
+</li>
+<li> fix_wr_backup_if5
+  <ul>
+<li> <a href="#column-was_restored">was_restored</a>
+</li>
+  </ul>
+</li>
+<li> fix_wr_backup_uk1
+  <ul>
+<li> <a href="#column-source_table">source_table</a>
+</li>
+<li> <a href="#column-source_pk1">source_pk1</a>
+</li>
+<li> <a href="#column-backup_timestamp">backup_timestamp</a>
+</li>
+  </ul>
+</li>
+    </ol>
+  </div>
+
+
+<table title="Columns">
+<thead>
+<tr>
+  <th>Column name</th>
+  <th>Data type</th>
+  <th>Default value</th>
+  <th>Value constraint</th>
+  <th>Default constraint</th>
+  <th>Identity?</th>
+  <th>Nullable?</th>
+  <th>Description</th>
+</tr>
+</thead>
+  <tbody>
+<tr>
+  <td><a name="column-pk1">pk1</a></td>
+  <td>bigid</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>true</td>
+  <td>false</td>
+  <td>
+  <p>This is the surrogate primary key for the table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_table">source_table</a></td>
+  <td>varchar(50)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Source table name: 'course_contents' or 'qti_asi_data'.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_pk1">source_pk1</a></td>
+  <td>bigid</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Primary key value from the source table being backed up.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-crsmain_pk1">crsmain_pk1</a></td>
+  <td>id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>This is a foreign key referencing the primary key of the course_main table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-main_data">main_data</a></td>
+  <td>ntext</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Backup of course_contents.main_data (BBML text). Only populated if source_table='course_contents'.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-qti_data">qti_data</a></td>
+  <td>image</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Backup of qti_asi_data.data (QTI XML blob). Only populated if source_table='qti_asi_data'.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-title">title</a></td>
+  <td>nvarchar(333)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Title from the source table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-description">description</a></td>
+  <td>nvarchar(750)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Description from the source table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-parent_pk1">parent_pk1</a></td>
+  <td>bigid</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Parent content pk1 (for folders in course_contents) or parent ASI pk1 (for questions in qti_asi_data).</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-cnthndlr_handle">cnthndlr_handle</a></td>
+  <td>varchar(65)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Content handler type. Only populated if source_table='course_contents'.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_asi_type">bbmd_asi_type</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>ASI type: 1=Assessment, 2=Section, 3=Item. Only populated if source_table='qti_asi_data'.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_assessmenttype">bbmd_assessmenttype</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Assessment type: 1=Test, 3=Survey, 4=Pool, 5=Assignment. Only populated if source_table='qti_asi_data'.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-bbmd_questiontype">bbmd_questiontype</a></td>
+  <td>int</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Question type code. Only populated if source_table='qti_asi_data' and bbmd_asi_type=3.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-source_dtmodified">source_dtmodified</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Original dtmodified timestamp from the source table.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-queue_task_pk1">queue_task_pk1</a></td>
+  <td>bigid</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Queue task ID from queued_tasks_bbml_preserve that triggered this repair operation.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-backup_timestamp">backup_timestamp</a></td>
+  <td>datetime</td>
+    <td>NOW</td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Timestamp when this backup record was created.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-was_restored">was_restored</a></td>
+  <td>char(1)</td>
+    <td>'N'</td>
+    <td class="valueConstraint">was_restored_enum
+      <ul>
+          <li> <span>Y</span>
+          </li>
+          <li> <span>N</span>
+          </li>
+      </ul>
+    </td>
+    <td></td>
+  <td>false</td>
+  <td>false</td>
+  <td>
+  <p>Indicates if this backup was used for restore: Y=restored, N=not restored.</p>
+  </td>
+</tr>
+<tr>
+  <td><a name="column-restore_timestamp">restore_timestamp</a></td>
+  <td>datetime</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  <td>false</td>
+  <td>true</td>
+  <td>
+  <p>Timestamp when restore occurred. Only populated if was_restored='Y'.</p>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  <div class="copyright">
+    Version 4000.17.0, copyright &copy; 2010-2012 Blackboard Inc. All Rights Reserved
+  </div>
+</body>
+</html>

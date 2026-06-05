@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>snapshot</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/crs_app_settings_rec_tmp.html">crs_app_settings_rec_tmp</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_cc_keys.html">tmp_cc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccc_badpk1.html">tmp_ccc_badpk1</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccc_key_mappings.html">tmp_ccc_key_mappings</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccc_keys.html">tmp_ccc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ccm_keys.html">tmp_ccm_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_course_keys.html">tmp_course_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_cu_keys.html">tmp_cu_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_gc_keys.html">tmp_gc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_gcc_keys.html">tmp_gcc_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_key_maps.html">tmp_key_maps</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_obs_user_keys.html">tmp_obs_user_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_org_keys.html">tmp_org_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ou_keys.html">tmp_ou_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_ss_session.html">tmp_ss_session</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_user_keys.html">tmp_user_keys</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/snapshot/tmp_userrole_keys.html">tmp_userrole_keys</a>
+</ul>
+
+
+</body>
+</html>

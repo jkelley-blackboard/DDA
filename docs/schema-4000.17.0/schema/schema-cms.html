@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>cms</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_bookmarks.html">cms_bookmarks</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_comments.html">cms_comments</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_file_access.html">cms_file_access</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_file_operations.html">cms_file_operations</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_md_template.html">cms_md_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_metadata_changes.html">cms_metadata_changes</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_perms_mods.html">cms_perms_mods</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_resource_link.html">cms_resource_link</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/cms_saved_search.html">cms_saved_search</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/lo_category.html">lo_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/lo_item.html">lo_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/mdata_cnt_area_ass.html">mdata_cnt_area_ass</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/mdata_pkr_attr_val.html">mdata_pkr_attr_val</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/mdata_pkr_usr_pref.html">mdata_pkr_usr_pref</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_catalog.html">meta_catalog</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_contributor.html">meta_contributor</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_formats.html">meta_formats</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/meta_main.html">meta_main</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow.html">wkflow</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_assgnmnt.html">wkflow_assgnmnt</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_comment.html">wkflow_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_file.html">wkflow_file</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_sharing_role.html">wkflow_sharing_role</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_stage.html">wkflow_stage</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_subscription.html">wkflow_subscription</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_task.html">wkflow_task</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_task_course.html">wkflow_task_course</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/cms/wkflow_task_crs_role.html">wkflow_task_crs_role</a>
+</ul>
+
+
+</body>
+</html>

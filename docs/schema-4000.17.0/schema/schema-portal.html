@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>portal</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/brands.html">brands</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/ccc_uid.html">ccc_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/channel.html">channel</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/channel_item.html">channel_item</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/color_palette.html">color_palette</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/community_categories.html">community_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/community_categories_roles.html">community_categories_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/community_course_categories.html">community_course_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_layout.html">def_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_layout_family.html">def_layout_family</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_lf_req_module.html">def_lf_req_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module.html">def_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module_group.html">def_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module_layout.html">def_module_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/def_module_module_group.html">def_module_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gateway_categories.html">gateway_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gateway_categories_roles.html">gateway_categories_roles</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gateway_course_categories.html">gateway_course_categories</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/gcc_uid.html">gcc_uid</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout.html">layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout_family.html">layout_family</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout_family_req_module.html">layout_family_req_module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/layout_module_group.html">layout_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/maintenance_window.html">maintenance_window</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module.html">module</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_admin.html">module_admin</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_category.html">module_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_display_criteria.html">module_display_criteria</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_group.html">module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_layout.html">module_layout</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_module_category.html">module_module_category</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_module_group.html">module_module_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/module_type.html">module_type</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/plugin_activity_history.html">plugin_activity_history</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/plugins.html">plugins</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/portal_extra_info.html">portal_extra_info</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/portal_viewer.html">portal_viewer</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/sponsorships.html">sponsorships</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/theme.html">theme</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/theme_registry.html">theme_registry</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/portal/theme_type.html">theme_type</a>
+</ul>
+
+
+</body>
+</html>

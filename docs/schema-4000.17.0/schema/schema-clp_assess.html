@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>clp_assess</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_ap_template.html">clp_ap_template</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_ap_template_activity.html">clp_ap_template_activity</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_initiative.html">clp_assessment_initiative</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_initiative_ext.html">clp_assessment_initiative_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_project.html">clp_assessment_project</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_assessment_project_ext.html">clp_assessment_project_ext</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_comment.html">clp_comment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/clp_assess/clp_ou_ap_template.html">clp_ou_ap_template</a>
+</ul>
+
+
+</body>
+</html>

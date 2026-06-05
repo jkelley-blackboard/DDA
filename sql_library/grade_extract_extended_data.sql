@@ -9,7 +9,7 @@ WITH optionalData AS (
 
 -- Main query to retrieve gradebook details along with formula, schema, and optional extended data
 SELECT
-    gbm.pk1,                            -- key valude for the grade item
+    gbm.pk1,                            -- key value for the grade item
     gbm.title,                         -- Title of the gradebook column
     cm.course_id,                      -- Course identifier
     gbm.possible,                      -- Possible points for the grade item
@@ -28,7 +28,8 @@ FROM gradebook_main gbm
         ON gbf.gradebook_main_pk1 = gbm.pk1
     JOIN gradebook_translator gbt 
         ON gbt.pk1 = gbm.gradebook_translator_pk1
-    JOIN optionalData od 
+    LEFT JOIN optionalData od
         ON od.gradebook_main_pk1 = gbm.pk1
     JOIN course_main cm on cm.pk1 = gbm.crsmain_pk1
-WHERE gbm.title = 'MM-RESIT1-100%-Essay-ELE112_A-2025/26-MAB001-G01' -- Filter for specific gradebook item
+-- WHERE gbm.title = 'your-gradebook-item-title'  -- Optionally filter by title
+-- WHERE cm.course_id = 'your-course-id'           -- Optionally filter by course

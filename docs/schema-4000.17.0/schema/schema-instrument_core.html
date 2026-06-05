@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>instrument_core</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/criterion_value.html">criterion_value</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment.html">deployment</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_announcements.html">deployment_announcements</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_contact.html">deployment_contact</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_criteria.html">deployment_criteria</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_list_def.html">deployment_list_def</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_mat_list.html">deployment_mat_list</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_recipient.html">deployment_recipient</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_reminder.html">deployment_reminder</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_resp_crit.html">deployment_resp_crit</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/deployment_response.html">deployment_response</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/email_list_member.html">email_list_member</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/list_criterion.html">list_criterion</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/list_definition.html">list_definition</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/materialized_list.html">materialized_list</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/instrument_core/work_ctx_list_def.html">work_ctx_list_def</a>
+</ul>
+
+
+</body>
+</html>

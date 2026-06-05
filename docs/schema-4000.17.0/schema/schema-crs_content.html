@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Blackboard database schema documentation</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./typealong.js"></script>
+
+  <script type="text/javascript">
+var currentElement = null;
+
+function setClass(element, value)
+{
+  if ( element )
+  {
+    element.className = value;
+  }
+}
+
+function selectElement(element)
+{
+  setClass(currentElement, "");
+  currentElement = element;
+  setClass(currentElement, "current");
+}
+
+function selectSchema(element, overview)
+{
+  selectElement(element);
+  top.contentFrame.location = overview;
+}
+  </script>
+</head>
+  <body class="menuTables">
+
+
+<h1>crs_content</h1>
+
+<h2><span>Tables</span></h2>
+<ul>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_group.html">course_content_group</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_handlers.html">course_content_handlers</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_history.html">course_content_history</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_content_users.html">course_content_users</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_contents.html">course_contents</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_contents_files.html">course_contents_files</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_contents_reviewed.html">course_contents_reviewed</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/course_toc.html">course_toc</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/tmp_managed_resource.html">tmp_managed_resource</a>
+    <li> <a onclick="selectElement(this)" target="contentFrame" href="tables/crs_content/x_course_contents.html">x_course_contents</a>
+</ul>
+
+
+</body>
+</html>
