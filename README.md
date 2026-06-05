@@ -24,7 +24,7 @@ Documentation, guides, and reference material:
 
 ## 📄 License
 
-Covered by a company-owned, modified MIT License provided by Blackboard.  
+Content is the property of Blackboard, Inc. and is provided without support or warranty.  
 See [LICENSE.txt](LICENSE.txt) for full terms.
 
 ---
