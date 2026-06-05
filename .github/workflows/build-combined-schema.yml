@@ -3,7 +3,7 @@ name: Build Combined Blackboard Schema
 on:
   push:
     paths:
-      - 'docs/schema-4000.10.0/schema/tables/**'
+      - 'docs/schema-4000.17.0/schema/tables/**'
       - '.github/workflows/build-combined-schema.yml'
   workflow_dispatch:
 
@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          SCHEMA_DIR="docs/schema-4000.10.0/schema"
+          SCHEMA_DIR="docs/schema-4000.17.0/schema"
           TABLE_DIR="$SCHEMA_DIR/tables"
           OUTFILE="$SCHEMA_DIR/all_tables_combined.html"
 
@@ -52,7 +52,7 @@ jobs:
           set -euo pipefail
           git config user.name  "schema-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/schema-4000.10.0/schema/all_tables_combined.html
+          git add docs/schema-4000.17.0/schema/all_tables_combined.html
           if ! git diff --cached --quiet; then
             git commit -m "Update combined schema tables (auto)"
             git push
