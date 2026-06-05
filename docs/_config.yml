@@ -8,7 +8,14 @@ theme: minima
 minima:
   skin: classic
 
-header_pages: []
+header_pages:
+  - getting-connected.md
+  - read-replica.md
+  - key-tables.md
+  - postgres-sql-guide.md
+  - dblink.md
+  - troubleshooting.md
+  - community.md
 
 markdown: kramdown
 kramdown:
