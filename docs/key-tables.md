@@ -284,13 +284,15 @@ Commonly joined to: `users`, `course_main`
 
 Records every tracked user interaction in Blackboard — page views, content access, logins, logouts, and more. One row per event.
 
+> For a full column reference, common `event_type` values, and query patterns, see [Working with activity_accumulator](activity-accumulator.md).
+
 Key columns:
 - `pk1` — primary key (bigint — this is a very large table)
 - `user_pk1` — foreign key to `users` (nullable — can be null if the user cannot be determined)
 - `course_pk1` — foreign key to `course_main` (nullable — null for activity outside a course)
 - `content_pk1` — foreign key to course content accessed (nullable — populated for `CONTENT_ACCESS` events)
 - `timestamp` — date and time the event occurred
-- `event_type` — the type of activity, e.g. `COURSE_ACCESS`, `CONTENT_ACCESS`, `LOGIN_ATTEMPT`, `LOGOUT`, `TAB_ACCESS`, `PAGE_ACCESS`, `SESSION_TIMEOUT`
+- `event_type` — the type of activity, e.g. `SESSION_INT`, `COURSE_ACCESS`, `CONTENT_ACCESS`, `LOGIN_ATTEMPT`, `LOGOUT`, `TAB_ACCESS`, `PAGE_ACCESS`, `SESSION_TIMEOUT`, `START_IMPERSONATION` — `SESSION_INT` accounts for most rows by volume
 - `session_id` — groups events within a single user session
 - `status` — `1` (success) or `0` (failure)
 - `ip_address` — IP address from which the event was generated

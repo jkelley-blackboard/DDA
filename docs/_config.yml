@@ -12,6 +12,7 @@ header_pages:
   - getting-connected.md
   - read-replica.md
   - key-tables.md
+  - activity-accumulator.md
   - postgres-sql-guide.md
   - dblink.md
   - troubleshooting.md

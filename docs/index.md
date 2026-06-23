@@ -12,6 +12,7 @@ title: Working with DDA
 - [Getting Connected](getting-connected.md)
 - [Understanding the Read Replica](read-replica.md)
 - [Key Tables Guide](key-tables.md)
+- [Working with activity_accumulator](activity-accumulator.md)
 - [PostgreSQL & SQL Guide](postgres-sql-guide.md)
 - [Troubleshooting](troubleshooting.md)
 - [Community & Resources](community.md)
