@@ -48,9 +48,7 @@ body {
 
 /* ── Site header ─────────────────────────────────────────────── */
 .site-header {
-  background-color: var(--bb-green);
-  border-top: none;
-  border-bottom: none;
+  display: none;
 }
 
 .site-title,
