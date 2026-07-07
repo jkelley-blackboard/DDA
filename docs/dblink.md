@@ -7,7 +7,7 @@ title: Cross-Database Joins with dblink
 
 [← Back to Overview](index.md)
 
-Blackboard's DDA databases are physically separated PostgreSQL instances. The `dblink` extension allows you to query across them from within a single connection. In most Blackboard environments, connections are permitted **from the main database (`BB<deployment_id>`) to others** — not the reverse.
+Blackboard's DDA databases are physically separated PostgreSQL instances. The `dblink` extension allows you to query across them from within a single connection. In most Blackboard LMS environments, connections are permitted **from the main database (`BB<deployment_id>`) to others** — not the reverse.
 
 Replace `BB<deployment_id>` with your actual database prefix (for example, `BB5c1c67a3c99fc`) and supply your DDA credentials wherever shown.
 

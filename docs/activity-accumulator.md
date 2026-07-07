@@ -7,14 +7,14 @@ title: Working with activity_accumulator
 
 [← Back to Overview](index.md)
 
-`activity_accumulator` records nearly every page view and tracked interaction in Blackboard — logins, logouts, course access, content access, tab/module access, and more. One row is written per event, which makes it the single largest table most institutions will query through DDA.
+`activity_accumulator` records nearly every page view and tracked interaction in the Blackboard LMS — logins, logouts, course access, content access, tab/module access, and more. One row is written per event, which makes it the single largest table most institutions will query through DDA.
 
 This page covers the table's columns, common `event_type` values, query patterns, and the performance considerations that come with a table of this size.
 
 > **Before you query this table, know these three things:**
-> 1. **Recent activity has a lag.** The Blackboard application feeds records into `activity_accumulator` from `activity_accumulator_queue` in batches every couple of minutes — it is not written synchronously as events occur. If you need up-to-the-second activity, `UNION` the two tables rather than relying on `activity_accumulator` alone.
+> 1. **Recent activity has a lag.** The LMS feeds records into `activity_accumulator` from `activity_accumulator_queue` in batches every couple of minutes — it is not written synchronously as events occur. If you need up-to-the-second activity, `UNION` the two tables rather than relying on `activity_accumulator` alone.
 > 2. **The production copy only goes back 180 days.** Older records live in the `_stats` schema's copy of the table — see [Where the Data Lives](#where-the-data-lives) below.
-> 3. **For Ultra interfaces, `activity_accumulator` is not the most detailed source.** Illuminate's `CDM_TLM.ultra_events` table maintains a more detailed activity log for users active in the Ultra experience. If you need granular Ultra interaction data, check there first.
+> 3. **For Ultra interfaces, `activity_accumulator` is not the most detailed source.** Blackboard Illuminate's `CDM_TLM.ultra_events` table maintains a more detailed activity log for users active in the Ultra experience. If you need granular Ultra interaction data, check there first.
 
 ---
 
@@ -65,7 +65,7 @@ For anything beyond a 180-day window — year-over-year comparisons, full-term a
 | `PAGE_ACCESS` | A non-course system page was accessed (tab, module, institution page) |
 | `TAB_ACCESS` | A tab or module was accessed — see the `data` column note below |
 
-This is not an exhaustive list; the full set is defined in the `TrackingEvent.Type` enumeration shipped with Learn. Use the column-search query in the [PostgreSQL & SQL Guide](postgres-sql-guide.md#search-for-a-column-across-all-tables) approach, or run a distinct-values query, to see what's actually present in your environment:
+This is not an exhaustive list; the full set is defined in the `TrackingEvent.Type` enumeration shipped with the LMS. Use the column-search query in the [PostgreSQL & SQL Guide](postgres-sql-guide.md#search-for-a-column-across-all-tables) approach, or run a distinct-values query, to see what's actually present in your environment:
 
 ```sql
 SELECT event_type, COUNT(1) AS event_count
@@ -167,7 +167,7 @@ ORDER BY user_pk1, timestamp DESC
 
 ## `activity_accumulator_queue`
 
-A staging table used internally by Learn to buffer activity events before they are written to `activity_accumulator`. Blackboard moves records out of this queue and into `activity_accumulator` in batches every couple of minutes, not in real time — so if you see unexpectedly low counts in `activity_accumulator` for very recent activity (the last few minutes), it may still be sitting in the queue. If you need up-to-the-second activity, `UNION` the two tables instead of relying on `activity_accumulator` alone:
+A staging table used internally by the LMS to buffer activity events before they are written to `activity_accumulator`. The LMS moves records out of this queue and into `activity_accumulator` in batches every couple of minutes, not in real time — so if you see unexpectedly low counts in `activity_accumulator` for very recent activity (the last few minutes), it may still be sitting in the queue. If you need up-to-the-second activity, `UNION` the two tables instead of relying on `activity_accumulator` alone:
 
 ```sql
 SELECT event_type, user_pk1, course_pk1, timestamp

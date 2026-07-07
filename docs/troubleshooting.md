@@ -75,7 +75,7 @@ A silent timeout (connection hangs then drops) is almost always a network issue 
 
 ### Query Returns No Rows
 
-- **Replication lag** — if you are querying data that was just changed in Blackboard, wait a moment and re-run. Lag is usually seconds but can be a few minutes.
+- **Replication lag** — if you are querying data that was just changed in the Blackboard LMS, wait a moment and re-run. Lag is usually seconds but can be a few minutes.
 - **Wrong database** — `activity_accumulator` exists in both the primary database and `_stats`, but with different retention windows. Make sure you are querying the right one for your time range.
 - **Unexpected filter** — check your WHERE clause carefully. A date filter using `NOW()` behaves differently if your client is in a different timezone than expected.
 
@@ -91,7 +91,7 @@ A **schema refresh** is needed — see [Schema Refresh and Permissions](index.md
 
 ### Unexpected Nulls
 
-Many columns in the Blackboard schema are sparsely populated — they exist for all rows but only contain values when a specific feature is in use at your institution. If a column returns mostly nulls, check the schema documentation to understand when it is populated before assuming a data problem.
+Many columns in the LMS schema are sparsely populated — they exist for all rows but only contain values when a specific feature is in use at your institution. If a column returns mostly nulls, check the schema documentation to understand when it is populated before assuming a data problem.
 
 ---
 

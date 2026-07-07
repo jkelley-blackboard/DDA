@@ -7,7 +7,7 @@ title: Getting Connected to DDA
 
 [← Back to Overview](index.md)
 
-DDA gives you read-only access to a near real-time replica of your Blackboard database — never the production database itself. To connect, you'll need credentials provided by Blackboard and a client tool that supports PostgreSQL over SSL.
+DDA gives you read-only access to a near real-time replica of your Blackboard LMS database — never the production database itself. To connect, you'll need credentials provided by Blackboard and a client tool that supports PostgreSQL over SSL.
 
 ---
 

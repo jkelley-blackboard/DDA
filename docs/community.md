@@ -13,7 +13,7 @@ Most practical knowledge lives in the community. This page collects the best pla
 
 ## Blackboard Techies Slack
 
-The most active community for Blackboard administrators and report writers. The DDA-specific channel is the best place to ask questions, share queries, and learn from others working with the same data.
+The most active community for Blackboard LMS administrators and report writers. The DDA-specific channel is the best place to ask questions, share queries, and learn from others working with the same data.
 
 - **Workspace:** [Blackboard Techies](https://blackboardtechies.slack.com)
 - **Channel:** [#direct-data-access](https://blackboardtechies.slack.com/archives/CFAEA8KD3)
@@ -60,7 +60,7 @@ Other community members who have shared DDA-related SQL and resources:
 
 ## A Note on Legacy Database Names
 
-Older documentation, community SQL examples, and schema references — including some in these related repositories — may use `bb_bb60` or `BBLEARN` as the database name. These were used in self-hosted and managed-hosted Blackboard deployments. In SaaS environments, they are equivalent to your `BB<deployment_id>` primary DDA database.
+Older documentation, community SQL examples, and schema references — including some in these related repositories — may use `bb_bb60` or `BBLEARN` as the database name. These were used in self-hosted and managed-hosted Blackboard LMS deployments. In SaaS environments, they are equivalent to your `BB<deployment_id>` primary DDA database.
 
 ---
 

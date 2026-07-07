@@ -63,7 +63,7 @@ Some older systems may have been configured with individual `_cms` databases for
 
 Blackboard's DDA databases are physically separated, so direct joins between them require PostgreSQL's `dblink` extension. A common use case is combining user or course data from the primary database with long-term activity data in `BB<deployment_id>_stats` — for example, reporting on course activity beyond the 180-day window available in the production database.
 
-Note that in most Blackboard environments, connections are only permitted **from the main database to others**, not the reverse. This is a standard production security configuration.
+Note that in most Blackboard LMS environments, connections are only permitted **from the main database to others**, not the reverse. This is a standard production security configuration.
 
 For detailed examples, see the [Cross-Database Joins](dblink.md) page.
 

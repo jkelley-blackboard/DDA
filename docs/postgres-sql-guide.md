@@ -99,7 +99,7 @@ SELECT available_ind::BOOLEAN     -- 'Y'/'N' won't cast — use CASE instead
 
 ### Boolean Type
 
-PostgreSQL has a native `BOOLEAN` type (`true` / `false`), unlike SQL Server which uses `BIT` (`1` / `0`). In the Blackboard schema, boolean-style columns use `Y`/`N` character fields (`available_ind`, `primary_ind`, etc.) rather than the native boolean type, so you compare them as strings.
+PostgreSQL has a native `BOOLEAN` type (`true` / `false`), unlike SQL Server which uses `BIT` (`1` / `0`). In the Blackboard LMS schema, boolean-style columns use `Y`/`N` character fields (`available_ind`, `primary_ind`, etc.) rather than the native boolean type, so you compare them as strings.
 
 ---
 
@@ -364,7 +364,7 @@ SELECT * FROM course_main WHERE service_level = 'F';
 
 ### Schema Search Path
 
-All Blackboard tables are in the `public` schema. You do not need to prefix table names with a schema name — `SELECT * FROM course_main` works as-is.
+All LMS tables are in the `public` schema. You do not need to prefix table names with a schema name — `SELECT * FROM course_main` works as-is.
 
 ### Cross-Database Queries
 

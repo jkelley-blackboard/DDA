@@ -7,7 +7,7 @@ title: Understanding the Read Replica
 
 [← Back to Overview](index.md)
 
-DDA does not give you access to the Blackboard production database. Instead, it connects you to a **read replica** — a continuously updated copy that runs on separate hardware. Understanding what that means will save you a lot of confusion when writing queries and interpreting results.
+DDA does not give you access to the Blackboard LMS production database. Instead, it connects you to a **read replica** — a continuously updated copy that runs on separate hardware. Understanding what that means will save you a lot of confusion when writing queries and interpreting results.
 
 ---
 
@@ -20,7 +20,7 @@ A read replica is a database that automatically receives changes from the produc
 - It runs on production-equivalent hardware, so query performance is generally good
 - It is a complete copy of the production database — all tables and columns are present, even those not documented in the schema packages
 
-The separation between production and the replica is intentional. Your queries, even expensive ones, cannot impact the performance of the live Blackboard environment your users are accessing.
+The separation between production and the replica is intentional. Your queries, even expensive ones, cannot impact the performance of the live LMS environment your users are accessing.
 
 ---
 
@@ -28,7 +28,7 @@ The separation between production and the replica is intentional. Your queries, 
 
 The replication lag is usually small — often just seconds — but it is not zero. For most reporting purposes this is irrelevant. However, it is worth keeping in mind when:
 
-- Comparing DDA results to something you just changed in the Blackboard UI
+- Comparing DDA results to something you just changed in the LMS UI
 - Running reports immediately after a large data load or SIS sync
 - Investigating a very recent event (within the last few minutes)
 
@@ -43,7 +43,7 @@ Every DDA connection is read-only by design. Any attempt to run `INSERT`, `UPDAT
 Practical implications:
 
 - You cannot create tables, views, or indexes in the DDA database
-- You cannot use DDA to fix or modify data — changes must go through the Blackboard UI or a supported integration
+- You cannot use DDA to fix or modify data — changes must go through the LMS UI or a supported integration
 - Temporary tables may work in some client tools within a session, but should not be relied upon
 
 ---
