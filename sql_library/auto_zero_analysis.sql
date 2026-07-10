@@ -1,5 +1,5 @@
 -- Check where courses have auto-zero enabled or have grades that were auto-zeroed
--- jeff.kelley@anthology.com 2025-05-24
+-- jeff.kelley@blackboard.com 2025-05-24
 -- No warranty or support
 
 WITH autoZeros AS (

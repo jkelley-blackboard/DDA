@@ -4,7 +4,7 @@
 
 -- © 2025 Blackboard Inc. All rights reserved.
 -- This software is provided "as is" without warranty or support
--- jeff.kelley@anthology.com 
+-- jeff.kelley@blackboard.com
 
 
 WITH RECURSIVE node_path AS (

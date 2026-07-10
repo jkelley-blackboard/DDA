@@ -1,6 +1,6 @@
 -- File storage metrics to match the Insight Report
 -- Converts all bytes to GB (/1e9)
--- jeff.kelley@anthology.com 2025-06-10 (updated)
+-- jeff.kelley@blackboard.com 2025-06-10 (updated)
 -- In 2025, the measure against entitlement is:
 -- Shared + Content Collection Total - Course Archives - Deleted
 

@@ -1,5 +1,5 @@
 /*
-jeff.kelley@anthology.com  2025-06-28
+jeff.kelley@blackboard.com  2025-06-28
 provided without warranty or support
 
 validate data for grade columns created via Grade Extract

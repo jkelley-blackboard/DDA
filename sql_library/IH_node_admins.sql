@@ -1,5 +1,5 @@
 -- List of Node admins and roles
--- jeff.kelley@anthology.com 2026-01-30
+-- jeff.kelley@blackboard.com 2026-01-30
 -- No warranty or support
 
 

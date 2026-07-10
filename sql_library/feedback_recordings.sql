@@ -1,5 +1,5 @@
 -- gets links to all feedback videos
--- jeff.kelley@anthology.com  2025-05-25
+-- jeff.kelley@blackboard.com  2025-05-25
 -- no warranty or support
 WITH feedbackVideos AS (
     SELECT
