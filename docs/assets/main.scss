@@ -263,8 +263,11 @@ hr {
 }
 
 /* ── Back link (← Back to Overview) ─────────────────────────── */
-p a[href="index.md"],
-p a[href*="index"] {
+/* jekyll-relative-links rewrites index.md to a URL containing "index" at
+   build time, so href alone isn't reliable — the schema explorer's
+   index.html would match too. Position narrows it to the actual back
+   link, which is always the first paragraph on every subpage. */
+.post-content > p:first-of-type a[href*="index"] {
   font-size: 13px;
   color: var(--bb-muted);
 }
