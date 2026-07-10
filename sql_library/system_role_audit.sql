@@ -3,29 +3,27 @@
 
 -- © 2025 Blackboard Inc. All rights reserved.
 -- This software is provided "as is" without warranty or support
--- jeff.kelley@anthology.com 
+-- jeff.kelley@blackboard.com 2026-07-10
 
 
 WITH second_sys_roles AS (
   SELECT
     user_pk1,
-    STRING_AGG(system_role, ';') AS secondary_system_roles
+    STRING_AGG(system_role, ';' ORDER BY system_role) AS secondary_system_roles
   FROM domain_admin
   WHERE domain_pk1 = 1  -- "Top" system node
   GROUP BY user_pk1
 ),
 node_specific_roles AS (
-  SELECT 
+  SELECT
     node_roles.user_pk1,
-    '{' || STRING_AGG(
-      '"' || node_roles.node || '": [' || node_roles.roles || ']',
-      ', '
-    ) || '}' AS node_specific_roles
+    jsonb_object_agg(node_roles.node, node_roles.roles ORDER BY node_roles.node) AS node_specific_roles
   FROM (
-    SELECT 
+    SELECT
       da.user_pk1,
       min.name AS node,
-      STRING_AGG('"' || sr.system_role || '"', ', ') AS roles
+      -- COALESCE to the role code since system_roles.name is nullable (localized bundle key)
+      jsonb_agg(COALESCE(sr.name, sr.system_role) ORDER BY sr.system_role) AS roles
     FROM domain_admin da
       JOIN domain dom ON dom.pk1 = da.domain_pk1
       JOIN system_roles sr ON sr.system_role = da.system_role
