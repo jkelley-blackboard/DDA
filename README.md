@@ -18,7 +18,7 @@ Documentation, guides, and reference material:
 |---|---|
 | `docs/` | Documentation site source files (GitHub Pages) |
 | `sql_library/` | Ready-to-use SQL scripts for common reporting needs |
-| `docs/schema-4000.17.0/` | Expanded schema explorer |
+| `docs/schema-4000.19.0/` | Expanded schema explorer |
 
 ---
 

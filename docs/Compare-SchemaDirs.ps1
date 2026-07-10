@@ -3,10 +3,10 @@
     Compares two Blackboard schema documentation folders and reports differences.
 
 .PARAMETER Path1
-    Path to the first (older) schema folder, e.g. .\schema-4000.15.0
+    Path to the first (older) schema folder, e.g. .\schema-4000.17.0
 
 .PARAMETER Path2
-    Path to the second (newer) schema folder, e.g. .\schema-4000.17.0
+    Path to the second (newer) schema folder, e.g. .\schema-4000.19.0
 
 .PARAMETER OutputPath
     Path for the output report. Defaults to .\schema-diff-report.txt
@@ -15,7 +15,7 @@
     If set, only compares .html files (skips images, CSS, JS)
 
 .EXAMPLE
-    .\Compare-SchemaDirs.ps1 -Path1 .\schema-4000.15.0 -Path2 .\schema-4000.17.0 -HtmlOnly
+    .\Compare-SchemaDirs.ps1 -Path1 .\schema-4000.17.0 -Path2 .\schema-4000.19.0 -HtmlOnly
 #>
 
 param(

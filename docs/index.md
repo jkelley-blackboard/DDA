@@ -36,7 +36,7 @@ You can browse and download the latest database documentation packages here:
 
 ## Expanded Schema Explorer
 
-You can explore the expanded v4000.17 schema package here: [Browse Schema v4000.17](https://jkelley-blackboard.github.io/DDA/schema-4000.17.0/schema/index.html)
+You can explore the expanded v4000.19 schema package here: [Browse Schema v4000.19](https://jkelley-blackboard.github.io/DDA/schema-4000.19.0/schema/index.html)
 
 ## Security Considerations
 
