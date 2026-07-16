@@ -61,8 +61,6 @@ body {
 .site-header .wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
   padding-top: 14px;
   padding-bottom: 14px;
 }
@@ -97,24 +95,6 @@ body {
 
 .site-brand:hover .site-title {
   color: var(--bb-green-tone);
-}
-
-.site-nav .page-link {
-  color: rgba(249, 247, 246, 0.78);
-  font-weight: 500;
-}
-
-.site-nav .page-link:hover {
-  color: var(--bb-light);
-}
-
-.site-nav .menu-icon > svg path {
-  fill: var(--bb-light);
-}
-
-.site-nav .trigger {
-  background: var(--bb-dark);
-  border-color: rgba(249, 247, 246, 0.15);
 }
 
 /* ── Page wrapper ────────────────────────────────────────────── */

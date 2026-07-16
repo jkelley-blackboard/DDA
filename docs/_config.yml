@@ -8,16 +8,6 @@ theme: minima
 minima:
   skin: classic
 
-header_pages:
-  - getting-connected.md
-  - read-replica.md
-  - key-tables.md
-  - activity-accumulator.md
-  - postgres-sql-guide.md
-  - dblink.md
-  - troubleshooting.md
-  - community.md
-
 markdown: kramdown
 kramdown:
   html_to_native: true
