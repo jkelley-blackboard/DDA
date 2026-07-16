@@ -48,6 +48,8 @@ Occasionally new tables are added to the schema and your DDA account may not hav
 
 ## DDA Database Overview
 
+A DDA-enabled deployment is split across five databases, each covering a different slice of the LMS: the **primary database** (core courses, users, enrollments, and grades), the **`_stats` database** (long-term activity data beyond the 180-day window), the **`_admin` database** (internal system coordination), and the **`_cms_doc`** and **`_cms`** databases (Content Collection file storage and metadata). Most reporting and integration work only needs the primary database and, for historical activity, `_stats`.
+
 <iframe id="dda-db-frame" src="dda-databases.html" width="100%" height="800" frameborder="0" scrolling="no" style="border:none; display:block;"></iframe>
 <script>
   window.addEventListener('message', function(e) {
