@@ -30,9 +30,9 @@
   --bb-tint-success:  #E9F6F1;
   --bb-tint-warning:  #F8EAE1;
 
-  --bb-font-heading:  "FT Bureau", Georgia, "Times New Roman", serif;
+  --bb-font-heading:  "Source Serif 4", Georgia, "Times New Roman", serif;
   --bb-font-body:     "IBM Plex Sans", Arial, Helvetica, sans-serif;
-  --bb-font-mono:     "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --bb-font-mono:     "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
   --bb-radius:        6px;
 }
@@ -48,20 +48,55 @@ body {
 
 /* ── Site header ─────────────────────────────────────────────── */
 .site-header {
-  display: none;
+  background: var(--bb-dark);
+  border-top: none;
+  border-bottom: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
-.site-title,
-.site-title:visited {
+.site-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.site-brand,
+.site-brand:visited {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   color: var(--bb-light);
+  text-decoration: none;
+}
+
+.site-brand:hover {
+  text-decoration: none;
+}
+
+.site-logo {
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.site-title {
   font-family: var(--bb-font-heading);
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: normal;
+  padding-left: 14px;
+  border-left: 1px solid rgba(249, 247, 246, 0.3);
 }
 
-.site-title:hover {
+.site-brand:hover .site-title {
   color: var(--bb-green-tone);
-  text-decoration: none;
 }
 
 .site-nav .page-link {
@@ -71,6 +106,15 @@ body {
 
 .site-nav .page-link:hover {
   color: var(--bb-light);
+}
+
+.site-nav .menu-icon > svg path {
+  fill: var(--bb-light);
+}
+
+.site-nav .trigger {
+  background: var(--bb-dark);
+  border-color: rgba(249, 247, 246, 0.15);
 }
 
 /* ── Page wrapper ────────────────────────────────────────────── */
