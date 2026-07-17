@@ -25,7 +25,7 @@ Documentation, guides, and reference material:
 ## 📄 License
 
 Content is the property of Blackboard, Inc. and is provided without support or warranty.  
-See [LICENSE.txt](LICENSE.txt) for full terms.
+See [LICENSE](LICENSE) for full terms.
 
 ---
 
