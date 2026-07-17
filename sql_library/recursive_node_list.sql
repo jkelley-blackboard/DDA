@@ -18,9 +18,7 @@ WITH RECURSIVE node_path AS (
         format('%s (%s / %s)', n.name, n.pk1, n.batch_uid) AS path
     FROM mi_node n
     WHERE n.parent_pk1 IS NULL
-
     UNION ALL
-
     -- Recursive: append child node info
     SELECT 
         c.pk1,
@@ -32,7 +30,6 @@ WITH RECURSIVE node_path AS (
     FROM mi_node c
     INNER JOIN node_path np ON c.parent_pk1 = np.pk1
 )
-
 SELECT 
     n.pk1,
     n.name,
