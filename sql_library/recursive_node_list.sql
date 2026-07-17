@@ -41,9 +41,3 @@ SELECT
 FROM mi_node n
 JOIN node_path np ON np.pk1 = n.pk1
 ORDER BY np.level;
-
-
-
-
-
-
