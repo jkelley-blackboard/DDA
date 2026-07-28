@@ -1,2 +1,4 @@
 CLAUDE.md
 .vscode/
+tools/build_schema_json.py
+docs/schema-4000.19.0/schema/schema.json
