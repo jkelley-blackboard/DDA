@@ -17,6 +17,33 @@ For full column-level detail, use the [Expanded Schema Explorer](https://jkelley
 
 ---
 
+## Contents
+
+- [Common Fields](#common-fields)
+  - [PK1](#pk1)
+  - [ROW_STATUS](#row_status)
+  - [AVAILABLE_IND](#available_ind)
+  - [DTCREATED / DTMODIFIED](#dtcreated-dtmodified)
+  - [BATCH_UID](#batch_uid)
+  - [DATA_SRC_PK1](#data_src_pk1)
+  - [UUID](#uuid)
+- [Courses & Terms](#courses-terms)
+  - [`course_main`](#course_main)
+  - [`course_hierarchy`](#course_hierarchy)
+  - [`term`](#term)
+  - [`domain_course_coll` and `domain`](#domain_course_coll-and-domain)
+- [Users & Enrollment](#users-enrollment)
+  - [`users`](#users)
+  - [`course_users`](#course_users)
+- [Course Content](#course-content)
+  - [`course_contents`](#course_contents)
+- [Grades & Assessments](#grades-assessments)
+- [Activity & Engagement](#activity-engagement)
+  - [`activity_accumulator`](#activity_accumulator)
+- [Common Join Patterns](#common-join-patterns)
+
+---
+
 ## Common Fields
 
 Many tables in the LMS schema share a consistent set of columns. Understanding these fields once will save time when working across the schema. These fields are most consistently found on **entity tables** (courses, users, terms, enrollments). Simpler relationship and mapping tables may have only a subset, or none of them.
