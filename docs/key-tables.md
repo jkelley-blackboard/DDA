@@ -272,6 +272,47 @@ Commonly joined to: `users`, `course_main`
 
 ---
 
+## Course Content
+
+### `course_contents`
+
+Stores every content item within a course — folders, documents, files, learning modules, assignments, and more. One row per item, self-referencing via `parent_pk1` to form the course content tree.
+
+Key columns:
+- `pk1` — primary key
+- `crsmain_pk1` — foreign key to `course_main`
+- `parent_pk1` — foreign key to `course_contents.pk1` for the containing folder; `NULL` for top-level (root) items
+- `cnthndlr_handle` — identifies what the item *is* (e.g. `resource/x-bb-folder`, `resource/x-bb-document`, `resource/x-bb-lesson`, `resource/x-bb-blti-link`) — see `content_handlers.handle` for the full list
+- `content_type` — describes how the item is stored, independent of what it is: `REG` (content stored directly on this row), `LINK` (a pointer to content stored elsewhere — tests, forums, journals, course links), or `URL` (external web link)
+- `folder_type` — for folder rows: `F` (genuine folder), `P` (wraps an Ultra Document), `K` (wraps a Video Studio clip), or `NULL` (structural root folder)
+- `lesson_ind` — `Y`/`N`, whether a `resource/x-bb-lesson` row is a Learning Module
+- `position` — sort order of the item within its parent folder
+- `main_data`, `extended_data` — item body/HTML and a serialized bag of type-specific metadata, respectively
+
+**Watch out for:**
+
+- **`cnthndlr_handle` tells you the type; `content_type` tells you the storage pattern.** They answer different questions — don't use one where the other is needed. A `resource/x-bb-blti-link` row, for example, is `content_type = 'REG'` even though it functions as a pointer, because its LTI metadata is stored inline in `extended_data` rather than referenced elsewhere.
+
+- **Every Ultra Document is actually two rows.** A folder row (`cnthndlr_handle = 'resource/x-bb-folder'`, `folder_type = 'P'`) holds the real, visible title; a child `resource/x-bb-document` row holds the HTML body and is always titled `ultraDocumentBody`. Don't infer this pairing from title text or child count — check `folder_type = 'P'` directly. `reviewable_reason` mirrors `folder_type` (`P`/`N`) and can be used as a corroborating check.
+
+- **When classifying content types, check `folder_type = 'P'` before the general folder/document split** — it's the more specific signal, and checking it first avoids misclassifying Document wrapper folders as plain folders. Cross-check against `main_data` (populated for `REG`, null for `LINK`) if the classification looks wrong.
+
+- **`extended_data` on LTI links (`resource/x-bb-blti-link`) is worth mining.** It consistently includes `toolProviderClientId`, `ltiDeploymentId`, `customParameters`, `cimPlacementId`, and `itemOrigin` — the last of which is usually `CIM`, meaning the link was provisioned via Content Integration Manager rather than placed by hand.
+
+- **`title_embedding` / `description_embedding` are populated selectively, not universally.** Only rows carrying a `lor.attributes` XML property (used for Learning Object Repository sync) get embeddings; other rows show `NULL`. Treat a null embedding as "not applicable to this row," not as missing or errored data.
+
+- **Template and placeholder content shows up across unrelated courses.** Byte-identical "Template Lesson" folders, generic "Overview: / Lesson Content:" bodies, and SCORM demo placeholders are course-creation scaffolding, not live content — filter them out before doing any cross-course analysis.
+
+- **`(null)` isn't the only way an export represents an empty field.** Most rows use the literal string `(null)`, but some course batches use empty strings in the same position instead. A cleanup or parsing step that only checks for `(null)` will silently miss these — check for both.
+
+- **`position` is an ordering hint, not a clean zero-based index.** Values can descend within a folder (e.g. 31, 30, 29), reflecting items prepended rather than appended over time. Use it only to sort; don't assume it starts at 0 or has no gaps.
+
+- **Other useful flags:** `is_group_content = 'Y'` marks group-submission assignments, independent of any grading/participation settings; `hasParticipationRequirements` (in `extended_data`) marks graded discussions/journals; `ULTRA_ASSESSMENT_MARKER` (in `extended_data`) reliably flags test/assignment link rows.
+
+Commonly joined to: `course_main`, `course_contents` (self-join via `parent_pk1`), `content_handlers`
+
+---
+
 ## Grades & Assessments
 
 > ⚠️ Grade table names and column names have not yet been verified against the schema. This section will be added once confirmed. Use the [Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.19.0/schema/index.html) in the meantime.
