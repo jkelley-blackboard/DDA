@@ -1,3 +1,5 @@
+from typing import Any
+
 from mcp.server.fastmcp import FastMCP
 
 from . import schema_data
@@ -6,7 +8,7 @@ mcp = FastMCP("dda-schema")
 
 
 @mcp.tool()
-def list_schemas() -> dict:
+def list_schemas() -> dict[str, Any]:
     """List all vendor schema-folder groups in the DDA schema, with per-group table
     counts and a hint about which physical DDA database each group's tables actually
     live in. Call this first to get the lay of the land before searching or looking up
@@ -20,7 +22,7 @@ def list_tables(
     common_only: bool = False,
     limit: int = 100,
     offset: int = 0,
-) -> dict:
+) -> dict[str, Any]:
     """List tables with lightweight summaries (not full column detail) - optionally
     filtered to one schema-folder group, or to only tables with at least one of the
     standard "common fields" (pk1, row_status, available_ind, dtcreated, dtmodified,
@@ -30,7 +32,7 @@ def list_tables(
 
 
 @mcp.tool()
-def get_table(table: str, schema: str | None = None) -> dict:
+def get_table(table: str, schema: str | None = None) -> dict[str, Any]:
     """Get full detail for one table by name (case-insensitive): description, columns
     (with types, nullability, defaults, enum value constraints), primary key, foreign
     keys, indexes, which common fields it has, and its FK-graph distance from the core
@@ -42,7 +44,7 @@ def get_table(table: str, schema: str | None = None) -> dict:
 
 
 @mcp.tool()
-def search_tables(query: str, limit: int = 30) -> dict:
+def search_tables(query: str, limit: int = 30) -> dict[str, Any]:
     """Case-insensitive substring search across table names, column names, and their
     descriptions. Results are ranked table-name match first, then column-name match,
     then description-text match. Useful for discovering relevant tables when you don't
@@ -51,7 +53,7 @@ def search_tables(query: str, limit: int = 30) -> dict:
 
 
 @mcp.tool()
-def get_relationships(table: str, schema: str | None = None, direction: str = "both") -> dict:
+def get_relationships(table: str, schema: str | None = None, direction: str = "both") -> dict[str, Any]:
     """Get the foreign-key relationships touching a table: which tables/columns it
     references (outgoing) and which tables/columns reference it (incoming). Same
     ambiguous-name handling as get_table. `direction` can be "outgoing", "incoming",

@@ -1,5 +1,3 @@
-import json
-
 import pytest
 from mcp.shared.memory import create_connected_server_and_client_session
 
@@ -7,12 +5,17 @@ from dda_schema_mcp.server import mcp
 
 
 def _result_dict(result):
-    """structuredContent is the primary path for a dict-returning tool, but fall back
-    to parsing the text content block so these tests aren't brittle against that SDK
-    implementation detail."""
-    if result.structuredContent is not None:
-        return result.structuredContent
-    return json.loads(result.content[0].text)
+    """Tool return types must be annotated dict[str, Any] (not bare `dict`) for
+    FastMCP to build an output schema and populate structuredContent - a bare `dict`
+    silently produces structuredContent=None instead of erroring, so assert on it
+    directly rather than falling back to parsing the text content block. That fallback
+    is exactly what let this regress unnoticed once already (caught by the real
+    stdio-transport smoke test, not by these in-memory tests, since pytest's own
+    in-memory Client transport should raise if this ever breaks again)."""
+    assert result.structuredContent is not None, (
+        "structuredContent is None - check tool return type annotations are dict[str, Any], not bare dict"
+    )
+    return result.structuredContent
 
 
 @pytest.mark.anyio
