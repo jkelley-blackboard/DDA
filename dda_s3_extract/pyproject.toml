@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dda-s3-extract"
+version = "0.1.0"
+description = "Proof-of-concept: extract Blackboard DDA tables to Parquet files in S3"
+requires-python = ">=3.9"
+dependencies = [
+    "psycopg2-binary",
+    "pandas",
+    "pyarrow",
+    "boto3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dda_s3_extract"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
