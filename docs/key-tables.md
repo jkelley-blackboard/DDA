@@ -13,7 +13,7 @@ The Blackboard LMS database contains hundreds of tables. This guide covers the m
 
 For ready-to-use queries, see the [SQL Library](https://github.com/jkelley-blackboard/DDA/tree/main/sql_library).
 
-For full column-level detail, use the [Expanded Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.19.0/schema/index.html).
+For full column-level detail, use the [Expanded Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4001.2.0/schema/index.html).
 
 ---
 
@@ -342,7 +342,7 @@ Commonly joined to: `course_main`, `course_contents` (self-join via `parent_pk1`
 
 ## Grades & Assessments
 
-> ⚠️ Grade table names and column names have not yet been verified against the schema. This section will be added once confirmed. Use the [Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4000.19.0/schema/index.html) in the meantime.
+> ⚠️ Grade table names and column names have not yet been verified against the schema. This section will be added once confirmed. Use the [Schema Explorer](https://jkelley-blackboard.github.io/DDA/schema-4001.2.0/schema/index.html) in the meantime.
 
 ---
 

@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_SCHEMA_PATH = REPO_ROOT / "docs" / "schema-4000.19.0" / "schema" / "schema.json"
+DEFAULT_SCHEMA_PATH = REPO_ROOT / "docs" / "schema-4001.2.0" / "schema" / "schema.json"
 SCHEMA_PATH = Path(os.environ.get("DDA_SCHEMA_JSON_PATH", DEFAULT_SCHEMA_PATH))
 
 _data = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
