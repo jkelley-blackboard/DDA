@@ -13,6 +13,7 @@ title: Working with DDA
 - [Understanding the Read Replica](read-replica.md)
 - [Key Tables Guide](key-tables.md)
 - [Working with activity_accumulator](activity-accumulator.md)
+- [Anonymous Grading](anonymous-grading.md)
 - [PostgreSQL & SQL Guide](postgres-sql-guide.md)
 - [Troubleshooting](troubleshooting.md)
 - [Community & Resources](community.md)
