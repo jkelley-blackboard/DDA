@@ -5,3 +5,5 @@ tools/dda_schema_introspect.ps1
 tools/dda_schema_introspect.sql
 __pycache__/
 *.pyc
+projects/
+mcp_server/
