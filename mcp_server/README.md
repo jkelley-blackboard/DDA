@@ -2,7 +2,7 @@
 
 An MCP (Model Context Protocol) server exposing read-only lookup tools over the Blackboard DDA Postgres schema — search tables, look up columns/types/constraints, and trace foreign-key relationships, without needing a live database connection or credentials.
 
-It serves `docs/schema-4001.2.0/schema/schema.json`, generated from the vendor's schema HTML by [`tools/build_schema_json.py`](../tools/build_schema_json.py). Regenerate that file (and re-point this server at a new version via `DDA_SCHEMA_JSON_PATH`, see below) if you're working against a different DDA schema release.
+It serves the `schema.json` in the repo's current `docs/schema-<version>/schema/` folder, generated from the vendor's schema HTML by [`tools/build_schema_json.py`](../tools/build_schema_json.py). The version is picked up automatically, so it follows the repo when [`tools/update_schema.py`](../tools/update_schema.py) moves to a new release. To serve a different file, set `DDA_SCHEMA_JSON_PATH`.
 
 **Scope:** schema lookup only. This server does not connect to a live DDA database and needs no credentials — it's safe to run against just the data already committed to this repo. Live-database scripts (`tools/dda_query.ps1`, `tools/dda_schema_introspect.ps1/.sql`) are separate, stay local/`.gitignore`d, and are not part of this server.
 

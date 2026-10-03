@@ -12,6 +12,7 @@ title: Working with DDA
 - [Getting Connected](getting-connected.md)
 - [Understanding the Read Replica](read-replica.md)
 - [Key Tables Guide](key-tables.md)
+- [Schema Changes](schema-changes.md)
 - [Working with activity_accumulator](activity-accumulator.md)
 - [Anonymous Grading](anonymous-grading.md)
 - [PostgreSQL & SQL Guide](postgres-sql-guide.md)
@@ -30,10 +31,11 @@ Nothing in this repository supersedes your institution's contract or Blackboard'
 
 ## Schema and Changes Packages
 
-You can browse and download the latest database documentation packages here:
+You can browse and download the database documentation packages here:
 
 - [Schema Packages (bbprepo)](https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fschema)
-- [Changes Packages (bbprepo)](https://bbprepo.blackboard.com/#browse/browse:releases:bbdn%2fjdiff)
+
+bbprepo has a package for every build, including builds that are never released. For what changed between releases, see [Schema Changes](schema-changes.md).
 
 ## Expanded Schema Explorer
 

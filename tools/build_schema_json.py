@@ -261,17 +261,25 @@ def build_database_hints(schemas_index: dict) -> dict:
     }
 
 
-def find_schema_dir(arg: str | None) -> Path:
+def version_key(version: str) -> tuple:
+    return tuple(int(part) for part in version.split("."))
+
+
+def find_schema_dir(arg: str | None = None) -> Path:
     if arg:
         return REPO_ROOT / arg
-    candidates = sorted((REPO_ROOT / "docs").glob("schema-*"))
+    # Numeric sort, not lexical - "4001.10.0" must rank above "4001.2.0".
+    candidates = sorted(
+        (p for p in (REPO_ROOT / "docs").glob("schema-*")
+         if p.is_dir() and re.fullmatch(r"schema-\d+(\.\d+)*", p.name)),
+        key=lambda p: version_key(p.name.replace("schema-", "")),
+    )
     if not candidates:
         sys.exit("No docs/schema-* directory found.")
     return candidates[-1]
 
 
-def main() -> None:
-    schema_dir = find_schema_dir(sys.argv[1] if len(sys.argv) > 1 else None)
+def build(schema_dir: Path, version: str | None = None) -> dict:
     tables_dir = schema_dir / "schema" / "tables"
     if not tables_dir.is_dir():
         sys.exit(f"Not found: {tables_dir}")
@@ -294,8 +302,8 @@ def main() -> None:
     annotate_anchor_distance(tables, relationships)
     schemas_index = build_schema_index(tables)
 
-    output = {
-        "schema_version": schema_dir.name.replace("schema-", ""),
+    return {
+        "schema_version": version or schema_dir.name.replace("schema-", ""),
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "table_count": len(tables),
         "anchor_tables": ANCHOR_TABLES,
@@ -305,9 +313,20 @@ def main() -> None:
         "relationships": relationships,
     }
 
+
+def write(schema_dir: Path) -> Path:
+    output = build(schema_dir)
     out_path = schema_dir / "schema" / "schema.json"
     out_path.write_text(json.dumps(output, indent=2), encoding="utf-8")
-    print(f"Wrote {len(tables)} tables ({len(relationships)} FK relationships) to {out_path}")
+    print(
+        f"Wrote {output['table_count']} tables "
+        f"({len(output['relationships'])} FK relationships) to {out_path}"
+    )
+    return out_path
+
+
+def main() -> None:
+    write(find_schema_dir(sys.argv[1] if len(sys.argv) > 1 else None))
 
 
 if __name__ == "__main__":

@@ -3,8 +3,21 @@ import os
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_SCHEMA_PATH = REPO_ROOT / "docs" / "schema-4001.2.0" / "schema" / "schema.json"
-SCHEMA_PATH = Path(os.environ.get("DDA_SCHEMA_JSON_PATH", DEFAULT_SCHEMA_PATH))
+
+# The repo holds one docs/schema-<version>/ folder at a time, and
+# tools/update_schema.py swaps it out on each release. Pick the newest
+# (numerically, so 4001.10.0 beats 4001.2.0) rather than pinning a version.
+def _default_schema_path() -> Path:
+    candidates = sorted(
+        (REPO_ROOT / "docs").glob("schema-*/schema/schema.json"),
+        key=lambda p: tuple(int(x) for x in p.parent.parent.name.replace("schema-", "").split(".")),
+    )
+    if not candidates:
+        raise FileNotFoundError("No docs/schema-*/schema/schema.json found; set DDA_SCHEMA_JSON_PATH.")
+    return candidates[-1]
+
+
+SCHEMA_PATH = Path(os.environ.get("DDA_SCHEMA_JSON_PATH") or _default_schema_path())
 
 _data = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 _tables = _data["tables"]

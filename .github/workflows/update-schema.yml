@@ -1,0 +1,80 @@
+name: Update Schema to Latest Test/Stage Release
+
+# Checks status.blackboard.com daily for a newer Feature Test/Stage release
+# and, if one exists, opens a PR moving the schema explorer to it. See
+# tools/update_schema.py for the full process.
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # 12:00 UTC, after the usual 08:00 UTC release window
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Force a specific version (e.g. 4001.4.0). Leave blank to use the latest Test/Stage release.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Find target version
+        id: check
+        env:
+          VERSION: ${{ inputs.version }}
+        run: python tools/update_schema.py --check ${VERSION:+--version "$VERSION"}
+
+      - name: Skip if a PR branch already exists
+        id: branch
+        if: steps.check.outputs.version != ''
+        env:
+          BRANCH: schema-update/${{ steps.check.outputs.version }}
+        run: |
+          echo "name=$BRANCH" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null; then
+            echo "Branch $BRANCH already exists; leaving the open PR alone."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update schema
+        id: update
+        if: steps.check.outputs.version != '' && steps.branch.outputs.exists != 'true'
+        env:
+          VERSION: ${{ steps.check.outputs.version }}
+        run: python tools/update_schema.py --version "$VERSION" --pr-body "$RUNNER_TEMP/pr_body.md"
+
+      - name: Open pull request
+        if: steps.update.outputs.updated == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.branch.outputs.name }}
+          OLD: ${{ steps.update.outputs.old_version }}
+          NEW: ${{ steps.update.outputs.version }}
+        run: |
+          set -euo pipefail
+          git config user.name  "schema-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add -A
+          git commit -m "Update schema explorer to v$NEW"
+          git push -u origin "$BRANCH"
+          {
+            echo "Automated update from schema $OLD to $NEW, the latest Blackboard Test/Stage release."
+            echo
+            echo "Review the changes below. The same entry has been added to docs/schema-changes.md."
+            echo
+            cat "$RUNNER_TEMP/pr_body.md"
+          } > "$RUNNER_TEMP/pr.md"
+          gh pr create --base main --head "$BRANCH" --title "Update schema explorer to v$NEW" --body-file "$RUNNER_TEMP/pr.md"
