@@ -20,6 +20,7 @@ Documentation, guides, and reference material:
 | `sql_library/` | Ready-to-use SQL scripts for common reporting needs |
 | `docs/schema-4001.2.0/` | Expanded schema explorer, plus a machine-readable `schema.json` |
 | `tools/` | Maintenance scripts, including the schema.json generator |
+| `mcp_server/` | MCP server for schema lookups — see `mcp_server/README.md` |
 | `dda_s3_extract/` | Proof-of-concept: DDA table → Parquet → S3 extraction — see `dda_s3_extract/README.md` |
 
 ---

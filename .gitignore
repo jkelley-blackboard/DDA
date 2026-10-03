@@ -6,4 +6,3 @@ tools/dda_schema_introspect.sql
 __pycache__/
 *.pyc
 projects/
-mcp_server/
