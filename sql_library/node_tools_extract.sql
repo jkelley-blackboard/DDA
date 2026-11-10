@@ -1,3 +1,6 @@
+-- Tool availability settings at an institutional hierarchy node, with the node's full path
+-- Set the node pk1 in the WHERE clause at the end before running
+
 WITH RECURSIVE node_path AS (
     -- Anchor: start from root nodes
     SELECT 

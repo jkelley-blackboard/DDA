@@ -1,4 +1,5 @@
--- Purpose: Builds a full hierarchical path for each node in `mi_node`,
+-- Full path of every institutional hierarchy node (name, pk1, batch_uid from root to leaf)
+-- Builds a full hierarchical path for each node in `mi_node`,
 -- combining node name, pk1, and batch_uid from root to leaf.
 -- Includes hierarchy depth as `level`.
 

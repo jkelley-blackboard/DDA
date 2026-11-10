@@ -1,3 +1,5 @@
+-- Grade Export / Grades Journey: validate optionalData and integration flags on grade columns
+
 /*
 jeff.kelley@blackboard.com  2025-06-28
 provided without warranty or support

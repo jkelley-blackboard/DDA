@@ -1,3 +1,5 @@
+-- Each course with its subject and program from the course hierarchy
+
 -- CTE: Maps each course to its subject (distance = 1, service_level = 'J')
 WITH subject_map AS (
     SELECT

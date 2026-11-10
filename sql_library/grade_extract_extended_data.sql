@@ -1,3 +1,5 @@
+-- Gradebook columns with formula, grading schema and Grade Extract extended data (key=value list)
+
 -- CTE to aggregate extended data key/value pairs into a single string per gradebook_main_pk1
 WITH optionalData AS (
     SELECT 
