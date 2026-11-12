@@ -17,6 +17,27 @@ This page records how the DDA schema changes from one release to the next, based
 
 <!-- New entries are added below this line by tools/update_schema.py -->
 
+## 4001.4.0 (from 4001.2.0)
+
+Updated 2026-10-13. Compares the 4001.2.0 and 4001.4.0 Test/Stage releases. Intermediate builds (4001.3.0) were not released to Test/Stage on their own, so their changes are included here.
+
+760 → 761 tables: 1 added, 0 removed, 0 moved, 3 changed.
+
+### Tables added
+
+| Table | Schema group | Description |
+|---|---|---|
+| `mobile_auth_token` | mobile_b2 | Stores authentication tokens generated after auth code exchange for mobile SDK sessions. |
+
+### Tables changed
+
+| Table | Change |
+|---|---|
+| `bb_instance` (admin) | Removed column `db_pass`<br>Removed column `stat_db_pass` |
+| `clp_content_alignment` (clp_sog) | Added index `clp_content_alignment_ic1` |
+| `attempt_receipt` (gradebook) | Added column `on_behalf_reason` (nvarchar(255))<br>Added column `submitted_on_behalf_by` (id)<br>Added column `submitted_on_behalf_by_name` (nvarchar(255))<br>`submission_type_ind`: allowed values added `O`<br>Added foreign key `attempt_receipt_fk5`<br>Added index `attempt_receipt_if6` |
+
+
 ## 4001.2.0 (from 4000.19.0)
 
 Updated 2026-09-29. Compares the 4000.19.0 and 4001.2.0 Test/Stage releases. The 4000.21.0 and 4001.0.0 releases, and the builds between them, were not published here on their own, so their changes are included here.

@@ -39,7 +39,7 @@ bbprepo has a package for every build, including builds that are never released.
 
 ## Expanded Schema Explorer
 
-You can explore the expanded v4001.2 schema package here: [Browse Schema v4001.2](https://jkelley-blackboard.github.io/DDA/schema-4001.2.0/schema/index.html)
+You can explore the expanded v4001.4 schema package here: [Browse Schema v4001.4](https://jkelley-blackboard.github.io/DDA/schema-4001.4.0/schema/index.html)
 
 ## Security Considerations
 
