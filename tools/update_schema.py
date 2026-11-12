@@ -16,7 +16,9 @@ Steps, when a newer target exists:
   5. Repoint version references in the repo's Markdown files.
   6. Delete the old docs/schema-<old>/ folder.
 
-Changes are left uncommitted for review.
+Changes are left uncommitted for review. If origin already has the
+schema-update/<v> branch the daily workflow pushes, the script stops: that
+release is already waiting as a PR.
 
 Usage:
     python tools/update_schema.py                 # auto: latest Test/Stage release
@@ -162,11 +164,26 @@ def set_output(**values) -> None:
                 f.write(f"{k}={v}\n")
 
 
+def pr_branch_exists(version: str) -> bool:
+    """True if origin has the branch the daily workflow uses for this version's PR.
+
+    The workflow skips when that branch exists; a local run checks too, so it
+    never duplicates an update that is already waiting for review.
+    """
+    result = subprocess.run(
+        ["git", "ls-remote", "--exit-code", "--heads", "origin", f"schema-update/{version}"],
+        cwd=REPO_ROOT, capture_output=True,
+    )
+    return result.returncode == 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--version", help="Target this version instead of the latest Test/Stage release.")
     parser.add_argument("--check", action="store_true", help="Report what would happen; change nothing.")
     parser.add_argument("--pr-body", type=Path, help="Also write the change summary to this file.")
+    parser.add_argument("--force", action="store_true",
+                        help="Update even if origin already has a schema-update/<version> PR branch.")
     args = parser.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -194,6 +211,11 @@ def main() -> None:
     if args.check:
         set_output(updated="false", version=target)
         return
+    if pr_branch_exists(target) and not args.force:
+        sys.exit(
+            f"origin already has a schema-update/{target} branch: the daily workflow has opened "
+            "a PR for this release. Review and merge that PR instead (or pass --force)."
+        )
 
     new_dir = REPO_ROOT / "docs" / f"schema-{target}"
     if new_dir.exists():
