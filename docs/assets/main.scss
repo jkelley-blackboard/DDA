@@ -84,7 +84,11 @@ body {
   flex-shrink: 0;
 }
 
-.site-title {
+/* minima colours .site-title dark grey; restate the light colour so it
+   reads against the dark header. */
+.site-title,
+.site-title:visited {
+  color: var(--bb-light);
   font-family: var(--bb-font-heading);
   font-size: 1.05rem;
   font-weight: 700;
@@ -261,21 +265,30 @@ table {
   margin: 1.3em 0;
 }
 
-th {
+/* Selectors are prefixed with `table` so they outrank minima's own
+   `table th` / `table td` rules, which otherwise give the header a light
+   grey background under our light header text. */
+table th {
   background: var(--bb-dark);
   color: var(--bb-light);
   font-weight: 600;
   padding: 10px 14px;
   text-align: left;
+  border: 1px solid var(--bb-dark);
 }
 
-td {
+table td {
   padding: 9px 14px;
+  border: none;
   border-bottom: 1px solid var(--bb-border);
   vertical-align: top;
 }
 
-tr:nth-child(even) td {
+table tr:nth-child(even) {
+  background: none;
+}
+
+table tr:nth-child(even) td {
   background: #F1EEE8;
 }
 
@@ -324,5 +337,5 @@ iframe {
   h1 { font-size: 1.6em; }
   h2 { font-size: 1.25em; }
   pre { padding: 12px 14px; }
-  td, th { padding: 8px 10px; }
+  table td, table th { padding: 8px 10px; }
 }
