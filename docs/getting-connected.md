@@ -26,6 +26,8 @@ When your institution activates DDA, Blackboard provides:
 
 DDA access is restricted to a fixed list of whitelisted IP addresses. Blackboard will ask you to provide up to five source IP addresses at setup — only connections from those addresses will be accepted.
 
+Each Blackboard site has its own DDA database and its own allowlist. Production, test, and any additional sites your institution runs are managed separately, so an address approved for one does not carry over to another. When you add a server, ask for it to be added on every site it needs to reach.
+
 To find your machine's IP, visit [checkip.amazonaws.com](http://checkip.amazonaws.com/). If you use a VPN such as Zscaler, disable it first or you may get the VPN's egress address instead of your machine's actual IP.
 
 **This is the most important constraint to understand before choosing how to connect.** Tools that run on your machine or a server at a known fixed IP — pgAdmin, DBeaver, Python scripts — work straightforwardly. Cloud-hosted services like Power BI Service, scheduled cloud pipelines, or any SaaS tool use dynamic or shared IP ranges that cannot be whitelisted directly. Those scenarios require a different approach, covered in the [Cloud Services](#cloud-services) section below.
@@ -148,6 +150,8 @@ Microsoft's supported solution for connecting Power BI Service to IP-restricted 
 5. Configure the dataset in Power BI Service to use the gateway for scheduled refresh
 
 The gateway machine's IP is what gets whitelisted — not Power BI's cloud infrastructure.
+
+**Microsoft Fabric** works the same way: Fabric connections to DDA must use an on-premises data gateway on a whitelisted machine. A Fabric connection made without the gateway comes from Microsoft's cloud addresses and times out.
 
 > **Note:** The gateway machine needs to stay online with the gateway service running for scheduled refreshes to work. Treat it as reporting infrastructure, not a personal workstation.
 

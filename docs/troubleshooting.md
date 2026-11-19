@@ -49,6 +49,7 @@ A useful test: if DDA works from one location but not another (office vs. home, 
 - **pgAdmin can't find the certificate** — pgAdmin sometimes loses the path to the `.pem` file after an upgrade. Re-open the server properties, go to the SSL tab, and re-browse to the certificate file.
 - **Certificate not trusted** — make sure you are using the current [AWS RDS certificate bundle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.CertificatesAllRegions). Older bundles may have expired.
 - **Wrong file** — the file should be `rds-combined-ca-bundle.pem`. pgAdmin will convert it to `.crt` automatically; you do not need to convert it manually.
+- **Hostname does not match the certificate** — the certificate names the underlying Amazon RDS server, not your DDA hostname. Use SSL mode `require` with the RDS bundle; strict modes such as `verify-full` fail the name check. This produces a certificate error, not a timeout.
 
 ---
 
@@ -67,7 +68,10 @@ A silent timeout (connection hangs then drops) is almost always a network issue 
 
 - Confirm port 5432 is open to the DDA hostname on your outbound firewall
 - If connecting through a proxy, confirm the proxy supports persistent TCP connections on non-standard ports
-- This is network infrastructure territory — Blackboard support cannot diagnose this on your behalf
+- **Confirm the source IP is whitelisted for this site.** Each site has its own allowlist (see [IP Whitelisting](getting-connected.md#ip-whitelisting)); an address approved for production is not automatically approved for test or another site
+- **Confirm the hostname is still current.** If a connection that used to work starts timing out, the site may have moved to new infrastructure with a new DDA hostname. The old name can still resolve but no longer reaches your database. Ask Blackboard support for the current DDA hostname
+- **Works in pgAdmin but times out in a cloud tool** — the cloud tool is connecting from its own addresses instead of through your gateway (see [Cloud Services](getting-connected.md#cloud-services))
+- Firewall and proxy issues on your side are network infrastructure territory — Blackboard support cannot diagnose those on your behalf, but they can confirm the hostname and the allowlist
 
 ---
 
@@ -109,8 +113,9 @@ Many columns in the LMS schema are sparsely populated — they exist for all row
 - **SSL cert path lost after upgrade** — re-open server properties → SSL tab → re-browse to the `.pem` file
 - **Query editor is slow on large tables** — add a `LIMIT` clause while exploring. `activity_accumulator` in particular can be very large.
 
-### Power BI
+### Power BI and Microsoft Fabric
 
+- **Fabric connection times out** — Fabric must connect through an on-premises data gateway on a whitelisted machine, the same as Power BI Service. Check that the connection is set to use the gateway.
 - **Scheduled refresh fails in Power BI Service** — the most common cause is the on-premises gateway service not running. Check that the gateway machine is online and the gateway service is started. Also confirm the gateway machine's IP has not changed.
 - **Npgsql driver missing** — Power BI Desktop's PostgreSQL connector requires the [Npgsql driver](https://github.com/npgsql/npgsql/releases). Install it and restart Power BI Desktop if the PostgreSQL connector is unavailable.
 - **DirectQuery times out** — for large datasets, switch to Import mode with scheduled refresh rather than DirectQuery.
